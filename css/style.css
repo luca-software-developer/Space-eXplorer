@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    overflow: hidden;
+    outline: none;
+    margin: 0;
+    user-select: none;
+}
+
+body,
+canvas {
+    background: #010b19;
+}
+
+canvas {
+    z-index: -1;
+    position: absolute;
+}
+
+#flame {
+    z-index: 1;
+    position: absolute;
+    filter: hue-rotate(180deg);
+    opacity: .9;
+    transform: scale(.8);
+    visibility: hidden;
+}
+
+#player {
+    z-index: 2;
+    position: absolute;
+    visibility: hidden;
+}
+
+.asteroid,
+.explosion {
+    z-index: 0;
+    position: absolute;
+}
+
+#score-container {
+    z-index: 3;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 50vw;
+    height: 3rem;
+    margin: 2rem;
+    font-family: 'Arial', serif;
+    line-height: 1.5rem;
+    text-align: right;
+    font-size: .7rem;
+    font-weight: bold;
+    color: rgba(255, 255, 255, .7);
+}
+
+#score {
+    z-index: 3;
+    font-family: 'Press Start 2P', serif;
+    text-align: right;
+    font-size: 1.5rem;
+    color: white;
+}
