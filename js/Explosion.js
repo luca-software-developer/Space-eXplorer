@@ -10,6 +10,11 @@ class Explosion {
     static SPRITE_PATH = `assets/Explosion.gif`;
 
     /**
+     * Definisce il percorso dell'effetto sonoro.
+     */
+    static SOUND_PATH = `assets/Explosion.mp3`;
+
+    /**
      * Definisce la larghezza fisica dello sprite.
      */
     static SPRITE_WIDTH = 800;
@@ -30,6 +35,7 @@ class Explosion {
      * @param {number} y Ordinata iniziale del centro dell'esplosione.
      */
     constructor() {
+        new Audio(Explosion.SOUND_PATH).play();
         this.sprite = document.createElement(`img`);
         this.sprite.setAttribute(`class`, `explosion`);
         this.sprite.setAttribute(`src`, Explosion.SPRITE_PATH);

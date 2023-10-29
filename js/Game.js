@@ -10,14 +10,24 @@ class Game {
     static FRAMES_PER_SECOND = 60;
 
     /**
-     * Attesa prima del reload della pagina.
-     */
-    static RELOAD_TIMEOUT = 1000;
-
-    /**
      * Intervallo tra una visualizzazione e l'altra dello score.
      */
     static SCORE_BLINK_INTERVAL = 250;
+
+    /**
+     * Definisce il percorso dell'effetto sonoro del punteggio.
+     */
+    static SCORE_SOUND_PATH = `assets/Score.mp3`;
+
+    /**
+     * Definisce il percorso dell'effetto sonoro del Game Over.
+     */
+    static GAMEOVER_SOUND_PATH = `assets/GameOver.mp3`;
+
+    /**
+     * Definisce il percorso della colonna sonora.
+     */
+    static SOUNDTRACK_PATH = `assets/Soundtrack.mp3`;
 
     /**
      * Costruttore della classe Game.
@@ -29,7 +39,6 @@ class Game {
         this.score = 0;
         this.running = true;
         log(`Initialization`, `Game object instantiated.`);
-        this.init();
     }
 
     /**
@@ -77,19 +86,20 @@ class Game {
      * Aggiorna il punteggio al livello UI.
      */
     updateScore() {
-        let element = document.getElementById(`score`);
-        element.innerText = this.getScore();
+        let scoreElement = document.getElementById(`score`);
+        scoreElement.innerText = this.getScore();
         if (this.getScore() % 1000 == 0) {
+            new Audio(Game.SCORE_SOUND_PATH).play();
             let visibleCounter = 0;
             let blinkHandle = setInterval(
                 () => {
                     if (visibleCounter % 2 == 0) {
-                        element.style.visibility = `visible`;
+                        scoreElement.style.visibility = `visible`;
                     } else {
-                        element.style.visibility = `hidden`;
+                        scoreElement.style.visibility = `hidden`;
                     }
                     if (visibleCounter == 10) {
-                        element.style.textShadow = `none`;
+                        scoreElement.style.textShadow = `none`;
                         clearInterval(blinkHandle);
                     }
                     visibleCounter++;
@@ -201,6 +211,24 @@ class Game {
     }
 
     /**
+     * Esegue le procedure necessarie alla gestione di un Game Over.
+     */
+    gameOver() {
+        new Audio(Game.GAMEOVER_SOUND_PATH).play();
+        let gameOverLayer = document.getElementById(`game-over-layer`);
+        let gameOver = document.getElementById(`game-over`);
+        let gameReturn = document.getElementById(`game-return`);
+
+        gameReturn.onclick = () => {
+            location.reload();
+        };
+
+        gameOverLayer.style.display = `flex`;
+        gameOver.style.display = `initial`;
+        gameReturn.style.display = `initial`;
+    }
+
+    /**
      * Esegue il setup della generazione di oggetti Asteroid.
      */
     initAsteroidGeneration() {
@@ -225,7 +253,7 @@ class Game {
                         x: asteroid.getPosition().x - Asteroid.DELTA_X,
                         y: asteroid.getPosition().y + Math.random() * verticalComponent
                     });
-                    if (this.getPlayer().collidesWith(asteroid)) {
+                    if (this.isRunning() && this.getPlayer().collidesWith(asteroid)) {
                         log(`Collision detection`, `Collision between Player and Asteroid.`);
                         let explosion = new Explosion();
                         explosion.setPosition({
@@ -235,12 +263,7 @@ class Game {
                         setTimeout(
                             () => {
                                 explosion.remove();
-                                setTimeout(
-                                    () => {
-                                        location.reload();
-                                    },
-                                    Game.RELOAD_TIMEOUT
-                                );
+                                this.gameOver();
                             },
                             Explosion.DURATION
                         );
@@ -275,6 +298,11 @@ class Game {
      * Routine di inizializzazione del gioco.
      */
     init() {
+        log(`Initialization`, `Starting soundtrack.`);
+        let audio = new Audio(Game.SOUNDTRACK_PATH);
+        audio.loop = true;
+        audio.play();
+
         log(`Initialization`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
         this.resize();
 
@@ -322,7 +350,27 @@ class Game {
  * Punto di ingresso del programma.
  */
 let main = () => {
-    new Game();
+    let game = new Game();
+    log(`Initialization`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
+    game.resize();
+
+    log(`Initialization`, `Setting 'onresize' event listener.`);
+    onresize = () => game.resize();
+
+    log(`Initialization`, `Setting scene background.`);
+    game.generateInitialBackground();
+    requestAnimationFrame(() => game.generateBackground());
+
+    let gameStart = document.getElementById(`game-start`);
+    let startGameLayer = document.getElementById(`start-game-layer`);
+    let scoreContainer = document.getElementById(`score-container`);
+    let scoreElement = document.getElementById(`score`);
+    gameStart.onclick = () => {
+        startGameLayer.style.display = `none`;
+        scoreContainer.style.visibility = `visible`;
+        scoreElement.style.visibility = `visible`;
+        game.init();
+    };
 };
 
 main();
