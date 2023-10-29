@@ -22,7 +22,7 @@ class Asteroid {
     /**
      * Velocità iniziale dell'asteroide.
      */
-    static INITIAL_SPEED = 2000;
+    static INITIAL_SPEED = 50;
 
     /**
      * Intervallo di tempo tra un asteroide e un altro.
@@ -43,13 +43,12 @@ class Asteroid {
         this.sprite.setAttribute(`src`, Asteroid.SPRITE_PATH);
         this.sprite.setAttribute(`alt`, `Asteroid`);
         this.sprite.setAttribute(`width`, Asteroid.SPRITE_WIDTH);
-        this.sprite.setAttribute(`height`, Asteroid.SPRITE_HEIGHT);      
+        this.sprite.setAttribute(`height`, Asteroid.SPRITE_HEIGHT);
         if (Math.random() > .5) {
             this.sprite.style.transform = `scaleX(-1)`;
         }
         document.body.append(this.sprite);
         this.speed = Asteroid.INITIAL_SPEED;
-        log(`Gameplay`, `Asteroid object instantiated.`);
     }
 
     /**
@@ -104,7 +103,6 @@ class Asteroid {
      */
     remove() {
         this.getSprite().remove();
-        log(`Gameplay`, `Asteroid object removed.`);
     }
 
 }
