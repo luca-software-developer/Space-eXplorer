@@ -1,3 +1,4 @@
+"use strict";
 
 /**
  * Rappresenta il gioco.
@@ -17,17 +18,17 @@ class Game {
     /**
      * Definisce il percorso dell'effetto sonoro del punteggio.
      */
-    static SCORE_SOUND_PATH = `assets/Score.mp3`;
+    static SCORE_SOUND_PATH = `assets/Audio/SFX/Score.mp3`;
 
     /**
      * Definisce il percorso dell'effetto sonoro del Game Over.
      */
-    static GAMEOVER_SOUND_PATH = `assets/GameOver.mp3`;
+    static GAMEOVER_SOUND_PATH = `assets/Audio/SFX/GameOver.mp3`;
 
     /**
      * Definisce il percorso della colonna sonora.
      */
-    static SOUNDTRACK_PATH = `assets/Soundtrack.mp3`;
+    static SOUNDTRACK_PATH = `assets/Audio/Music/Soundtrack.mp3`;
 
     /**
      * Costruttore della classe Game.
@@ -38,11 +39,12 @@ class Game {
         this.gameObjects = [];
         this.score = 0;
         this.running = true;
-        log(`Initialization`, `Game object instantiated.`);
+        Logger.log(`Initialization`, `Game object instantiated.`);
     }
 
     /**
      * Restituisce l'elemento <canvas>.
+     * 
      * @returns Restituisce l'elemento <canvas>.
      */
     getCanvas() {
@@ -51,6 +53,7 @@ class Game {
 
     /**
      * Restituisce il contesto di rendering del <canvas>.
+     * 
      * @returns Restituisce il contesto di rendering del <canvas>.
      */
     getContext() {
@@ -58,8 +61,9 @@ class Game {
     }
 
     /**
-     * Restituisce l'array di game objects.
-     * @returns Restituisce l'array di game objects.
+     * Restituisce l'array di GameObject.
+     * 
+     * @returns Restituisce l'array di GameObject.
      */
     getGameObjects() {
         return this.gameObjects;
@@ -67,6 +71,7 @@ class Game {
 
     /**
      * Restituisce il punteggio attuale.
+     * 
      * @returns Restituisce il punteggio attuale.
      */
     getScore() {
@@ -75,6 +80,7 @@ class Game {
 
     /**
      * Imposta il punteggio attuale.
+     * 
      * @param {number} score Punteggio attuale.
      */
     setScore(score) {
@@ -111,6 +117,7 @@ class Game {
 
     /**
      * Restituisce se il gioco è in corso.
+     * 
      * @returns Restituisce se il gioco è in corso.
      */
     isRunning() {
@@ -119,6 +126,7 @@ class Game {
 
     /**
      * Imposta se il gioco è in corso.
+     * 
      * @param {boolean} running true se il gioco è in corso, false altrimenti.
      */
     setRunning(running) {
@@ -127,6 +135,7 @@ class Game {
 
     /**
      * Restituisce il Player.
+     * 
      * @returns Restituisce il Player.
      * @see Player
      */
@@ -136,6 +145,7 @@ class Game {
 
     /**
      * Genera la slice verticale di background alla coordinata specificata.
+     * 
      * @param {number} x Coordinata orizzontale della slice di background.
      */
     generateBackgroundSlice(x) {
@@ -170,11 +180,11 @@ class Game {
      * Esegue il setup del Player.
      */
     initPlayer() {
-        this.player = new Player({
-            x: Math.round(this.getContext().canvas.width / 2),
-            y: Math.round(this.getContext().canvas.height / 2),
-        });
-        this.getGameObjects().push(this.player);
+        this.player = new Player(new Position(
+            Math.round(this.getContext().canvas.width / 3),
+            Math.round(this.getContext().canvas.height / 2)
+        ));
+        this.getGameObjects().push(this.getPlayer());
     }
 
     /**
@@ -184,17 +194,17 @@ class Game {
         document.onkeydown = (event) => {
             switch (event.key) {
                 case `ArrowUp`: {
-                    this.getPlayer().setPosition({
-                        x: this.getPlayer().getPosition().x,
-                        y: this.getPlayer().getPosition().y - Player.DELTA_Y
-                    });
+                    this.getPlayer().setPosition(new Position(
+                        this.getPlayer().getPosition().getX(),
+                        this.getPlayer().getPosition().getY() - Player.DELTA_Y
+                    ));
                     break;
                 }
                 case `ArrowDown`: {
-                    this.getPlayer().setPosition({
-                        x: this.getPlayer().getPosition().x,
-                        y: this.getPlayer().getPosition().y + Player.DELTA_Y
-                    });
+                    this.getPlayer().setPosition(new Position(
+                        this.getPlayer().getPosition().getX(),
+                        this.getPlayer().getPosition().getY() + Player.DELTA_Y
+                    ));
                     break;
                 }
                 default: {
@@ -203,10 +213,16 @@ class Game {
             }
         };
         document.onmousemove = (event) => {
-            this.getPlayer().setPosition({
-                x: this.getPlayer().getPosition().x,
-                y: event.clientY
-            });
+            this.getPlayer().setPosition(new Position(
+                this.getPlayer().getPosition().getX(),
+                event.clientY
+            ));
+        };
+        document.ontouchmove = (event) => {
+            this.getPlayer().setPosition(new Position(
+                this.getPlayer().getPosition().getX(),
+                event.changedTouches[0].clientY
+            ));
         };
     }
 
@@ -237,29 +253,29 @@ class Game {
             let asteroid = new Asteroid();
             this.getGameObjects().push(asteroid);
             asteroid.setSpeed(asteroidSpeed + Math.random() * asteroidSpeed / 10);
-            asteroidSpeed += 10;
-            let verticalComponent = Math.random() * 2 - 1;
-            asteroid.setPosition({
-                x: this.getContext().canvas.width + Asteroid.SPRITE_WIDTH,
-                y: Math.round(Math.random() * this.getContext().canvas.height)
-            });
+            asteroidSpeed += 0.1;
+            let verticalComponent = Math.random() - .5;
+            asteroid.setPosition(new Position(
+                this.getContext().canvas.width + Asteroid.SPRITE_WIDTH,
+                Math.round(Math.random() * this.getContext().canvas.height)
+            ));
             let asteroidHandle = setInterval(
                 () => {
-                    if (asteroid.getPosition().x < 0) {
+                    if (asteroid.getPosition().getX() + asteroid.getSize().getWidth() < 0) {
                         this.getGameObjects().splice(this.getGameObjects().indexOf(asteroid), 1);
                         asteroid.remove();
                     }
-                    asteroid.setPosition({
-                        x: asteroid.getPosition().x - Asteroid.DELTA_X,
-                        y: asteroid.getPosition().y + Math.random() * verticalComponent
-                    });
+                    asteroid.setPosition(new Position(
+                        asteroid.getPosition().getX() - 1,
+                        asteroid.getPosition().getY() + verticalComponent
+                    ));
                     if (this.isRunning() && this.getPlayer().collidesWith(asteroid)) {
-                        log(`Collision detection`, `Collision between Player and Asteroid.`);
+                        Logger.log(`Collision detection`, `Collision between Player and Asteroid.`);
                         let explosion = new Explosion();
-                        explosion.setPosition({
-                            x: this.getPlayer().getPosition().x,
-                            y: this.getPlayer().getPosition().y
-                        });
+                        explosion.setPosition(new Position(
+                            this.getPlayer().getPosition().getX(),
+                            this.getPlayer().getPosition().getY()
+                        ));
                         setTimeout(
                             () => {
                                 explosion.remove();
@@ -273,7 +289,7 @@ class Game {
                         clearInterval(asteroidHandle);
                     }
                 },
-                Math.round(1000 / asteroid.getSpeed())
+                Math.round(1000 / Game.FRAMES_PER_SECOND / asteroid.getSpeed())
             );
         }
         setTimeout(
@@ -298,31 +314,31 @@ class Game {
      * Routine di inizializzazione del gioco.
      */
     init() {
-        log(`Initialization`, `Starting soundtrack.`);
+        Logger.log(`Initialization`, `Starting soundtrack.`);
         let audio = new Audio(Game.SOUNDTRACK_PATH);
         audio.loop = true;
         audio.play();
 
-        log(`Initialization`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
+        Logger.log(`Initialization`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
         this.resize();
 
-        log(`Initialization`, `Setting 'onresize' event listener.`);
+        Logger.log(`Initialization`, `Setting 'onresize' event listener.`);
         onresize = () => this.resize();
 
-        log(`Initialization`, `Setting scene background.`);
+        Logger.log(`Initialization`, `Setting scene background.`);
         this.generateInitialBackground();
         requestAnimationFrame(() => this.generateBackground());
 
-        log(`Initialization`, `Positioning player for ${window.innerWidth}x${window.innerHeight}.`);
+        Logger.log(`Initialization`, `Positioning player for ${window.innerWidth}x${window.innerHeight}.`);
         this.initPlayer();
 
-        log(`Initialization`, `Initializing Player controls.`);
+        Logger.log(`Initialization`, `Initializing Player controls.`);
         this.initControls();
 
-        log(`Initialization`, `Initializing Asteroid object generation.`);
+        Logger.log(`Initialization`, `Initializing Asteroid object generation.`);
         requestAnimationFrame(() => this.initAsteroidGeneration());
 
-        log(`Initialization`, `Initializing score system.`);
+        Logger.log(`Initialization`, `Initializing score system.`);
         requestAnimationFrame(() => this.initScore());
     }
 
@@ -330,47 +346,18 @@ class Game {
      * Aggiorna le dimensioni del canvas adattando il background.
      */
     resize() {
-        log(`Resize`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
+        Logger.log(`Resize`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
         this.getContext().canvas.width = window.innerWidth;
         this.getContext().canvas.height = window.innerHeight;
-        log(`Resize`, `Generating background for ${window.innerWidth}x${window.innerHeight}.`);
+        Logger.log(`Resize`, `Generating background for ${window.innerWidth}x${window.innerHeight}.`);
         this.generateInitialBackground();
         if (this.getPlayer()) {
-            log(`Resize`, `Repositioning player for ${window.innerWidth}x${window.innerHeight}.`);
-            this.getPlayer().setPosition({
-                x: Math.round(this.getContext().canvas.width / 2),
-                y: this.getPlayer().getPosition().y,
-            });
+            Logger.log(`Resize`, `Repositioning player for ${window.innerWidth}x${window.innerHeight}.`);
+            this.getPlayer().setPosition(new Position(
+                Math.round(this.getContext().canvas.width / 3),
+                this.getPlayer().getPosition().getY(),
+            ));
         }
     }
 
 }
-
-/**
- * Punto di ingresso del programma.
- */
-let main = () => {
-    let game = new Game();
-    log(`Initialization`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
-    game.resize();
-
-    log(`Initialization`, `Setting 'onresize' event listener.`);
-    onresize = () => game.resize();
-
-    log(`Initialization`, `Setting scene background.`);
-    game.generateInitialBackground();
-    requestAnimationFrame(() => game.generateBackground());
-
-    let gameStart = document.getElementById(`game-start`);
-    let startGameLayer = document.getElementById(`start-game-layer`);
-    let scoreContainer = document.getElementById(`score-container`);
-    let scoreElement = document.getElementById(`score`);
-    gameStart.onclick = () => {
-        startGameLayer.style.display = `none`;
-        scoreContainer.style.visibility = `visible`;
-        scoreElement.style.visibility = `visible`;
-        game.init();
-    };
-};
-
-main();
