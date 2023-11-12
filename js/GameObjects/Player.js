@@ -48,7 +48,7 @@ class Player extends GameObject {
      * @param {Position} position Posizione del centro della navicella.
      */
     setPosition(position) {
-        let boundingClientRect = this.getSprite().getBoundingClientRect();
+        const boundingClientRect = this.getSprite().getBoundingClientRect();
         if (Math.round(position.getX() - boundingClientRect.width / 2) < 0) {
             return;
         }
@@ -69,7 +69,7 @@ class Player extends GameObject {
      * Aggiorna la posizione della fiamma.
      */
     updateFlamePosition() {
-        let boundingClientRect = this.getSprite().getBoundingClientRect();
+        const boundingClientRect = this.getSprite().getBoundingClientRect();
         this.getFlame().getSprite().style.left = `${Math.round(boundingClientRect.x - boundingClientRect.width + Player.FLAME_OFFSET_X)}px`;
         this.getFlame().getSprite().style.top = `${Math.round(boundingClientRect.y + Player.FLAME_OFFSET_Y)}px`;
     }

@@ -92,12 +92,12 @@ class Game {
      * Aggiorna il punteggio al livello UI.
      */
     updateScore() {
-        let scoreElement = document.getElementById(`score`);
+        const scoreElement = document.getElementById(`score`);
         scoreElement.innerText = this.getScore();
         if (this.getScore() % 1000 == 0) {
             new Audio(Game.SCORE_SOUND_PATH).play();
             let visibleCounter = 0;
-            let blinkHandle = setInterval(
+            const blinkHandle = setInterval(
                 () => {
                     if (visibleCounter % 2 == 0) {
                         scoreElement.style.visibility = `visible`;
@@ -150,7 +150,7 @@ class Game {
      */
     generateBackgroundSlice(x) {
         if (Math.random() > .5) {
-            let y = Math.random() * this.getCanvas().offsetHeight;
+            const y = Math.random() * this.getCanvas().offsetHeight;
             this.getContext().fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
             this.getContext().fillRect(x, y, 2, 2);
         }
@@ -169,7 +169,7 @@ class Game {
      * Genera dinamicamente il background.
      */
     generateBackground() {
-        let imageData = this.getContext().getImageData(1, 0, this.getContext().canvas.width - 1, this.getContext().canvas.height);
+        const imageData = this.getContext().getImageData(1, 0, this.getContext().canvas.width - 1, this.getContext().canvas.height);
         this.getContext().putImageData(imageData, 0, 0);
         this.getContext().clearRect(this.getContext().canvas.width - 1, 0, 1, this.getContext().canvas.height);
         this.generateBackgroundSlice(this.getContext().canvas.width - 2);
@@ -192,6 +192,7 @@ class Game {
      */
     initControls() {
         document.onkeydown = (event) => {
+            event.preventDefault();
             switch (event.key) {
                 case `ArrowUp`: {
                     this.getPlayer().setPosition(new Position(
@@ -213,12 +214,14 @@ class Game {
             }
         };
         document.onmousemove = (event) => {
+            event.preventDefault();
             this.getPlayer().setPosition(new Position(
                 this.getPlayer().getPosition().getX(),
                 event.clientY
             ));
         };
         document.ontouchmove = (event) => {
+            event.preventDefault();
             this.getPlayer().setPosition(new Position(
                 this.getPlayer().getPosition().getX(),
                 event.changedTouches[0].clientY
@@ -231,9 +234,9 @@ class Game {
      */
     gameOver() {
         new Audio(Game.GAMEOVER_SOUND_PATH).play();
-        let gameOverLayer = document.getElementById(`game-over-layer`);
-        let gameOver = document.getElementById(`game-over`);
-        let gameReturn = document.getElementById(`game-return`);
+        const gameOverLayer = document.getElementById(`game-over-layer`);
+        const gameOver = document.getElementById(`game-over`);
+        const gameReturn = document.getElementById(`game-return`);
 
         gameReturn.onclick = () => {
             location.reload();
@@ -250,16 +253,16 @@ class Game {
     initAsteroidGeneration() {
         let asteroidSpeed = Asteroid.INITIAL_SPEED;
         for (let index = 0; index < Math.ceil(Math.cbrt(this.getScore()) / 10); index++) {
-            let asteroid = new Asteroid();
+            const asteroid = new Asteroid();
             this.getGameObjects().push(asteroid);
             asteroid.setSpeed(asteroidSpeed + Math.random() * asteroidSpeed / 10);
             asteroidSpeed += 0.1;
-            let verticalComponent = Math.random() - .5;
+            const verticalComponent = Math.random() - .5;
             asteroid.setPosition(new Position(
                 this.getContext().canvas.width + Asteroid.SPRITE_WIDTH,
                 Math.round(Math.random() * this.getContext().canvas.height)
             ));
-            let asteroidHandle = setInterval(
+            const asteroidHandle = setInterval(
                 () => {
                     if (asteroid.getPosition().getX() + asteroid.getSize().getWidth() < 0) {
                         this.getGameObjects().splice(this.getGameObjects().indexOf(asteroid), 1);
@@ -271,7 +274,7 @@ class Game {
                     ));
                     if (this.isRunning() && this.getPlayer().collidesWith(asteroid)) {
                         Logger.log(`Collision detection`, `Collision between Player and Asteroid.`);
-                        let explosion = new Explosion();
+                        const explosion = new Explosion();
                         explosion.setPosition(new Position(
                             this.getPlayer().getPosition().getX(),
                             this.getPlayer().getPosition().getY()
@@ -315,7 +318,7 @@ class Game {
      */
     init() {
         Logger.log(`Initialization`, `Starting soundtrack.`);
-        let audio = new Audio(Game.SOUNDTRACK_PATH);
+        const audio = new Audio(Game.SOUNDTRACK_PATH);
         audio.loop = true;
         audio.play();
 

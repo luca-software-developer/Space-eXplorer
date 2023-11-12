@@ -1,9 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
 * {
     overflow: hidden;
     outline: none;
     margin: 0;
+    -webkit-user-select: none;
     user-select: none;
 }
 

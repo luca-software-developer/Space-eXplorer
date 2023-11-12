@@ -2,7 +2,7 @@
     z-index: 3;
     position: fixed;
     top: 0;
-    right: 0;
+    left: calc(50vw - 4rem);
     width: 50vw;
     height: 3rem;
     margin: 2rem;

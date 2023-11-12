@@ -3,8 +3,8 @@
 /**
  * Punto di ingresso del programma.
  */
-let main = () => {
-    let game = new Game();
+const main = () => {
+    const game = new Game();
     Logger.log(`Initialization`, `Resizing canvas to ${window.innerWidth}x${window.innerHeight}.`);
     game.resize();
 
@@ -15,10 +15,10 @@ let main = () => {
     game.generateInitialBackground();
     requestAnimationFrame(() => game.generateBackground());
 
-    let gameStart = document.getElementById(`game-start`);
-    let startGameLayer = document.getElementById(`start-game-layer`);
-    let scoreContainer = document.getElementById(`score-container`);
-    let scoreElement = document.getElementById(`score`);
+    const gameStart = document.getElementById(`game-start`);
+    const startGameLayer = document.getElementById(`start-game-layer`);
+    const scoreContainer = document.getElementById(`score-container`);
+    const scoreElement = document.getElementById(`score`);
     gameStart.onclick = () => {
         startGameLayer.style.display = `none`;
         scoreContainer.style.visibility = `visible`;
