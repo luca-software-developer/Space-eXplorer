@@ -6,11 +6,6 @@
 class Bullet extends GameObject {
 
     /**
-     * Definisce il percorso dello sprite.
-     */
-    static SPRITE_PATH = `assets/Sprites/GameObjects/Bullet.png`;
-
-    /**
      * Definisce la larghezza fisica dello sprite.
      */
     static SPRITE_WIDTH = 50;
@@ -18,7 +13,7 @@ class Bullet extends GameObject {
     /**
      * Definisce l'altezza fisica dello sprite.
      */
-    static SPRITE_HEIGHT = 28;
+    static SPRITE_HEIGHT = 29;
 
     /**
      * Fattore moltiplicativo della velocità iniziale.
@@ -33,11 +28,11 @@ class Bullet extends GameObject {
     /**
      * Costruttore della classe Bullet.
      */
-    constructor(initialSpeed) {
+    constructor(initialSpeed, spritePath) {
         super();
         this.setSprite(document.createElement(`img`));
         this.getSprite().setAttribute(`class`, `bullet`);
-        this.getSprite().setAttribute(`src`, Bullet.SPRITE_PATH);
+        this.getSprite().setAttribute(`src`, spritePath);
         this.getSprite().setAttribute(`alt`, `Bullet`);
         this.getSprite().setAttribute(`width`, Bullet.SPRITE_WIDTH);
         this.getSprite().setAttribute(`height`, Bullet.SPRITE_HEIGHT);

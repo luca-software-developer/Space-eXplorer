@@ -31,6 +31,11 @@ class Enemy extends GameObject {
     static INTERVAL = 2000;
 
     /**
+     * Definisce il percorso dello sprite dell'EnemyBullet.
+     */
+    static BULLET_SPRITE_PATH = `assets/Sprites/GameObjects/EnemyBullet.png`;
+
+    /**
      * Costruttore della classe Enemy.
      */
     constructor(game, player) {
@@ -69,7 +74,7 @@ class Enemy extends GameObject {
      * Genera un oggetto Bullet.
      */
     generateBullet(game, player) {
-        const bullet = new Bullet(this.getSpeed());
+        const bullet = new Bullet(this.getSpeed(), Enemy.BULLET_SPRITE_PATH);
         bullet.setPosition(new Position(
             this.getPosition().getX() - this.getSize().getWidth() / 2,
             this.getPosition().getY()

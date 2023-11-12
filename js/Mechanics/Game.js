@@ -208,6 +208,10 @@ class Game {
                     ));
                     break;
                 }
+                case `Enter`: {
+                    this.getPlayer().getSprite().click();
+                    break;
+                }
                 default: {
                     break;
                 }
@@ -227,6 +231,9 @@ class Game {
                 event.changedTouches[0].clientY
             ));
         };
+        this.getPlayer().getSprite().onclick = () => {
+            this.getPlayer().generateBullet(this, this.getGameObjects());
+        }
     }
 
     /**

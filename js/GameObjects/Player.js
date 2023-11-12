@@ -17,6 +17,11 @@ class Player extends GameObject {
     static DELTA_Y = 10;
 
     /**
+     * Definisce il percorso dello sprite del PlayerBullet.
+     */
+    static BULLET_SPRITE_PATH = `assets/Sprites/GameObjects/PlayerBullet.png`;
+
+    /**
      * Costruttore della classe Player.
      * 
      * @param {Position} position Posizione dello sprite del Player.
@@ -72,6 +77,51 @@ class Player extends GameObject {
         const boundingClientRect = this.getSprite().getBoundingClientRect();
         this.getFlame().getSprite().style.left = `${Math.round(boundingClientRect.x - boundingClientRect.width + Player.FLAME_OFFSET_X)}px`;
         this.getFlame().getSprite().style.top = `${Math.round(boundingClientRect.y + Player.FLAME_OFFSET_Y)}px`;
+    }
+
+    /**
+     * Genera un oggetto Bullet.
+     */
+    generateBullet(game, gameObjects) {
+        const bullet = new Bullet(Bullet.INITIAL_SPEED, Player.BULLET_SPRITE_PATH);
+        bullet.setPosition(new Position(
+            this.getPosition().getX() + this.getSize().getWidth() / 2,
+            this.getPosition().getY()
+        ));
+        const bulletHandle = setInterval(
+            () => {
+                if (bullet.getPosition().getX() - bullet.getSize().getWidth() > window.innerWidth || bullet.getPosition().getY() - bullet.getSize().getHeight() > window.innerHeight) {
+                    bullet.remove();
+                }
+                bullet.setPosition(new Position(
+                    bullet.getPosition().getX() + 2,
+                    bullet.getPosition().getY()
+                ));
+                for (let gameObject of gameObjects) {
+                    if (this == gameObject) {
+                        continue;
+                    }
+                    if (game.isRunning() && bullet.collidesWith(gameObject)) {
+                        Logger.log(`Collision detection`, `Collision between Bullet and Object.`);
+                        const explosion = new Explosion();
+                        explosion.setPosition(new Position(
+                            bullet.getPosition().getX(),
+                            bullet.getPosition().getY()
+                        ));
+                        setTimeout(
+                            () => {
+                                explosion.remove();
+                            },
+                            Explosion.DURATION
+                        );
+                        bullet.remove();
+                        gameObject.remove();
+                        clearInterval(bulletHandle);
+                    }
+                }
+            },
+            Math.round(1000 / Game.FRAMES_PER_SECOND / bullet.getSpeed())
+        );
     }
 
     /**
