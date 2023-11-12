@@ -248,32 +248,36 @@ class Game {
     }
 
     /**
-     * Esegue il setup della generazione di oggetti Asteroid.
+     * Esegue il setup della generazione di oggetti.
      */
-    initAsteroidGeneration() {
-        let asteroidSpeed = Asteroid.INITIAL_SPEED;
+    initObjectGeneration() {
+        let objectSpeed = Math.min(Asteroid.INITIAL_SPEED, Enemy.INITIAL_SPEED);
         for (let index = 0; index < Math.ceil(Math.cbrt(this.getScore()) / 10); index++) {
-            const asteroid = new Asteroid();
-            this.getGameObjects().push(asteroid);
-            asteroid.setSpeed(asteroidSpeed + Math.random() * asteroidSpeed / 10);
-            asteroidSpeed += 0.1;
-            const verticalComponent = Math.random() - .5;
-            asteroid.setPosition(new Position(
-                this.getContext().canvas.width + Asteroid.SPRITE_WIDTH,
+            let object = null;
+            if (Math.random() > .5) {
+                object = new Asteroid();
+            } else {
+                object = new Enemy(this, this.getPlayer());
+            }
+            this.getGameObjects().push(object);
+            object.setSpeed(objectSpeed + Math.random() * objectSpeed / 10);
+            objectSpeed += 0.1;
+            object.setPosition(new Position(
+                this.getContext().canvas.width + object.getSize().getWidth(),
                 Math.round(Math.random() * this.getContext().canvas.height)
             ));
-            const asteroidHandle = setInterval(
+            const objectHandle = setInterval(
                 () => {
-                    if (asteroid.getPosition().getX() + asteroid.getSize().getWidth() < 0) {
-                        this.getGameObjects().splice(this.getGameObjects().indexOf(asteroid), 1);
-                        asteroid.remove();
+                    if (object.getPosition().getX() + object.getSize().getWidth() < 0 || object.getPosition().getY() + object.getSize().getHeight() < 0) {
+                        this.getGameObjects().splice(this.getGameObjects().indexOf(object), 1);
+                        object.remove();
                     }
-                    asteroid.setPosition(new Position(
-                        asteroid.getPosition().getX() - 1,
-                        asteroid.getPosition().getY() + verticalComponent
+                    object.setPosition(new Position(
+                        object.getPosition().getX() - 1,
+                        object.getPosition().getY()
                     ));
-                    if (this.isRunning() && this.getPlayer().collidesWith(asteroid)) {
-                        Logger.log(`Collision detection`, `Collision between Player and Asteroid.`);
+                    if (this.isRunning() && this.getPlayer().collidesWith(object)) {
+                        Logger.log(`Collision detection`, `Collision between Player and Object.`);
                         const explosion = new Explosion();
                         explosion.setPosition(new Position(
                             this.getPlayer().getPosition().getX(),
@@ -288,18 +292,18 @@ class Game {
                         );
                         this.getPlayer().remove();
                         this.setRunning(false);
-                        asteroid.remove();
-                        clearInterval(asteroidHandle);
+                        object.remove();
+                        clearInterval(objectHandle);
                     }
                 },
-                Math.round(1000 / Game.FRAMES_PER_SECOND / asteroid.getSpeed())
+                Math.round(1000 / Game.FRAMES_PER_SECOND / object.getSpeed())
             );
         }
         setTimeout(
             () => {
-                requestAnimationFrame(() => this.initAsteroidGeneration());
+                requestAnimationFrame(() => this.initObjectGeneration());
             },
-            Asteroid.INTERVAL
+            Math.min(Asteroid.INTERVAL, Enemy.INTERVAL)
         );
     }
 
@@ -338,8 +342,8 @@ class Game {
         Logger.log(`Initialization`, `Initializing Player controls.`);
         this.initControls();
 
-        Logger.log(`Initialization`, `Initializing Asteroid object generation.`);
-        requestAnimationFrame(() => this.initAsteroidGeneration());
+        Logger.log(`Initialization`, `Initializing Object generation.`);
+        requestAnimationFrame(() => this.initObjectGeneration());
 
         Logger.log(`Initialization`, `Initializing score system.`);
         requestAnimationFrame(() => this.initScore());
