@@ -16,11 +16,6 @@ class Bullet extends GameObject {
     static SPRITE_HEIGHT = 29;
 
     /**
-     * Fattore moltiplicativo della velocità iniziale.
-     */
-    static SPEED_FACTOR = 1000;
-
-    /**
      * Intervallo di tempo tra un proiettile e un altro.
      */
     static INTERVAL = 7000;
@@ -28,7 +23,7 @@ class Bullet extends GameObject {
     /**
      * Costruttore della classe Bullet.
      */
-    constructor(initialSpeed, spritePath) {
+    constructor(spritePath) {
         super();
         this.setSprite(document.createElement(`img`));
         this.getSprite().setAttribute(`class`, `bullet`);
@@ -38,25 +33,6 @@ class Bullet extends GameObject {
         this.getSprite().setAttribute(`height`, Bullet.SPRITE_HEIGHT);
         this.getSprite().setAttribute(`draggable`, `false`);
         document.body.append(this.getSprite());
-        this.speed = initialSpeed * Bullet.SPEED_FACTOR;
-    }
-
-    /**
-     * Restituisce la velocità attuale del proiettile.
-     * 
-     * @returns Restituisce la velocità attuale del proiettile.
-     */
-    getSpeed() {
-        return this.speed;
-    }
-
-    /**
-     * Imposta la velocità attuale del proiettile.
-     * 
-     * @param {number} speed Velocità attuale del proiettile.
-     */
-    setSpeed(speed) {
-        this.speed = speed;
     }
 
 }

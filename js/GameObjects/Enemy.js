@@ -21,11 +21,6 @@ class Enemy extends GameObject {
     static SPRITE_HEIGHT = 72;
 
     /**
-     * Velocità iniziale del nemico.
-     */
-    static INITIAL_SPEED = 3;
-
-    /**
      * Intervallo di tempo tra un nemico e un altro.
      */
     static INTERVAL = 2000;
@@ -48,68 +43,47 @@ class Enemy extends GameObject {
         this.getSprite().setAttribute(`height`, Enemy.SPRITE_HEIGHT);
         this.getSprite().setAttribute(`draggable`, `false`);
         document.body.append(this.getSprite());
-        this.speed = Enemy.INITIAL_SPEED;
         requestAnimationFrame(() => this.generateBullet(game, player));
-    }
-
-    /**
-     * Restituisce la velocità attuale del nemico.
-     * 
-     * @returns Restituisce la velocità attuale del nemico.
-     */
-    getSpeed() {
-        return this.speed;
-    }
-
-    /**
-     * Imposta la velocità attuale del nemico.
-     * 
-     * @param {number} speed Velocità attuale del nemico.
-     */
-    setSpeed(speed) {
-        this.speed = speed;
     }
 
     /**
      * Genera un oggetto Bullet.
      */
     generateBullet(game, player) {
-        const bullet = new Bullet(this.getSpeed(), Enemy.BULLET_SPRITE_PATH);
+        const bullet = new Bullet(Enemy.BULLET_SPRITE_PATH);
         bullet.setPosition(new Position(
             this.getPosition().getX() - this.getSize().getWidth() / 2,
             this.getPosition().getY()
         ));
-        const bulletHandle = setInterval(
-            () => {
-                if (bullet.getPosition().getX() + bullet.getSize().getWidth() < 0 || bullet.getPosition().getY() + bullet.getSize().getHeight() < 0) {
-                    bullet.remove();
-                }
-                bullet.setPosition(new Position(
-                    bullet.getPosition().getX() - 2,
-                    bullet.getPosition().getY()
+        const bulletHandle = () => {
+            if (bullet.getPosition().getX() + bullet.getSize().getWidth() < 0 || bullet.getPosition().getY() + bullet.getSize().getHeight() < 0) {
+                bullet.remove();
+            }
+            bullet.setPosition(new Position(
+                bullet.getPosition().getX() - 5,
+                bullet.getPosition().getY()
+            ));
+            if (game.isRunning() && player.collidesWith(bullet)) {
+                Logger.log(`Collision detection`, `Collision between Player and Bullet.`);
+                const explosion = new Explosion();
+                explosion.setPosition(new Position(
+                    player.getPosition().getX(),
+                    player.getPosition().getY()
                 ));
-                if (game.isRunning() && player.collidesWith(bullet)) {
-                    Logger.log(`Collision detection`, `Collision between Player and Bullet.`);
-                    const explosion = new Explosion();
-                    explosion.setPosition(new Position(
-                        player.getPosition().getX(),
-                        player.getPosition().getY()
-                    ));
-                    setTimeout(
-                        () => {
-                            explosion.remove();
-                            game.gameOver();
-                        },
-                        Explosion.DURATION
-                    );
-                    player.remove();
-                    game.setRunning(false);
-                    bullet.remove();
-                    clearInterval(bulletHandle);
-                }
-            },
-            Math.round(1000 / Game.FRAMES_PER_SECOND / bullet.getSpeed())
-        );
+                setTimeout(
+                    () => {
+                        explosion.remove();
+                        game.gameOver();
+                    },
+                    Explosion.DURATION
+                );
+                player.remove();
+                game.setRunning(false);
+                bullet.remove();
+            }
+            requestAnimationFrame(bulletHandle);
+        };
+        requestAnimationFrame(bulletHandle);
         setTimeout(
             () => {
                 requestAnimationFrame(() => this.generateBullet(game, player));

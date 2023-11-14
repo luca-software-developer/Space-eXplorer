@@ -83,45 +83,43 @@ class Player extends GameObject {
      * Genera un oggetto Bullet.
      */
     generateBullet(game, gameObjects) {
-        const bullet = new Bullet(Bullet.INITIAL_SPEED, Player.BULLET_SPRITE_PATH);
+        const bullet = new Bullet(Player.BULLET_SPRITE_PATH);
         bullet.setPosition(new Position(
             this.getPosition().getX() + this.getSize().getWidth() / 2,
             this.getPosition().getY()
         ));
-        const bulletHandle = setInterval(
-            () => {
-                if (bullet.getPosition().getX() - bullet.getSize().getWidth() > window.innerWidth || bullet.getPosition().getY() - bullet.getSize().getHeight() > window.innerHeight) {
+        const bulletHandle = () => {
+            if (bullet.getPosition().getX() - bullet.getSize().getWidth() > window.innerWidth || bullet.getPosition().getY() - bullet.getSize().getHeight() > window.innerHeight) {
+                bullet.remove();
+            }
+            bullet.setPosition(new Position(
+                bullet.getPosition().getX() + 5,
+                bullet.getPosition().getY()
+            ));
+            for (let gameObject of gameObjects) {
+                if (this == gameObject) {
+                    continue;
+                }
+                if (game.isRunning() && bullet.collidesWith(gameObject)) {
+                    Logger.log(`Collision detection`, `Collision between Bullet and Object.`);
+                    const explosion = new Explosion();
+                    explosion.setPosition(new Position(
+                        bullet.getPosition().getX(),
+                        bullet.getPosition().getY()
+                    ));
+                    setTimeout(
+                        () => {
+                            explosion.remove();
+                        },
+                        Explosion.DURATION
+                    );
                     bullet.remove();
+                    gameObject.remove();
                 }
-                bullet.setPosition(new Position(
-                    bullet.getPosition().getX() + 2,
-                    bullet.getPosition().getY()
-                ));
-                for (let gameObject of gameObjects) {
-                    if (this == gameObject) {
-                        continue;
-                    }
-                    if (game.isRunning() && bullet.collidesWith(gameObject)) {
-                        Logger.log(`Collision detection`, `Collision between Bullet and Object.`);
-                        const explosion = new Explosion();
-                        explosion.setPosition(new Position(
-                            bullet.getPosition().getX(),
-                            bullet.getPosition().getY()
-                        ));
-                        setTimeout(
-                            () => {
-                                explosion.remove();
-                            },
-                            Explosion.DURATION
-                        );
-                        bullet.remove();
-                        gameObject.remove();
-                        clearInterval(bulletHandle);
-                    }
-                }
-            },
-            Math.round(1000 / Game.FRAMES_PER_SECOND / bullet.getSpeed())
-        );
+            }
+            requestAnimationFrame(bulletHandle);
+        };
+        requestAnimationFrame(bulletHandle);
     }
 
     /**

@@ -21,11 +21,6 @@ class Asteroid extends GameObject {
     static SPRITE_HEIGHT = 100;
 
     /**
-     * Velocità iniziale dell'asteroide.
-     */
-    static INITIAL_SPEED = 3;
-
-    /**
      * Intervallo di tempo tra un asteroide e un altro.
      */
     static INTERVAL = 2000;
@@ -46,25 +41,6 @@ class Asteroid extends GameObject {
             this.getSprite().style.transform = `scaleX(-1)`;
         }
         document.body.append(this.getSprite());
-        this.speed = Asteroid.INITIAL_SPEED;
-    }
-
-    /**
-     * Restituisce la velocità attuale dell'asteroide.
-     * 
-     * @returns Restituisce la velocità attuale dell'asteroide.
-     */
-    getSpeed() {
-        return this.speed;
-    }
-
-    /**
-     * Imposta la velocità attuale dell'asteroide.
-     * 
-     * @param {number} speed Velocità attuale dell'asteroide.
-     */
-    setSpeed(speed) {
-        this.speed = speed;
     }
 
 }

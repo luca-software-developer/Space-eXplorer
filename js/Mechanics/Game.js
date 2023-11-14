@@ -258,7 +258,6 @@ class Game {
      * Esegue il setup della generazione di oggetti.
      */
     initObjectGeneration() {
-        let objectSpeed = Math.min(Asteroid.INITIAL_SPEED, Enemy.INITIAL_SPEED);
         for (let index = 0; index < Math.ceil(Math.cbrt(this.getScore()) / 10); index++) {
             let object = null;
             if (Math.random() > .5) {
@@ -267,44 +266,40 @@ class Game {
                 object = new Enemy(this, this.getPlayer());
             }
             this.getGameObjects().push(object);
-            object.setSpeed(objectSpeed + Math.random() * objectSpeed / 10);
-            objectSpeed += 0.1;
             object.setPosition(new Position(
                 this.getContext().canvas.width + object.getSize().getWidth(),
                 Math.round(Math.random() * this.getContext().canvas.height)
             ));
-            const objectHandle = setInterval(
-                () => {
-                    if (object.getPosition().getX() + object.getSize().getWidth() < 0 || object.getPosition().getY() + object.getSize().getHeight() < 0) {
-                        this.getGameObjects().splice(this.getGameObjects().indexOf(object), 1);
-                        object.remove();
-                    }
-                    object.setPosition(new Position(
-                        object.getPosition().getX() - 1,
-                        object.getPosition().getY()
+            const objectHandle = () => {
+                if (object.getPosition().getX() + object.getSize().getWidth() < 0 || object.getPosition().getY() + object.getSize().getHeight() < 0) {
+                    this.getGameObjects().splice(this.getGameObjects().indexOf(object), 1);
+                    object.remove();
+                }
+                object.setPosition(new Position(
+                    object.getPosition().getX() - 3,
+                    object.getPosition().getY()
+                ));
+                if (this.isRunning() && this.getPlayer().collidesWith(object)) {
+                    Logger.log(`Collision detection`, `Collision between Player and Object.`);
+                    const explosion = new Explosion();
+                    explosion.setPosition(new Position(
+                        this.getPlayer().getPosition().getX(),
+                        this.getPlayer().getPosition().getY()
                     ));
-                    if (this.isRunning() && this.getPlayer().collidesWith(object)) {
-                        Logger.log(`Collision detection`, `Collision between Player and Object.`);
-                        const explosion = new Explosion();
-                        explosion.setPosition(new Position(
-                            this.getPlayer().getPosition().getX(),
-                            this.getPlayer().getPosition().getY()
-                        ));
-                        setTimeout(
-                            () => {
-                                explosion.remove();
-                                this.gameOver();
-                            },
-                            Explosion.DURATION
-                        );
-                        this.getPlayer().remove();
-                        this.setRunning(false);
-                        object.remove();
-                        clearInterval(objectHandle);
-                    }
-                },
-                Math.round(1000 / Game.FRAMES_PER_SECOND / object.getSpeed())
-            );
+                    setTimeout(
+                        () => {
+                            explosion.remove();
+                            this.gameOver();
+                        },
+                        Explosion.DURATION
+                    );
+                    this.getPlayer().remove();
+                    this.setRunning(false);
+                    object.remove();
+                }
+                requestAnimationFrame(objectHandle);
+            };
+            requestAnimationFrame(objectHandle);
         }
         setTimeout(
             () => {
