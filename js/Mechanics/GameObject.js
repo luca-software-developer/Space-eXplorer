@@ -38,8 +38,8 @@ class GameObject {
     getPosition() {
         const boundingClientRect = this.getSprite().getBoundingClientRect();
         return new Position(
-            Math.round(boundingClientRect.left + boundingClientRect.width / 2),
-            Math.round(boundingClientRect.top + boundingClientRect.height / 2)
+            boundingClientRect.left + boundingClientRect.width / 2,
+            boundingClientRect.top + boundingClientRect.height / 2
         );
     }
 
@@ -72,7 +72,7 @@ class GameObject {
      * Di default, si considera un box collider le cui dimensioni coincidono con quelle del GameObject corrente.
      * 
      * @param {GameObject} other GameObject in possibile collisione con il GameObject corrente.
-     * @returns 
+     * @returns Restituisce true se il GameObject corrente è in collisione con il GameObject other.
      */
     collidesWith(other) {
         const thisBoundingClientRect = this.sprite.getBoundingClientRect();

@@ -181,8 +181,8 @@ class Game {
      */
     initPlayer() {
         this.player = new Player(new Position(
-            Math.round(this.getContext().canvas.width / 3),
-            Math.round(this.getContext().canvas.height / 2)
+            this.getContext().canvas.width / 3,
+            this.getContext().canvas.height / 2
         ));
         this.getGameObjects().push(this.getPlayer());
     }
@@ -265,7 +265,7 @@ class Game {
             this.getGameObjects().push(object);
             object.setPosition(new Position(
                 this.getContext().canvas.width + object.getSize().getWidth(),
-                Math.round(Math.random() * this.getContext().canvas.height)
+                Math.random() * this.getContext().canvas.height
             ));
             const objectHandle = () => {
                 if (object.getPosition().getX() + object.getSize().getWidth() < 0 || object.getPosition().getY() + object.getSize().getHeight() < 0) {
@@ -360,7 +360,7 @@ class Game {
         if (this.getPlayer()) {
             Logger.log(`Resize`, `Repositioning player for ${window.innerWidth}x${window.innerHeight}.`);
             this.getPlayer().setPosition(new Position(
-                Math.round(this.getContext().canvas.width / 3),
+                this.getContext().canvas.width / 3,
                 this.getPlayer().getPosition().getY(),
             ));
         }

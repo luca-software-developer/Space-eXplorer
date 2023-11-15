@@ -54,16 +54,16 @@ class Player extends GameObject {
      */
     setPosition(position) {
         const boundingClientRect = this.getSprite().getBoundingClientRect();
-        if (Math.round(position.getX() - boundingClientRect.width / 2) < 0) {
+        if (position.getX() - boundingClientRect.width / 2 < 0) {
             return;
         }
-        if (Math.round(position.getY() - boundingClientRect.height / 2) < 0) {
+        if (position.getY() - boundingClientRect.height / 2 < 0) {
             return;
         }
-        if (Math.round(position.getX() + boundingClientRect.width / 2) > window.innerWidth) {
+        if (position.getX() + boundingClientRect.width / 2 > window.innerWidth) {
             return;
         }
-        if (Math.round(position.getY() + boundingClientRect.height / 2) > window.innerHeight) {
+        if (position.getY() + boundingClientRect.height / 2 > window.innerHeight) {
             return;
         }
         super.setPosition(position);
@@ -75,8 +75,8 @@ class Player extends GameObject {
      */
     updateFlamePosition() {
         const boundingClientRect = this.getSprite().getBoundingClientRect();
-        this.getFlame().getSprite().style.left = `${Math.round(boundingClientRect.x - boundingClientRect.width + Player.FLAME_OFFSET_X)}px`;
-        this.getFlame().getSprite().style.top = `${Math.round(boundingClientRect.y + Player.FLAME_OFFSET_Y)}px`;
+        this.getFlame().getSprite().style.left = `${boundingClientRect.x - boundingClientRect.width + Player.FLAME_OFFSET_X}px`;
+        this.getFlame().getSprite().style.top = `${boundingClientRect.y + Player.FLAME_OFFSET_Y}px`;
     }
 
     /**
