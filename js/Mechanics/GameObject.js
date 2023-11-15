@@ -50,8 +50,8 @@ class GameObject {
      */
     setPosition(position) {
         const boundingClientRect = this.getSprite().getBoundingClientRect();
-        this.getSprite().style.left = `${Math.round(position.getX() - boundingClientRect.width / 2)}px`;
-        this.getSprite().style.top = `${Math.round(position.getY() - boundingClientRect.height / 2)}px`;
+        this.getSprite().style.left = `${position.getX() - boundingClientRect.width / 2}px`;
+        this.getSprite().style.top = `${position.getY() - boundingClientRect.height / 2}px`;
     }
 
     /**

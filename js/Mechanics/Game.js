@@ -192,7 +192,6 @@ class Game {
      */
     initControls() {
         document.onkeydown = (event) => {
-            event.preventDefault();
             switch (event.key) {
                 case `ArrowUp`: {
                     this.getPlayer().setPosition(new Position(
@@ -218,14 +217,12 @@ class Game {
             }
         };
         document.onmousemove = (event) => {
-            event.preventDefault();
             this.getPlayer().setPosition(new Position(
                 this.getPlayer().getPosition().getX(),
                 event.clientY
             ));
         };
         document.ontouchmove = (event) => {
-            event.preventDefault();
             this.getPlayer().setPosition(new Position(
                 this.getPlayer().getPosition().getX(),
                 event.changedTouches[0].clientY
