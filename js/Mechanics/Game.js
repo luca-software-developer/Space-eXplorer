@@ -208,7 +208,7 @@ class Game {
                     break;
                 }
                 case `Enter`: {
-                    this.getPlayer().getSprite().click();
+                    document.body.click();
                     break;
                 }
                 default: {
@@ -228,7 +228,7 @@ class Game {
                 event.changedTouches[0].clientY
             ));
         };
-        this.getPlayer().getSprite().onclick = () => {
+        document.body.onclick = () => {
             this.getPlayer().generateBullet(this, this.getGameObjects());
         }
     }
