@@ -1,72 +1,48 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" dir="ltr">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0" />
-    <meta name="description" content="Space eXplorer game." />
+    <meta charset="UTF-8" />
+    <meta name="description" content="🎮 Space eXplorer by SpaceGamersHub 🎮" />
+    <meta name="keywords" content="Space, eXplorer, SpaceGamersHub, Game, Gaming, Hub" />
+    <meta name="author" content="Software Dev Team" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Space eXplorer</title>
 
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-
-    <!-- GameObjects -->
-    <link rel="stylesheet" href="css/GameObjects/asteroid.css" type="text/css" />
-    <link rel="stylesheet" href="css/GameObjects/bullet.css" type="text/css" />
-    <link rel="stylesheet" href="css/GameObjects/enemy.css" type="text/css" />
-    <link rel="stylesheet" href="css/GameObjects/explosion.css" type="text/css" />
-    <link rel="stylesheet" href="css/GameObjects/player.css" type="text/css" />
-
-    <!-- UI -->
-    <link rel="stylesheet" href="css/UI/base.css" type="text/css" />
-    <link rel="stylesheet" href="css/UI/ui.css" type="text/css" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
-    <!-- UI Layers -->
-    <div id="game-over-layer">
-        <span id="game-over">GAME OVER</span>
-        <button id="game-return" type="button">Return</button>
+    <div id="start-overlay">
+        <h1>Space eXplorer</h1>
+        <h2>by SpaceGamersHub</h2>
+        <button type="button" id="start-game" title="Start Game" onclick="startGame();">
+            Start Game
+        </button>
     </div>
-    <div id="start-game-layer">
-        <span id="game-title">Space eXplorer</span>
-        <button id="game-start" type="button">START</button>
+    <div id="gameover-overlay" style="display: none; ">
+        <h1>GAME OVER</h1>
+        <a href="index.html">
+            <button type="button" id="return" title="return">
+                Return
+            </button>
+        </a>
     </div>
 
-    <!-- UI Components -->
-    <div id="score-container">
-        <p>SCORE</p>
-        <div id="score"></div>
+    <canvas id="canvas"></canvas>
+    <div style="display: none; ">
+        <img src="img/spaceship.png" id="spaceship" alt="spaceship" title="spaceship" width="19500" height="92" />
+        <img src="img/asteroid.png" id="asteroid" alt="asteroid" title="asteroid" width="24500" height="100" />
+        <img src="img/explosion.png" id="explosion" alt="explosion" title="explosion" width="48000" height="600" />
+        <img src="img/enemy.png" id="enemy" alt="enemy" title="enemy" width="150" height="72" />
+        <img src="img/playerbullet.png" id="playerbullet" alt="playerbullet" title="playerbullet" width="50"
+            height="29" />
+        <img src="img/enemybullet.png" id="enemybullet" alt="enemybullet" title="enemybullet" width="50" height="29" />
     </div>
 
-    <!-- Base GameObjects -->
-    <img id="flame" src="assets/Sprites/GameObjects/Flame.gif" alt="Flame" width="262" height="127" draggable="false" />
-    <img id="player" src="assets/Sprites/GameObjects/Spaceship.png" alt="Spaceship" width="200" height="117"
-        draggable="false" />
-
-    <!-- Background Layer -->
-    <canvas id="background-layer"></canvas>
-
-    <!-- Logging -->
-    <script src="js/Logging/Logger.js" type="text/javascript"></script>
-
-    <!-- Graphics -->
-    <script src="js/Graphics/Position.js" type="text/javascript"></script>
-    <script src="js/Graphics/Size.js" type="text/javascript"></script>
-
-    <!-- Mechanics -->
-    <script src="js/Mechanics/Game.js" type="text/javascript"></script>
-    <script src="js/Mechanics/GameObject.js" type="text/javascript"></script>
-
-    <!-- GameObjects -->
-    <script src="js/GameObjects/Asteroid.js" type="text/javascript"></script>
-    <script src="js/GameObjects/Bullet.js" type="text/javascript"></script>
-    <script src="js/GameObjects/Enemy.js" type="text/javascript"></script>
-    <script src="js/GameObjects/Explosion.js" type="text/javascript"></script>
-    <script src="js/GameObjects/Player.js" type="text/javascript"></script>
-
-    <!-- Main -->
-    <script src="js/Main.js" type="text/javascript"></script>
+    <script src="js/script.js" type="text/javascript"></script>
 </body>
 
 </html>
