@@ -525,13 +525,13 @@ document.onkeydown = (event) => {
         keys.push(event.key);
     }
     updatePosition();
-    log(`Controls`, `${event.key} down.`);
+    log(`Controls`, `Key [${event.key}] down.`);
 }
 
 document.onkeyup = (event) => {
     keys.splice(keys.indexOf(event.key), 1);
     updatePosition();
-    log(`Controls`, `${event.key} up.`);
+    log(`Controls`, `Key [${event.key}] up.`);
 }
 
 document.onmousemove = (event) => {
@@ -547,7 +547,7 @@ document.onmousemove = (event) => {
         return;
     }
     y = event.clientY - PLAYER_HEIGHT / 2;
-    log(`Controls`, `Mouse at ${event.clientX}, ${event.clientY}`);
+    log(`Controls`, `Mouse at (${event.clientX}, ${event.clientY}).`);
 }
 
 document.ontouchmove = (event) => {
@@ -555,15 +555,15 @@ document.ontouchmove = (event) => {
         return;
     }
     y = event.changedTouches[0].clientY - PLAYER_HEIGHT / 2;
-    log(`Controls`, `Touch at ${event.clientX}, ${event.clientY}`);
+    log(`Controls`, `Touch at (${event.changedTouches[0].clientX}, ${event.changedTouches[0].clientY}).`);
 }
 
-window.onload = (event) => {
-    log(`Loading`, `Game Loading complete.`);
+window.onload = () => {
+    log(`Loading`, `Game Loading completed.`);
     requestAnimationFrame(update);
 }
 
 canvas.onclick = (event) => {
-    log(`Controls`, `Click at ${event.clientX}, ${event.clientY}`);
+    log(`Controls`, `Click at (${event.clientX}, ${event.clientY}).`);
     spawnPlayerBullet();
 }
