@@ -63,12 +63,12 @@ const ENEMYBULLET_WIDTH = 50;
 const ENEMYBULLET_HEIGHT = 29;
 
 /* Canvas Sizing */
-let CANVAS_WIDTH = innerWidth;
-let CANVAS_HEIGHT = innerHeight;
+let canvasWidth = innerWidth;
+let canvasHeight = innerHeight;
 
 /* Initial Player Positioning */
-let x = CANVAS_WIDTH / 3 - PLAYER_WIDTH / 2;
-let y = CANVAS_HEIGHT / 2 - PLAYER_HEIGHT / 2;
+let x = canvasWidth / 3 - PLAYER_WIDTH / 2;
+let y = canvasHeight / 2 - PLAYER_HEIGHT / 2;
 
 /* Game Variables */
 let keys = [];
@@ -118,7 +118,7 @@ canvas.setAttribute(`height`, innerHeight);
 
 /* Clear Canvas */
 const clear = () => {
-    ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    ctx.clearRect(0, 0, canvasWidth, canvasHeight);
     log(`Canvas`, `Cleared canvas.`);
 }
 
@@ -126,10 +126,10 @@ const clear = () => {
 window.onresize = () => {
     canvas.setAttribute(`width`, innerWidth);
     canvas.setAttribute(`height`, innerHeight);
-    CANVAS_WIDTH = innerWidth;
-    CANVAS_HEIGHT = innerHeight;
-    x = CANVAS_WIDTH / 3 - PLAYER_WIDTH / 2;
-    y = CANVAS_HEIGHT / 2 - PLAYER_HEIGHT / 2;
+    canvasWidth = innerWidth;
+    canvasHeight = innerHeight;
+    x = canvasWidth / 3 - PLAYER_WIDTH / 2;
+    y = canvasHeight / 2 - PLAYER_HEIGHT / 2;
     clear();
     imageData = null;
     drawBackground();
@@ -139,12 +139,12 @@ window.onresize = () => {
 /* Scene Background Drawing Routine (called at each frame) */
 const drawBackground = () => {
     ctx.fillStyle = BACKGROUND_COLOR;
-    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     ctx.fillStyle = `#ffffff`;
     if (imageData == null) {
-        for (let x = 0; x <= CANVAS_WIDTH; x += 2) {
+        for (let x = 0; x <= canvasWidth; x += 2) {
             if (Math.random() > .5) {
-                const y = Math.random() * CANVAS_HEIGHT;
+                const y = Math.random() * canvasHeight;
                 ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
                 ctx.fillRect(x, y, 2, 2);
             }
@@ -152,15 +152,15 @@ const drawBackground = () => {
     } else {
         ctx.putImageData(imageData, 0, 0);
         ctx.fillStyle = BACKGROUND_COLOR;
-        ctx.fillRect(CANVAS_WIDTH - 2, 0, 2, CANVAS_HEIGHT);
+        ctx.fillRect(canvasWidth - 2, 0, 2, canvasHeight);
         ctx.fillStyle = `#ffffff`;
         if (Math.random() > .5) {
-            const y = Math.random() * CANVAS_HEIGHT;
+            const y = Math.random() * canvasHeight;
             ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
-            ctx.fillRect(CANVAS_WIDTH - 2, y, 2, 2);
+            ctx.fillRect(canvasWidth - 2, y, 2, 2);
         }
     }
-    imageData = ctx.getImageData(2, 0, CANVAS_WIDTH - 2, CANVAS_HEIGHT);
+    imageData = ctx.getImageData(2, 0, canvasWidth - 2, canvasHeight);
     log(`Background`, `Scene Background Drawing Routine completed.`);
 }
 
@@ -254,8 +254,8 @@ const updateAsteroids = () => {
 /* Asteroid Automatic Spawning Routine (called at each frame) */
 const spawnAsteroid = () => {
     if (Date.now() - lastAsteroid > 3000) {
-        asteroidsX.push(CANVAS_WIDTH + ASTEROID_WIDTH / 2);
-        asteroidsY.push((Math.random() * (CANVAS_HEIGHT - 2 * ASTEROID_HEIGHT)) + ASTEROID_HEIGHT);
+        asteroidsX.push(canvasWidth + ASTEROID_WIDTH / 2);
+        asteroidsY.push((Math.random() * (canvasHeight - 2 * ASTEROID_HEIGHT)) + ASTEROID_HEIGHT);
         lastAsteroid = Date.now();
     }
     log(`Asteroid`, `Asteroid Automatic Spawning Routine completed.`);
@@ -317,8 +317,8 @@ const updateEnemies = () => {
 /* Enemy Spawning Routine (called at each frame) */
 const spawnEnemy = () => {
     if (Date.now() - lastEnemy > 3000) {
-        enemiesX.push(CANVAS_WIDTH + ENEMY_WIDTH / 2);
-        enemiesY.push((Math.random() * (CANVAS_HEIGHT - 2 * ENEMY_HEIGHT)) + ENEMY_HEIGHT);
+        enemiesX.push(canvasWidth + ENEMY_WIDTH / 2);
+        enemiesY.push((Math.random() * (canvasHeight - 2 * ENEMY_HEIGHT)) + ENEMY_HEIGHT);
         lastEnemyBullets.push(Date.now());
         lastEnemy = Date.now();
     }
@@ -334,7 +334,7 @@ const drawPlayerBullet = (x, y) => {
 /* PlayerBullets Updating Routine (called at each frame) */
 const updatePlayerBullets = () => {
     for (let index = 0; index < playerBulletsX.length; index++) {
-        if (playerBulletsX[index] > CANVAS_WIDTH + PLAYERBULLET_WIDTH) {
+        if (playerBulletsX[index] > canvasWidth + PLAYERBULLET_WIDTH) {
             playerBulletsX.splice(index, 1);
             playerBulletsY.splice(index, 1);
         }
@@ -429,7 +429,7 @@ const updateScore = () => {
     ctx.fillStyle = `#eeeeee`;
     ctx.textAlign = `right`;
     ctx.textBaseline = `top`;
-    ctx.fillText(`SCORE`, CANVAS_WIDTH - 30, 30);
+    ctx.fillText(`SCORE`, canvasWidth - 30, 30);
     ctx.font = `25px "Press Start 2P"`;
     ctx.fillStyle = `#ffffff`;
     ctx.textAlign = `right`;
@@ -439,18 +439,18 @@ const updateScore = () => {
             if (isScoreVisible) {
                 isScoreVisible = false;
             } else {
-                ctx.fillText(score, CANVAS_WIDTH - 30, 50);
+                ctx.fillText(score, canvasWidth - 30, 50);
                 isScoreVisible = true;
             }
             remainingScoreBlinks--;
             lastScoreBlink = Date.now();
         } else {
             if (isScoreVisible) {
-                ctx.fillText(score, CANVAS_WIDTH - 30, 50);
+                ctx.fillText(score, canvasWidth - 30, 50);
             }
         }
     } else {
-        ctx.fillText(score, CANVAS_WIDTH - 30, 50);
+        ctx.fillText(score, canvasWidth - 30, 50);
     }
     if (score % 1000 == 0) {
         new Audio(SCORE_SFX_PATH).play();
@@ -542,8 +542,8 @@ document.onmousemove = (event) => {
         y = 0;
         return;
     }
-    if (event.clientY > CANVAS_HEIGHT - PLAYER_HEIGHT / 2) {
-        y = CANVAS_HEIGHT - PLAYER_HEIGHT;
+    if (event.clientY > canvasHeight - PLAYER_HEIGHT / 2) {
+        y = canvasHeight - PLAYER_HEIGHT;
         return;
     }
     y = event.clientY - PLAYER_HEIGHT / 2;
