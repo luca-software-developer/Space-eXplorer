@@ -30,6 +30,10 @@ canvas {
     z-index: 0;
 }
 
+#resources {
+    display: none;
+}
+
 #start-overlay,
 #gameover-overlay {
     position: absolute;
@@ -37,12 +41,16 @@ canvas {
     height: 100%;
     z-index: 1;
     background: rgba(1, 11, 25, 0.7);
-    backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+}
+
+#gameover-overlay {
+    display: none;
 }
 
 #start-overlay *,

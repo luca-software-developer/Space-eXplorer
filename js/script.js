@@ -1,3 +1,5 @@
+`use strict`;
+
 /**
  * Space eXplorer Game
  * SpaceGamersHub Project
@@ -6,27 +8,32 @@
  * @author Software Dev Team
  */
 
+/* Logging */
+const log = (subject, message) => {
+    console.log(`%c[${subject}] ${message}`, `font-style: italic; `);
+}
+
 /* Canvas, Context & GAME OVER Overlay */
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d", { willReadFrequently: true });
-const gameOverOverlay = document.getElementById('gameover-overlay');
+const canvas = document.getElementById(`canvas`);
+const ctx = canvas.getContext(`2d`, { willReadFrequently: true });
+const gameOverOverlay = document.getElementById(`gameover-overlay`);
 
 /* GameObjects */
-const spaceship = document.getElementById('spaceship');
-const asteroid = document.getElementById('asteroid');
-const explosion = document.getElementById('explosion');
-const enemy = document.getElementById('enemy');
-const playerBullet = document.getElementById('playerbullet');
-const enemyBullet = document.getElementById('enemybullet');
+const spaceship = document.getElementById(`spaceship`);
+const asteroid = document.getElementById(`asteroid`);
+const explosion = document.getElementById(`explosion`);
+const enemy = document.getElementById(`enemy`);
+const playerBullet = document.getElementById(`playerbullet`);
+const enemyBullet = document.getElementById(`enemybullet`);
 
 /* Scene Background Color */
-const BACKGROUND_COLOR = "#010b19";
+const BACKGROUND_COLOR = `#010b19`;
 
 /* Soundtrack & SFX */
-const EXPLOSION_SFX_PATH = "audio/explosion.mp3";
-const GAMEOVER_SFX_PATH = "audio/gameover.mp3";
-const SCORE_SFX_PATH = "audio/score.mp3";
-const SOUNDTRACK_PATH = "audio/soundtrack.mp3";
+const EXPLOSION_SFX_PATH = `audio/explosion.mp3`;
+const GAMEOVER_SFX_PATH = `audio/gameover.mp3`;
+const SCORE_SFX_PATH = `audio/score.mp3`;
+const SOUNDTRACK_PATH = `audio/soundtrack.mp3`;
 
 /* Player Constants */
 const PLAYER_WIDTH = 300;
@@ -106,18 +113,19 @@ let enemyBulletsY = [];
 let lastEnemyBullets = [];
 
 /* Canvas Initial Sizing */
-canvas.setAttribute('width', innerWidth);
-canvas.setAttribute('height', innerHeight);
+canvas.setAttribute(`width`, innerWidth);
+canvas.setAttribute(`height`, innerHeight);
 
 /* Clear Canvas */
 const clear = () => {
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    log(`Canvas`, `Cleared canvas.`);
 }
 
 /* Canvas Dynamic Resizing */
-document.onresize = () => {
-    canvas.setAttribute('width', innerWidth);
-    canvas.setAttribute('height', innerHeight);
+window.onresize = () => {
+    canvas.setAttribute(`width`, innerWidth);
+    canvas.setAttribute(`height`, innerHeight);
     CANVAS_WIDTH = innerWidth;
     CANVAS_HEIGHT = innerHeight;
     x = CANVAS_WIDTH / 3 - PLAYER_WIDTH / 2;
@@ -125,13 +133,14 @@ document.onresize = () => {
     clear();
     imageData = null;
     drawBackground();
+    log(`Resize`, `Resized <canvas> for ${innerWidth}x${innerHeight} resolution.`);
 }
 
 /* Scene Background Drawing Routine (called at each frame) */
 const drawBackground = () => {
     ctx.fillStyle = BACKGROUND_COLOR;
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = `#ffffff`;
     if (imageData == null) {
         for (let x = 0; x <= CANVAS_WIDTH; x += 2) {
             if (Math.random() > .5) {
@@ -144,7 +153,7 @@ const drawBackground = () => {
         ctx.putImageData(imageData, 0, 0);
         ctx.fillStyle = BACKGROUND_COLOR;
         ctx.fillRect(CANVAS_WIDTH - 2, 0, 2, CANVAS_HEIGHT);
-        ctx.fillStyle = "#ffffff";
+        ctx.fillStyle = `#ffffff`;
         if (Math.random() > .5) {
             const y = Math.random() * CANVAS_HEIGHT;
             ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
@@ -152,6 +161,7 @@ const drawBackground = () => {
         }
     }
     imageData = ctx.getImageData(2, 0, CANVAS_WIDTH - 2, CANVAS_HEIGHT);
+    log(`Background`, `Scene Background Drawing Routine completed.`);
 }
 
 /* Player Drawing Routine */
@@ -161,6 +171,7 @@ const drawPlayer = () => {
         playerFrame = (playerFrame + 1) % PLAYER_FRAMES;
         lastPlayerFrame = Date.now();
     }
+    log(`Player`, `Player Drawing Routine completed.`);
 }
 
 /* Player Collision Routine, spawns Explosion GameObject */
@@ -171,13 +182,13 @@ const checkForPlayerCollision = () => {
         const isInVerticalCollision = y < asteroidsY[index] + ASTEROID_HEIGHT && y + PLAYER_HEIGHT > asteroidsY[index];
         isInCollision = isInHorizontalCollision && isInVerticalCollision;
         if (isInCollision) {
-            console.log("Collisione tra PLAYER e ASTEROID");
+            log(`Collision Detection`, `Collision between Player and Asteroid.`);
             asteroidsX.splice(index, 1);
             asteroidsY.splice(index, 1);
             spawnExplosion(x + PLAYER_WIDTH / 2, y + PLAYER_HEIGHT / 2);
             isPlayerAlive = false;
             new Audio(GAMEOVER_SFX_PATH).play();
-            gameOverOverlay.style.display = 'flex';
+            gameOverOverlay.style.display = `flex`;
             return isInCollision;
         }
     }
@@ -186,13 +197,13 @@ const checkForPlayerCollision = () => {
         const isInVerticalCollision = y < enemiesY[index] + ENEMY_HEIGHT && y + PLAYER_HEIGHT > enemiesY[index];
         isInCollision = isInHorizontalCollision && isInVerticalCollision;
         if (isInCollision) {
-            console.log("Collisione tra PLAYER e ENEMY");
+            log(`Collision Detection`, `Collision between Player and Enemy.`);
             enemiesX.splice(index, 1);
             enemiesY.splice(index, 1);
             spawnExplosion(x + PLAYER_WIDTH / 2, y + PLAYER_HEIGHT / 2);
             isPlayerAlive = false;
             new Audio(GAMEOVER_SFX_PATH).play();
-            gameOverOverlay.style.display = 'flex';
+            gameOverOverlay.style.display = `flex`;
             return isInCollision;
         }
     }
@@ -201,16 +212,17 @@ const checkForPlayerCollision = () => {
         const isInVerticalCollision = y < enemyBulletsY[index] + ENEMYBULLET_HEIGHT && y + PLAYER_HEIGHT > enemyBulletsY[index];
         isInCollision = isInHorizontalCollision && isInVerticalCollision;
         if (isInCollision) {
-            console.log("Collisione tra PLAYER e ENEMYBULLET");
+            log(`Collision Detection`, `Collision between Player and EnemyBullet.`);
             enemyBulletsX.splice(index, 1);
             enemyBulletsY.splice(index, 1);
             spawnExplosion(x + PLAYER_WIDTH / 2, y + PLAYER_HEIGHT / 2);
             isPlayerAlive = false;
             new Audio(GAMEOVER_SFX_PATH).play();
-            gameOverOverlay.style.display = 'flex';
+            gameOverOverlay.style.display = `flex`;
             return isInCollision;
         }
     }
+    log(`Collision Detection`, `Player Collision Detection Routine completed.`);
     return isInCollision;
 }
 
@@ -221,6 +233,7 @@ const drawAsteroid = (x, y) => {
         asteroidFrame = (asteroidFrame + 1) % ASTEROID_FRAMES;
         lastAsteroidFrame = Date.now();
     }
+    log(`Asteroid`, `Asteroid Drawing Routine completed.`);
 }
 
 /* Asteroids Updating Routine (called at each frame) */
@@ -235,6 +248,7 @@ const updateAsteroids = () => {
         drawAsteroid(asteroidsX[index], asteroidsY[index]);
         asteroidsX[index] -= 3;
     }
+    log(`Asteroid`, `Asteroids Updating Routine completed.`);
 }
 
 /* Asteroid Automatic Spawning Routine (called at each frame) */
@@ -244,6 +258,7 @@ const spawnAsteroid = () => {
         asteroidsY.push((Math.random() * (CANVAS_HEIGHT - 2 * ASTEROID_HEIGHT)) + ASTEROID_HEIGHT);
         lastAsteroid = Date.now();
     }
+    log(`Asteroid`, `Asteroid Automatic Spawning Routine completed.`);
 }
 
 /* Explosion Drawing Routine */
@@ -251,6 +266,7 @@ const drawExplosion = (x, y, explosionFrame) => {
     x = x - EXPLOSION_WIDTH / 2;
     y = y - EXPLOSION_HEIGHT / 2;
     ctx.drawImage(explosion, EXPLOSION_WIDTH * explosionFrame, 0, EXPLOSION_WIDTH, EXPLOSION_HEIGHT, x, y, EXPLOSION_WIDTH, EXPLOSION_HEIGHT);
+    log(`Explosion`, `Explosion Drawing Routine completed.`);
 }
 
 /* Explosions Updating Routine (called at each frame) */
@@ -264,6 +280,7 @@ const updateExplosions = () => {
             explosionsFrames.splice(index, 1);
         }
     }
+    log(`Explosion`, `Explosions Updating Routine completed.`);
 }
 
 /* Explosion Spawning Routine */
@@ -272,11 +289,13 @@ const spawnExplosion = (x, y) => {
     explosionsY.push(y);
     explosionsFrames.push(0);
     new Audio(EXPLOSION_SFX_PATH).play();
+    log(`Explosion`, `Explosion Spawning Routine completed.`);
 }
 
 /* Enemy Drawing Routine */
 const drawEnemy = (x, y) => {
     ctx.drawImage(enemy, 0, 0, ENEMY_WIDTH, ENEMY_HEIGHT, x, y, ENEMY_WIDTH, ENEMY_HEIGHT);
+    log(`Enemy`, `Enemy Drawing Routine completed.`);
 }
 
 /* Enemies Updating Routine (called at each frame) */
@@ -292,6 +311,7 @@ const updateEnemies = () => {
         drawEnemy(enemiesX[index], enemiesY[index]);
         enemiesX[index] -= 4;
     }
+    log(`Enemy`, `Enemies Updating Routine completed.`);
 }
 
 /* Enemy Spawning Routine (called at each frame) */
@@ -302,11 +322,13 @@ const spawnEnemy = () => {
         lastEnemyBullets.push(Date.now());
         lastEnemy = Date.now();
     }
+    log(`Enemy`, `Enemy Spawning Routine completed.`);
 }
 
 /* PlayerBullet Drawing Routine */
 const drawPlayerBullet = (x, y) => {
     ctx.drawImage(playerBullet, 0, 0, PLAYERBULLET_WIDTH, PLAYERBULLET_HEIGHT, x, y, PLAYERBULLET_WIDTH, PLAYERBULLET_HEIGHT);
+    log(`PlayerBullet`, `PlayerBullet Drawing Routine completed.`);
 }
 
 /* PlayerBullets Updating Routine (called at each frame) */
@@ -321,12 +343,14 @@ const updatePlayerBullets = () => {
         drawPlayerBullet(playerBulletsX[index], playerBulletsY[index]);
         playerBulletsX[index] += 6;
     }
+    log(`PlayerBullet`, `PlayerBullets Updating Routine completed.`);
 }
 
 /* PlayerBullet Spawning Routine */
 const spawnPlayerBullet = () => {
     playerBulletsX.push(x + PLAYER_WIDTH);
     playerBulletsY.push(y + PLAYER_HEIGHT / 3);
+    log(`PlayerBullet`, `PlayerBullet Spawning Routine completed.`);
 }
 
 /* PlayerBullet Collision Routine, spawns Explosion GameObject */
@@ -338,7 +362,7 @@ const checkForPlayerBulletCollision = () => {
             const isInVerticalCollision = playerBulletsY[i] < asteroidsY[index] + ASTEROID_HEIGHT && playerBulletsY[i] + PLAYERBULLET_HEIGHT > asteroidsY[index];
             isInCollision = isInHorizontalCollision && isInVerticalCollision;
             if (isInCollision) {
-                console.log("Collisione tra PLAYERBULLET e ASTEROID");
+                log(`Collision Detection`, `Collision between PlayerBullet and Asteroid.`);
                 asteroidsX.splice(index, 1);
                 asteroidsY.splice(index, 1);
                 spawnExplosion(playerBulletsX[i], playerBulletsY[i]);
@@ -352,7 +376,7 @@ const checkForPlayerBulletCollision = () => {
             const isInVerticalCollision = playerBulletsY[i] < enemiesY[index] + ENEMY_HEIGHT && playerBulletsY[i] + PLAYERBULLET_HEIGHT > enemiesY[index];
             isInCollision = isInHorizontalCollision && isInVerticalCollision;
             if (isInCollision) {
-                console.log("Collisione tra PLAYERBULLET e ENEMY");
+                log(`Collision Detection`, `Collision between PlayerBullet and Enemy.`);
                 enemiesX.splice(index, 1);
                 enemiesY.splice(index, 1);
                 spawnExplosion(playerBulletsX[i], playerBulletsY[i]);
@@ -362,12 +386,14 @@ const checkForPlayerBulletCollision = () => {
             }
         }
     }
+    log(`Collision Detection`, `PlayerBullet Collision Detection Routine completed.`);
     return isInCollision;
 }
 
 /* EnemyBullet Drawing Routine */
 const drawEnemyBullet = (x, y) => {
     ctx.drawImage(enemyBullet, 0, 0, ENEMYBULLET_WIDTH, ENEMYBULLET_HEIGHT, x, y, ENEMYBULLET_WIDTH, ENEMYBULLET_HEIGHT);
+    log(`EnemyBullet`, `EnemyBullet Drawing Routine completed.`);
 }
 
 /* EnemyBullets Updating Routine (called at each frame) */
@@ -382,6 +408,7 @@ const updateEnemyBullets = () => {
         drawEnemyBullet(enemyBulletsX[index], enemyBulletsY[index]);
         enemyBulletsX[index] -= 6;
     }
+    log(`EnemyBullet`, `EnemyBullets Updating Routine completed.`);
 }
 
 /* EnemyBullets Spawning Routine (called at each frame) */
@@ -393,19 +420,20 @@ const spawnEnemyBullets = () => {
             lastEnemyBullets[index] = Date.now();
         }
     }
+    log(`EnemyBullet`, `EnemyBullets Spawning Routine completed.`);
 }
 
 /* Score Updating Routine (called at each frame) */
 const updateScore = () => {
-    ctx.font = '12px "Arial"';
-    ctx.fillStyle = "#eeeeee";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "top";
-    ctx.fillText("SCORE", CANVAS_WIDTH - 30, 30);
-    ctx.font = '25px "Press Start 2P"';
-    ctx.fillStyle = "#ffffff";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "top";
+    ctx.font = `12px "Arial"`;
+    ctx.fillStyle = `#eeeeee`;
+    ctx.textAlign = `right`;
+    ctx.textBaseline = `top`;
+    ctx.fillText(`SCORE`, CANVAS_WIDTH - 30, 30);
+    ctx.font = `25px "Press Start 2P"`;
+    ctx.fillStyle = `#ffffff`;
+    ctx.textAlign = `right`;
+    ctx.textBaseline = `top`;
     if (remainingScoreBlinks > 0) {
         if (Date.now() - lastScoreBlink > 500) {
             if (isScoreVisible) {
@@ -428,6 +456,7 @@ const updateScore = () => {
         new Audio(SCORE_SFX_PATH).play();
         remainingScoreBlinks = 6;
     }
+    log(`Score`, `Score Updating Routine completed.`);
 }
 
 /* Main Updating Routine (called at each frame) */
@@ -458,6 +487,7 @@ const update = () => {
         updateScore();
     }
 
+    log(`Update`, `Main Updating Routine completed.`);
     requestAnimationFrame(update)
 }
 
@@ -466,25 +496,27 @@ const updatePosition = () => {
     if (!isPlayerAlive) {
         return;
     }
-    if (keys.includes("ArrowUp")) {
+    if (keys.includes(`ArrowUp`)) {
         y -= 2;
     }
-    if (keys.includes("ArrowDown")) {
+    if (keys.includes(`ArrowDown`)) {
         y += 2;
     }
-    if (keys.includes("Enter")) {
+    if (keys.includes(`Enter`)) {
         spawnPlayerBullet();
     }
+    log(`Controls`, `Player Position Updating Routine completed.`);
 }
 
 /* Start Game Button Handler */
 const startGame = () => {
-    const startOverlay = document.getElementById('start-overlay');
-    startOverlay.style.display = 'none';
+    const startOverlay = document.getElementById(`start-overlay`);
+    startOverlay.style.display = `none`;
     const audio = new Audio(SOUNDTRACK_PATH);
     audio.loop = true;
     audio.play();
     isRunning = true;
+    log(`Start Game`, `Start Game Button Handler completed.`);
 }
 
 /* Game Controls */
@@ -493,11 +525,13 @@ document.onkeydown = (event) => {
         keys.push(event.key);
     }
     updatePosition();
+    log(`Controls`, `${event.key} down.`);
 }
 
 document.onkeyup = (event) => {
     keys.splice(keys.indexOf(event.key), 1);
     updatePosition();
+    log(`Controls`, `${event.key} up.`);
 }
 
 document.onmousemove = (event) => {
@@ -513,6 +547,7 @@ document.onmousemove = (event) => {
         return;
     }
     y = event.clientY - PLAYER_HEIGHT / 2;
+    log(`Controls`, `Mouse at ${event.clientX}, ${event.clientY}`);
 }
 
 document.ontouchmove = (event) => {
@@ -520,8 +555,15 @@ document.ontouchmove = (event) => {
         return;
     }
     y = event.changedTouches[0].clientY - PLAYER_HEIGHT / 2;
+    log(`Controls`, `Touch at ${event.clientX}, ${event.clientY}`);
 }
 
-window.onload = () => requestAnimationFrame(update);
+window.onload = (event) => {
+    log(`Loading`, `Game Loading complete.`);
+    requestAnimationFrame(update);
+}
 
-canvas.onclick = spawnPlayerBullet;
+canvas.onclick = (event) => {
+    log(`Controls`, `Click at ${event.clientX}, ${event.clientY}`);
+    spawnPlayerBullet();
+}
