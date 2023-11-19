@@ -28,6 +28,8 @@ const enemyBullet = document.getElementById(`enemybullet`);
 
 /* Scene Background Color */
 const BACKGROUND_COLOR = `#010b19`;
+const STAR_COLOR = `#ffffff`;
+const FADING_STAR_COLOR = `rgba(255, 255, 255, <alpha>)`;
 
 /* Soundtrack & SFX */
 const EXPLOSION_SFX_PATH = `audio/explosion.mp3`;
@@ -39,11 +41,16 @@ const SOUNDTRACK_PATH = `audio/soundtrack.mp3`;
 const PLAYER_WIDTH = 300;
 const PLAYER_HEIGHT = 92;
 const PLAYER_FRAMES = 65;
+const PLAYER_RELATIVE_POSITION_X = 3;
+const PLAYER_ANIMATION_FRAMERATE = 15;
+const PLAYER_KEYBOARD_DELTA_Y = 2;
 
 /* Asteroid Constants */
 const ASTEROID_WIDTH = 100;
 const ASTEROID_HEIGHT = 100;
 const ASTEROID_FRAMES = 245;
+const ASTEROID_ANIMATION_FRAMERATE = 15;
+const ASTEROID_INTERVAL = 3000;
 
 /* Explosion Constants */
 const EXPLOSION_WIDTH = 800;
@@ -53,14 +60,35 @@ const EXPLOSION_FRAMES = 60;
 /* Enemy Constants */
 const ENEMY_WIDTH = 150;
 const ENEMY_HEIGHT = 72;
+const ENEMY_INTERVAL = 3000;
 
 /* PlayerBullet Constants */
 const PLAYERBULLET_WIDTH = 50;
 const PLAYERBULLET_HEIGHT = 29;
+const PLAYERBULLET_DELTA_X = 6;
+const PLAYERBULLET_RELATIVE_POSITION_Y = 3;
 
 /* EnemyBullet Constants */
 const ENEMYBULLET_WIDTH = 50;
 const ENEMYBULLET_HEIGHT = 29;
+const ENEMYBULLET_INTERVAL = 1000;
+
+/* Score Constants */
+const SCORE_LABEL_POSITION_X = 30;
+const SCORE_LABEL_POSITION_Y = 30;
+const SCORE_BLINKS = 6;
+const SCORE_BLINK_INTERVAL = 500;
+const SCORE_POSITION_X = 30;
+const SCORE_POSITION_Y = 50;
+const SCORE_LABEL_FONT = `12px "Arial"`;
+const SCORE_LABEL_COLOR = `#eeeeee`;
+const SCORE_LABEL_TEXTALIGN = `right`;
+const SCORE_LABEL_BASELINE = `top`;
+const SCORE_LABEL_TEXT = `SCORE`;
+const SCORE_FONT = `25px "Press Start 2P"`;
+const SCORE_COLOR = `#ffffff`;
+const SCORE_TEXTALIGN = `right`;
+const SCORE_BASELINE = `top`;
 
 /* Canvas Sizing */
 let canvasWidth = innerWidth;
@@ -128,7 +156,7 @@ window.onresize = () => {
     canvas.setAttribute(`height`, innerHeight);
     canvasWidth = innerWidth;
     canvasHeight = innerHeight;
-    x = canvasWidth / 3 - PLAYER_WIDTH / 2;
+    x = canvasWidth / PLAYER_RELATIVE_POSITION_X - PLAYER_WIDTH / 2;
     y = canvasHeight / 2 - PLAYER_HEIGHT / 2;
     clear();
     imageData = null;
@@ -140,12 +168,12 @@ window.onresize = () => {
 const drawBackground = () => {
     ctx.fillStyle = BACKGROUND_COLOR;
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
-    ctx.fillStyle = `#ffffff`;
+    ctx.fillStyle = STAR_COLOR;
     if (imageData == null) {
         for (let x = 0; x <= canvasWidth; x += 2) {
             if (Math.random() > .5) {
                 const y = Math.random() * canvasHeight;
-                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
+                ctx.fillStyle = FADING_STAR_COLOR.replace(`<alpha>`, Math.random());
                 ctx.fillRect(x, y, 2, 2);
             }
         }
@@ -153,10 +181,10 @@ const drawBackground = () => {
         ctx.putImageData(imageData, 0, 0);
         ctx.fillStyle = BACKGROUND_COLOR;
         ctx.fillRect(canvasWidth - 2, 0, 2, canvasHeight);
-        ctx.fillStyle = `#ffffff`;
+        ctx.fillStyle = STAR_COLOR;
         if (Math.random() > .5) {
             const y = Math.random() * canvasHeight;
-            ctx.fillStyle = `rgba(255, 255, 255, ${Math.random()})`;
+            ctx.fillStyle = FADING_STAR_COLOR.replace(`<alpha>`, Math.random());
             ctx.fillRect(canvasWidth - 2, y, 2, 2);
         }
     }
@@ -167,7 +195,7 @@ const drawBackground = () => {
 /* Player Drawing Routine */
 const drawPlayer = () => {
     ctx.drawImage(spaceship, PLAYER_WIDTH * playerFrame, 0, PLAYER_WIDTH, PLAYER_HEIGHT, x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
-    if (Date.now() - lastPlayerFrame > 1000 / 15) {
+    if (Date.now() - lastPlayerFrame > 1000 / PLAYER_ANIMATION_FRAMERATE) {
         playerFrame = (playerFrame + 1) % PLAYER_FRAMES;
         lastPlayerFrame = Date.now();
     }
@@ -229,7 +257,7 @@ const checkForPlayerCollision = () => {
 /* Asteroid Drawing Routine */
 const drawAsteroid = (x, y) => {
     ctx.drawImage(asteroid, ASTEROID_WIDTH * asteroidFrame, 0, ASTEROID_WIDTH, ASTEROID_HEIGHT, x, y, ASTEROID_WIDTH, ASTEROID_HEIGHT);
-    if (Date.now() - lastAsteroidFrame > 1000 / 15) {
+    if (Date.now() - lastAsteroidFrame > 1000 / ASTEROID_ANIMATION_FRAMERATE) {
         asteroidFrame = (asteroidFrame + 1) % ASTEROID_FRAMES;
         lastAsteroidFrame = Date.now();
     }
@@ -253,7 +281,7 @@ const updateAsteroids = () => {
 
 /* Asteroid Automatic Spawning Routine (called at each frame) */
 const spawnAsteroid = () => {
-    if (Date.now() - lastAsteroid > 3000) {
+    if (Date.now() - lastAsteroid > ASTEROID_INTERVAL) {
         asteroidsX.push(canvasWidth + ASTEROID_WIDTH / 2);
         asteroidsY.push((Math.random() * (canvasHeight - 2 * ASTEROID_HEIGHT)) + ASTEROID_HEIGHT);
         lastAsteroid = Date.now();
@@ -314,9 +342,10 @@ const updateEnemies = () => {
     log(`Enemy`, `Enemies Updating Routine completed.`);
 }
 
+
 /* Enemy Spawning Routine (called at each frame) */
 const spawnEnemy = () => {
-    if (Date.now() - lastEnemy > 3000) {
+    if (Date.now() - lastEnemy > ENEMY_INTERVAL) {
         enemiesX.push(canvasWidth + ENEMY_WIDTH / 2);
         enemiesY.push((Math.random() * (canvasHeight - 2 * ENEMY_HEIGHT)) + ENEMY_HEIGHT);
         lastEnemyBullets.push(Date.now());
@@ -341,7 +370,7 @@ const updatePlayerBullets = () => {
     }
     for (let index = 0; index < playerBulletsX.length; index++) {
         drawPlayerBullet(playerBulletsX[index], playerBulletsY[index]);
-        playerBulletsX[index] += 6;
+        playerBulletsX[index] += PLAYERBULLET_DELTA_X;
     }
     log(`PlayerBullet`, `PlayerBullets Updating Routine completed.`);
 }
@@ -349,7 +378,7 @@ const updatePlayerBullets = () => {
 /* PlayerBullet Spawning Routine */
 const spawnPlayerBullet = () => {
     playerBulletsX.push(x + PLAYER_WIDTH);
-    playerBulletsY.push(y + PLAYER_HEIGHT / 3);
+    playerBulletsY.push(y + PLAYER_HEIGHT / PLAYERBULLET_RELATIVE_POSITION_Y);
     log(`PlayerBullet`, `PlayerBullet Spawning Routine completed.`);
 }
 
@@ -414,7 +443,7 @@ const updateEnemyBullets = () => {
 /* EnemyBullets Spawning Routine (called at each frame) */
 const spawnEnemyBullets = () => {
     for (let index = 0; index < enemiesX.length; index++) {
-        if (Date.now() - lastEnemyBullets[index] > 1000) {
+        if (Date.now() - lastEnemyBullets[index] > ENEMYBULLET_INTERVAL) {
             enemyBulletsX.push(enemiesX[index] - ENEMYBULLET_WIDTH);
             enemyBulletsY.push(enemiesY[index] + ENEMY_HEIGHT / 2);
             lastEnemyBullets[index] = Date.now();
@@ -425,36 +454,36 @@ const spawnEnemyBullets = () => {
 
 /* Score Updating Routine (called at each frame) */
 const updateScore = () => {
-    ctx.font = `12px "Arial"`;
-    ctx.fillStyle = `#eeeeee`;
-    ctx.textAlign = `right`;
-    ctx.textBaseline = `top`;
-    ctx.fillText(`SCORE`, canvasWidth - 30, 30);
-    ctx.font = `25px "Press Start 2P"`;
-    ctx.fillStyle = `#ffffff`;
-    ctx.textAlign = `right`;
-    ctx.textBaseline = `top`;
+    ctx.font = SCORE_LABEL_FONT;
+    ctx.fillStyle = SCORE_LABEL_COLOR;
+    ctx.textAlign = SCORE_LABEL_TEXTALIGN;
+    ctx.textBaseline = SCORE_LABEL_BASELINE;
+    ctx.fillText(SCORE_LABEL_TEXT, canvasWidth - SCORE_LABEL_POSITION_X, SCORE_LABEL_POSITION_Y);
+    ctx.font = SCORE_FONT;
+    ctx.fillStyle = SCORE_COLOR;
+    ctx.textAlign = SCORE_TEXTALIGN;
+    ctx.textBaseline = SCORE_BASELINE;
     if (remainingScoreBlinks > 0) {
-        if (Date.now() - lastScoreBlink > 500) {
+        if (Date.now() - lastScoreBlink > SCORE_BLINK_INTERVAL) {
             if (isScoreVisible) {
                 isScoreVisible = false;
             } else {
-                ctx.fillText(score, canvasWidth - 30, 50);
+                ctx.fillText(score, canvasWidth - SCORE_POSITION_X, SCORE_POSITION_Y);
                 isScoreVisible = true;
             }
             remainingScoreBlinks--;
             lastScoreBlink = Date.now();
         } else {
             if (isScoreVisible) {
-                ctx.fillText(score, canvasWidth - 30, 50);
+                ctx.fillText(score, canvasWidth - SCORE_POSITION_X, SCORE_POSITION_Y);
             }
         }
     } else {
-        ctx.fillText(score, canvasWidth - 30, 50);
+        ctx.fillText(score, canvasWidth - SCORE_POSITION_X, SCORE_POSITION_Y);
     }
     if (score % 1000 == 0) {
         new Audio(SCORE_SFX_PATH).play();
-        remainingScoreBlinks = 6;
+        remainingScoreBlinks = SCORE_BLINKS;
     }
     log(`Score`, `Score Updating Routine completed.`);
 }
@@ -497,10 +526,10 @@ const updatePosition = () => {
         return;
     }
     if (keys.includes(`ArrowUp`)) {
-        y -= 2;
+        y -= PLAYER_KEYBOARD_DELTA_Y;
     }
     if (keys.includes(`ArrowDown`)) {
-        y += 2;
+        y += PLAYER_KEYBOARD_DELTA_Y;
     }
     if (keys.includes(`Enter`)) {
         spawnPlayerBullet();
