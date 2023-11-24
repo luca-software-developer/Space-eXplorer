@@ -16,6 +16,7 @@ const log = (subject, message) => {
 /* Canvas, Context & GAME OVER Overlay */
 const canvas = document.getElementById(`canvas`);
 const ctx = canvas.getContext(`2d`, { willReadFrequently: true });
+const startGame = document.getElementById(`start-game`);
 const gameOverOverlay = document.getElementById(`gameover-overlay`);
 
 /* GameObjects */
@@ -538,7 +539,7 @@ const updatePosition = () => {
 }
 
 /* Start Game Button Handler */
-const startGame = () => {
+startGame.onclick = () => {
     const startOverlay = document.getElementById(`start-overlay`);
     startOverlay.style.display = `none`;
     const audio = new Audio(SOUNDTRACK_PATH);
