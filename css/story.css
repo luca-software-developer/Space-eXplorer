@@ -1,0 +1,66 @@
+.story .story-item:nth-child(even) {
+    flex-direction: row-reverse;
+    text-align: start;
+    background-color: #010b19;
+}
+
+.story .story-item:nth-child(odd) {
+    flex-direction: row;
+    text-align: end;
+    background-color: #010b19cc;
+}
+
+.story-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-item>* {
+    width: 50%;
+    padding: 7rem;
+}
+
+.story-item .story-item-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-item .story-item-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.story-item .story-item-text h3 {
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 992px) {
+    .story .story-item:nth-child(even) {
+        flex-direction: column-reverse;
+        text-align: start;
+        background-color: #010b19;
+    }
+
+    .story .story-item:nth-child(odd) {
+        flex-direction: column;
+        text-align: end;
+        background-color: #010b19cc;
+    }
+}
+
+@keyframes asteroid-animation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+img#asteroid {
+    animation: asteroid-animation 45s linear infinite;
+}

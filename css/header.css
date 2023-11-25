@@ -1,0 +1,75 @@
+header {
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/cover.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1 {
+    margin: 0;
+    font-size: 4rem;
+    text-shadow: 0 0 20px black;
+}
+
+h2 {
+    font-size: 1.3rem;
+    text-shadow: 0 0 20px black;
+}
+
+form.sign-up {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 80vw;
+    max-width: 20rem;
+    margin-top: 1rem;
+}
+
+input[type="email"] {
+    outline: none;
+    width: 100%;
+    border: 0;
+    padding: .8rem;
+    font-size: 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 white;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+@keyframes submit-animation {
+    from {
+        box-shadow: 0 0 5px 0 white;
+    }
+
+    to {
+        box-shadow: 0 0 10px 0 white;
+    }
+}
+
+hr {
+    width: 100px;
+    box-shadow: 0 0 5px 0 white;
+}
+
+input[type="submit"] {
+    width: 100%;
+    height: 3rem;
+    border: 0;
+    font-size: 16px;
+    padding: .7rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #010b19;
+    background-color: #E0CA3C;
+    animation: submit-animation 2s ease-in-out infinite alternate-reverse;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
