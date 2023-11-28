@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <?php include 'navbar.php' ?>
+    <?php include 'navbar.php'; ?>
     <header>
         <h1 data-aos="fade-up" data-aos-duration="1000">Space eXplorer</h1>
         <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50">🎮 #1 Online Space Gaming Platform 🎮
@@ -35,7 +35,8 @@
             <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up"
                 data-aos-duration="1000" data-aos-delay="200" />
         </form>
-        <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a href="#">Accedi</a>
+        <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a
+                href="#">Accedi</a>
         </p>
     </header>
 
@@ -83,9 +84,11 @@
         </div>
     </div>
 
-    <?php include 'ranking.php' ?>
-    <?php include 'footer.php' ?>
+    <?php include 'ranking.php'; ?>
 
+    <?php include 'top.php'; ?>
+    <?php include 'footer.php'; ?>
+    
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/responsive-text.js" type="text/javascript"></script>
     <script src="js/mobile-menu.js" type="text/javascript"></script>

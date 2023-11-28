@@ -18,3 +18,32 @@ a {
     color: inherit;
     text-decoration: none;
 }
+
+#top-link {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 3rem;
+    height: 3rem;
+    display: table;
+    text-align: center;
+    margin: 1rem;
+    background: rgba(1, 11, 25, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px 5px #010b19;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.3);
+    transition-duration: .3s;
+}
+
+#top-link:hover {
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: white;
+}
+
+#top-link > i {
+    display: table-cell;
+    vertical-align: middle;
+} 
