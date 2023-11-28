@@ -51,6 +51,7 @@ const ASTEROID_HEIGHT = 100;
 const ASTEROID_FRAMES = 245;
 const ASTEROID_ANIMATION_FRAMERATE = 15;
 const ASTEROID_INTERVAL = 3000;
+const ASTEROID_DELTA_X = 3;
 
 /* Explosion Constants */
 const EXPLOSION_WIDTH = 800;
@@ -274,7 +275,7 @@ const updateAsteroids = () => {
     }
     for (let index = 0; index < asteroidsX.length; index++) {
         drawAsteroid(asteroidsX[index], asteroidsY[index]);
-        asteroidsX[index] -= 3;
+        asteroidsX[index] -= ASTEROID_DELTA_X;
     }
     log(`Asteroid`, `Asteroids Updating Routine completed.`);
 }
