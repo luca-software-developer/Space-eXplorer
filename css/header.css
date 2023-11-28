@@ -25,15 +25,14 @@ form.sign-up {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     width: 80vw;
-    max-width: 20rem;
+    max-width: 30rem;
     margin-top: 1rem;
 }
 
 input[type="email"] {
+    min-width: 15rem;
     outline: none;
-    width: 100%;
     border: 0;
     padding: .8rem;
     font-size: 16px;
@@ -59,17 +58,21 @@ hr {
 }
 
 input[type="submit"] {
-    width: 100%;
+    min-width: 7rem;
     height: 3rem;
     border: 0;
     font-size: 16px;
     padding: .7rem;
     border-radius: 10px;
-    margin-top: 1rem;
+    margin-left: 1rem;
     font-weight: bold;
     color: #010b19;
     background-color: #E0CA3C;
     animation: submit-animation 2s ease-in-out infinite alternate-reverse;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+}
+
+#accedi {
+    text-decoration: underline;
 }

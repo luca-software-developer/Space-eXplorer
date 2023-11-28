@@ -35,6 +35,9 @@
             <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up"
                 data-aos-duration="1000" data-aos-delay="200" />
         </form>
+        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a id="accedi"
+                href="#">Accedi</a>
+        </p>
     </header>
 
     <div class="story">
