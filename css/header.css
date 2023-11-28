@@ -25,6 +25,7 @@ form.sign-up {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     width: 80vw;
     max-width: 30rem;
     margin-top: 1rem;
@@ -32,6 +33,7 @@ form.sign-up {
 
 input[type="email"] {
     min-width: 15rem;
+    margin-bottom: 1rem;
     outline: none;
     border: 0;
     padding: .8rem;
@@ -59,6 +61,7 @@ hr {
 
 input[type="submit"] {
     min-width: 7rem;
+    margin-bottom: 1rem;
     height: 3rem;
     border: 0;
     font-size: 16px;
@@ -74,5 +77,9 @@ input[type="submit"] {
 }
 
 #accedi {
+    margin-top: 0;
+}
+
+#accedi a {
     text-decoration: underline;
 }
