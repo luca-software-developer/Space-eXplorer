@@ -92,6 +92,7 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/responsive-text.js" type="text/javascript"></script>
     <script src="js/mobile-menu.js" type="text/javascript"></script>
+    <script src="js/top.js" type="text/javascript"></script>
     <script type="text/javascript">AOS.init();</script>
 </body>
 

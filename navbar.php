@@ -1,4 +1,4 @@
-<ul class="navbar">
+<ul id="navbar">
     <li>
         <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/'; ?>">
             <img src="img/logo.png" alt="Space eXplorer" title="Space eXplorer" width="50" height="50" />
