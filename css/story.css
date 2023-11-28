@@ -49,6 +49,10 @@
         text-align: end;
         background-color: #010b19cc;
     }
+
+    .story-item>* {
+        padding-inline: 0;
+    }
 }
 
 @keyframes asteroid-animation {

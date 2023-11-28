@@ -44,7 +44,6 @@ const PLAYER_HEIGHT = 92;
 const PLAYER_FRAMES = 65;
 const PLAYER_RELATIVE_POSITION_X = 3;
 const PLAYER_ANIMATION_FRAMERATE = 15;
-const PLAYER_KEYBOARD_DELTA_Y = 2;
 
 /* Asteroid Constants */
 const ASTEROID_WIDTH = 100;
@@ -525,12 +524,6 @@ const update = () => {
 const updatePosition = () => {
     if (!isPlayerAlive) {
         return;
-    }
-    if (keys.includes(`ArrowUp`)) {
-        y -= PLAYER_KEYBOARD_DELTA_Y;
-    }
-    if (keys.includes(`ArrowDown`)) {
-        y += PLAYER_KEYBOARD_DELTA_Y;
     }
     if (keys.includes(`Enter`)) {
         spawnPlayerBullet();
