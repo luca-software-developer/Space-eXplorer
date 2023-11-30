@@ -16,6 +16,7 @@
     flex-direction: column;
     width: 90%;
     max-width: 40rem;
+    padding-left: 0;
 }
 
 .rank {
