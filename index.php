@@ -30,14 +30,14 @@
             🎮 #1 Online Space Gaming Platform 🎮
         </h2>
         <hr data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" />
-        <form class="sign-up" method="post" action="index.php">
+        <form class="sign-up" method="post" action="login.php">
             <input type="email" id="email" name="email" placeholder="Inserisci qui la tua e-mail" required
                 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" />
             <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up"
                 data-aos-duration="1000" data-aos-delay="200" />
         </form>
         <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a
-                href="#">Accedi</a>
+                href="login.php">Accedi</a>
         </p>
     </header>
 
