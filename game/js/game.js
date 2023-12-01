@@ -2,7 +2,6 @@
 
 /**
  * Space eXplorer Game
- * SpaceGamersHub Project
  * 
  * @version 1.0.0.0
  * @author Software Dev Team
