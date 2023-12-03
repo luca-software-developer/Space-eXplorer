@@ -43,7 +43,7 @@ a {
     color: white;
 }
 
-#top-link > i {
+#top-link>i {
     display: table-cell;
     vertical-align: middle;
-} 
+}

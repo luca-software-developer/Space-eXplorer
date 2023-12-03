@@ -1,4 +1,4 @@
-ul#navbar {
+#navbar>ul {
     position: fixed;
     margin: 0;
     padding: 0;
@@ -13,7 +13,7 @@ ul#navbar {
     z-index: 1;
 }
 
-ul#navbar li:first-child {
+#navbar>ul li:first-child {
     font-weight: bold;
     margin-right: auto;
     display: flex;
@@ -21,7 +21,7 @@ ul#navbar li:first-child {
     font-size: 1.3rem;
 }
 
-ul#navbar a {
+#navbar>ul a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,7 @@ ul#navbar a {
     transition-duration: .3s;
 }
 
-ul#navbar a:hover {
+#navbar>ul a:hover {
     text-shadow: 0 0 3px white;
     border-bottom: 2px solid white;
 }
@@ -52,11 +52,11 @@ ul#navbar a:hover {
 }
 
 @media screen and (max-width: 992px) {
-    ul#navbar {
+    #navbar>ul {
         flex-direction: column;
     }
 
-    ul#navbar li:first-child {
+    #navbar>ul li:first-child {
         display: inherit;
         width: 100%;
     }
