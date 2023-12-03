@@ -22,7 +22,7 @@
         </a>
     </li>
     <li data-type="menu-item" class="menu-hidden">
-        <a href="#">
+        <a href="login.php">
             <i class="bi bi-person-circle"></i>
             &nbsp;
             Account

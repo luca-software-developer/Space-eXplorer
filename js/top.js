@@ -1,8 +1,27 @@
+`use strict`;
 
-let navbar = document.getElementById('navbar');
-let topLink = document.getElementById('top-link');
+/**
+ * Top
+ * 
+ * @version 1.0.0.0
+ * @author Software Dev Team
+ */
+
+/**
+ * Barra di navigazione.
+ */
+const navbar = document.getElementById('navbar');
+
+/**
+ * Pulsante [Top], inizialmente non visualizzato.
+ */
+const topLink = document.getElementById('top-link');
 topLink.style.display = 'none';
 
+/**
+ * Gestisce l'evento 'onscroll', visualizzando opportunamente 
+ * il pulsante [Top].
+ */
 document.onscroll = () => {
     if (window.scrollY < navbar.getBoundingClientRect().height) {
         topLink.style.display = 'none';
