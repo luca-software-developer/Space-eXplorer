@@ -10,7 +10,7 @@
 /**
  * Barra di navigazione.
  */
-const navbar = document.getElementById('navbar');
+const navbar = document.querySelector('#navbar > ul');
 
 /**
  * Pulsante [Top], inizialmente non visualizzato.

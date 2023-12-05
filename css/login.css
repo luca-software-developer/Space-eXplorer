@@ -18,6 +18,8 @@
 }
 
 #login-form-container {
+    margin-block: 6rem;
+    margin-inline: 1rem;
     width: 80%;
     max-width: 400px;
     background: rgba(1, 11, 25, 0.8);
@@ -64,11 +66,38 @@ input {
 
 input[type="submit"] {
     width: 100%;
+    height: 3rem;
     padding-block: .5rem;
     font-weight: bold;
     color: #010b19;
     background-color: #E0CA3C;
     cursor: pointer;
+}
+
+input[disabled] {
+    background-color: gray;
+}
+
+#security-hint,
+#email-hint {
+    color: rgba(255, 255, 255, .7);
+    font-size: .8rem;
+    font-style: italic;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+#security-hint span,
+#email-hint span {
+    padding: .3rem;
+}
+
+#security-badge,
+#email-badge {
+    margin-left: auto;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
 }
 
 @media screen and (max-width: 480px) {
@@ -82,7 +111,13 @@ input[type="submit"] {
         flex-direction: column;
     }
 
-    input {
+    input,
+    #security-badge {
         margin-left: initial;
+
+    }
+
+    #security-badge {
+        margin-block: .3rem;
     }
 }

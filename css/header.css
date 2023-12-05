@@ -24,15 +24,13 @@ h2 {
 form.sign-up {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
     width: 80vw;
     max-width: 30rem;
     margin-top: 1rem;
 }
 
 input[type="email"] {
-    min-width: 15rem;
+    width: 60%;
     margin-bottom: 1rem;
     outline: none;
     border: 0;
@@ -41,6 +39,8 @@ input[type="email"] {
     border-radius: 10px;
     box-shadow: 0 0 5px 0 white;
     text-align: center;
+    margin-inline: .5rem;
+    box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -60,14 +60,14 @@ hr {
 }
 
 input[type="submit"] {
-    min-width: 7rem;
+    width: 40%;
     margin-bottom: 1rem;
     height: 3rem;
     border: 0;
     font-size: 16px;
     padding: .7rem;
     border-radius: 10px;
-    margin-left: 1rem;
+    margin-inline: .5rem;
     font-weight: bold;
     color: #010b19;
     background-color: #E0CA3C;
@@ -82,4 +82,14 @@ input[type="submit"] {
 
 #accedi a {
     text-decoration: underline;
+}
+
+@media screen and (max-width: 768px) {
+    form.sign-up {
+        flex-direction: column;
+    }
+
+    form.sign-up>* {
+        width: 100%;
+    }
 }

@@ -31,13 +31,10 @@
         </h2>
         <hr data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" />
         <form class="sign-up" method="post" action="login.php">
-            <input type="email" id="email" name="email" placeholder="Inserisci qui la tua e-mail" required
-                data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" />
-            <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up"
-                data-aos-duration="1000" data-aos-delay="200" />
+            <input type="email" id="email" name="email" placeholder="Inserisci qui la tua e-mail" required data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" />
+            <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" />
         </form>
-        <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a
-                href="login.php">Accedi</a>
+        <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a href="login.php?action=signin">Accedi</a>
         </p>
     </header>
 
@@ -94,7 +91,9 @@
     <script src="js/responsive-text.js" type="text/javascript"></script>
     <script src="js/mobile-menu.js" type="text/javascript"></script>
     <script src="js/top.js" type="text/javascript"></script>
-    <script type="text/javascript">AOS.init();</script>
+    <script type="text/javascript">
+        AOS.init();
+    </script>
 </body>
 
 </html>

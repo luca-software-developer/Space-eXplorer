@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <nav id="navbar">
     <ul>
         <li>
@@ -23,11 +26,25 @@
             </a>
         </li>
         <li data-type="menu-item" class="menu-hidden">
-            <a href="login.php">
-                <i class="bi bi-person-circle"></i>
-                &nbsp;
-                Account
-            </a>
+            <?php
+            if (isset($_SESSION['nickname'])) {
+            ?>
+                <a href="dashboard.php">
+                    <i class="bi bi-person-circle"></i>
+                    &nbsp;
+                    <?php echo $_SESSION['nickname']; ?>
+                </a>
+            <?php
+            } else {
+            ?>
+                <a href="login.php?action=signin">
+                    <i class="bi bi-person-circle"></i>
+                    &nbsp;
+                    Account
+                </a>
+            <?php
+            }
+            ?>
         </li>
     </ul>
 </nav>
