@@ -18,7 +18,8 @@
 }
 
 #login-form-container {
-    margin-block: 80px;
+    margin-top: 130px;
+    margin-bottom: 50px;
     margin-inline: 1rem;
     width: 80%;
     max-width: 400px;
@@ -111,10 +112,8 @@ input[disabled] {
         flex-direction: column;
     }
 
-    input,
-    #security-badge {
+    input {
         margin-left: initial;
-
     }
 
     #security-badge {
