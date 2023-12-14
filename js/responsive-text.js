@@ -1,19 +1,3 @@
-`use strict`;
-
-/**
- * Responsive Text
- * 
- * @version 1.0.0.0
- * @author Software Dev Team
- */
-
-/**
- * Regola la font-size dell'elemento in base alla larghezza che deve occupare.
- * 
- * @param {HTMLElement} element Elemento HTML, tipicamente un'intestazione o un paragrafo.
- * @param {number} relativeWidth Larghezza relativa rispetto alla larghezza della finestra.
- * @param {number} maximumWidth Larghezza massima occupata dall'elemento, espressa in px.
- */
 const adjustElementWidth = (element, relativeWidth = 1, maximumWidth = null) => {
     element.style.fontSize = '1rem';
     const width = element.getBoundingClientRect().width;
@@ -25,13 +9,6 @@ const adjustElementWidth = (element, relativeWidth = 1, maximumWidth = null) => 
     }
 }
 
-/**
- * Effettua la regolazione della larghezza per tutti gli elementi
- * che specificano almeno l'attributo data-rt-relative (larghezza relativa).
- * L'attributo data-rt-maximum specifica la larghezza massima, espressa in px.
- * 
- * @see adjustElementWidth
- */
 const adjustHeadingsFontSize = () => {
     const elements = document.querySelectorAll('[data-rt-relative]');
     for (let element of elements) {
@@ -45,13 +22,6 @@ const adjustHeadingsFontSize = () => {
     }
 }
 
-/**
- * Esegue la regolazione della larghezza degli elementi testuali responsive
- * dopo che è stato completato il parsing della pagina. Imposta, inoltre,
- * la funzione adjustHeadingsFontSize come handler dell'evento onresize.
- * 
- * @see adjustHeadingsFontSize
- */
 document.addEventListener("DOMContentLoaded", () => {
     adjustHeadingsFontSize();
     onresize = adjustHeadingsFontSize;

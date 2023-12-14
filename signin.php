@@ -19,9 +19,11 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password'])) {
                     if ($row = pg_fetch_assoc($result)) {
                         $signin_nickname = $row['nickname'];
                         session_start();
+                        $_SESSION['email'] = $signin_email;
                         $_SESSION['nickname'] = $signin_nickname;
+                        $_SESSION['access_timestamp'] = time();
                         pg_close($db);
-                        header('location: index.php');
+                        header('location: dashboard/');
                     } else {
                         echo pg_last_error($db);
                     }

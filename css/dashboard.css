@@ -1,0 +1,242 @@
+.dashboard-container {
+    width: 100%;
+    min-height: calc(100% - 130px);
+    padding-top: 130px;
+    padding-bottom: 50px;
+    background: url('../img/dashboard.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard {
+    width: 80%;
+    max-width: 1280px;
+    height: 80%;
+}
+
+.row {
+    display: flex;
+    height: calc(50% - 2rem);
+    margin-block: 1rem;
+}
+
+.col {
+    width: 100%;
+    height: 100%;
+    margin-inline: .5rem;
+}
+
+.item {
+    min-height: 360px;
+    background: rgba(1, 11, 25, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px 5px #010b19;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.item h2 {
+    margin: 0;
+    opacity: .7;
+}
+
+.item h1 {
+    margin-top: .5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 5px white;
+    opacity: .9;
+}
+
+.item .bi {
+    font-size: 1.3rem;
+}
+
+.info-line {
+    display: flex;
+    align-items: center;
+    font-size: .9rem;
+    margin-bottom: .3rem;
+    opacity: .9;
+}
+
+.info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+    margin-right: .5rem;
+}
+
+.info-content {
+    display: flex;
+    font-size: .9rem;
+    margin-bottom: .2rem;
+}
+
+.container {
+    min-height: calc(360px - 4rem);
+    display: flex;
+}
+
+.container-item {
+    width: 50%;
+}
+
+.illustration-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.illustration-container img {
+    width: 80%;
+    max-width: 300px;
+    height: auto;
+}
+
+.game-access {
+    margin-top: 2rem;
+}
+
+@keyframes game-access-animation {
+    from {
+        box-shadow: 0 0 5px 0 white;
+    }
+
+    to {
+        box-shadow: 0 0 10px 0 white;
+    }
+}
+
+.game-access-button {
+    height: 2rem;
+    border: 0;
+    padding-inline: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #010b19;
+    background-color: #E0CA3C;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    animation: game-access-animation 2s ease-in-out infinite alternate-reverse;
+}
+
+.account-options-container,
+.top-three-container {
+    width: 100%;
+    margin-top: .5rem;
+}
+
+.account-option {
+    width: 100%;
+    background: transparent;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    height: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: .5rem;
+}
+
+.account-option:hover {
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, .05);
+}
+
+#delete-account {
+    border: 1px solid rgba(255, 50, 50, 0.7);
+    color: rgba(255, 60, 60);
+}
+
+#delete-account:hover {
+    border: 1px solid rgba(255, 50, 50, 0.9);
+    background: rgba(255, 50, 50, .05);
+}
+
+.top-three-container,
+.my-record-container {
+    width: 100%;
+}
+
+.top-three {
+    padding: 0;
+    margin: 0;
+    list-style-position: inside;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.top-three-item {
+    margin-block: .3rem;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: .5rem;
+}
+
+.my-record {
+    font-family: 'Press Start 2P', serif;
+}
+
+.top-three-item-nickname {
+    font-weight: bold;
+    font-style: italic;
+}
+
+.top-three-item-score {
+    font-size: .7rem;
+    font-family: 'Press Start 2P', serif;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#my-record {
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.back-button {
+    border: 0;
+    background-color: transparent;
+    color: inherit;
+    opacity: .7;
+    cursor: pointer;
+    transition-duration: .3s;
+}
+
+.back-button:hover {
+    opacity: 1;
+    text-shadow: 0 0 5px white;
+}
+
+@media screen and (max-width: 992px) {
+    .row {
+        flex-direction: column;
+        margin: initial;
+    }
+
+    .col {
+        margin-block: .5rem;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .container-item {
+        width: 100%;
+    }
+
+    .illustration-container {
+        margin-block: 2rem;
+    }
+}

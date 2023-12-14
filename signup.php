@@ -21,9 +21,11 @@ if (isset($_POST["signup-email"]) && isset($_POST["signup-nickname"]) && isset($
             pg_close($db);
         } else {
             session_start();
-            $_SESSION['nickname'] = $signin_nickname;
+            $_SESSION['email'] = $signup_email;
+            $_SESSION['nickname'] = $signup_nickname;
+            $_SESSION['access_timestamp'] = time();
             pg_close($db);
-            header("location: index.php");
+            header("location: dashboard.php");
         }
     }
 } else {
