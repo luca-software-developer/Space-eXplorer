@@ -11,7 +11,7 @@
     <title>Space eXplorer</title>
 
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <link rel="stylesheet" href="css/style.css" type="text/css" />  
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
 <body>
@@ -24,7 +24,7 @@
     </div>
     <div id="gameover-overlay">
         <h1>GAME OVER</h1>
-        <a href="index.html">
+        <a href="index.php">
             <button type="button" id="return" title="Return">
                 Return
             </button>
@@ -37,8 +37,7 @@
         <img src="img/asteroid.png" id="asteroid" alt="asteroid" title="asteroid" width="24500" height="100" />
         <img src="img/explosion.png" id="explosion" alt="explosion" title="explosion" width="48000" height="600" />
         <img src="img/enemy.png" id="enemy" alt="enemy" title="enemy" width="150" height="72" />
-        <img src="img/playerbullet.png" id="playerbullet" alt="playerbullet" title="playerbullet" width="50"
-            height="29" />
+        <img src="img/playerbullet.png" id="playerbullet" alt="playerbullet" title="playerbullet" width="50" height="29" />
         <img src="img/enemybullet.png" id="enemybullet" alt="enemybullet" title="enemybullet" width="50" height="29" />
     </div>
 
