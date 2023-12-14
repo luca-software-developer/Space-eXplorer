@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION['nickname'])) {
+    header('Location: dashboard.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
 
