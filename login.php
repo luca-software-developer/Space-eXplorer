@@ -1,9 +1,3 @@
-<?php
-session_start();
-if (isset($_SESSION['nickname'])) {
-    header('Location: dashboard.php');
-}
-?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
 
@@ -27,6 +21,11 @@ if (isset($_SESSION['nickname'])) {
 
 <body>
     <?php include 'navbar.php'; ?>
+    <?php
+    if (isset($_SESSION['nickname'])) {
+        header('Location: dashboard.php');
+    }
+    ?>
 
     <div id="login">
         <div data-aos="fade-up" data-aos-duration="1000" id="login-form-container">
