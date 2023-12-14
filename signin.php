@@ -23,7 +23,7 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password'])) {
                         $_SESSION['nickname'] = $signin_nickname;
                         $_SESSION['access_timestamp'] = time();
                         pg_close($db);
-                        header('location: dashboard/');
+                        header('location: dashboard.php');
                     } else {
                         echo pg_last_error($db);
                     }
