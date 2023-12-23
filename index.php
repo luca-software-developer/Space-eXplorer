@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION['nickname'])) {
+    header('Location: dashboard.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
 
@@ -74,11 +80,15 @@
     <div class="stats">
         <div class="stat" data-aos="fade-up" data-aos-duration="500">
             <h4>Utenti iscritti</h4>
-            <p>006234</p>
+            <p>
+                <?php include './get-users-count.php' ?>
+            </p>
         </div>
         <div class="stat" data-aos="fade-up" data-aos-duration="500" data-aos-delay="50">
             <h4>Partite giocate</h4>
-            <p>125395</p>
+            <p>
+                <?php include './get-games-count.php' ?>
+            </p>
         </div>
     </div>
 

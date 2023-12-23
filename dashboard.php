@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('Location: login.php?action=signin');
+}
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
 
@@ -73,22 +79,14 @@
                         <h2 data-aos="fade-up" data-aos-duration="1000">Statistiche</h2>
                         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50">Il mio record</h3>
                         <div class="my-record-container">
-                            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" id="my-record" class="my-record">123455</p>
+                            <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" id="my-record" class="my-record">
+                                <?php include './get-record.php' ?>
+                            </p>
                         </div>
                         <br />
                         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">Top 3</h3>
                         <div class="top-three-container">
-                            <ol class="top-three">
-                                <li data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="top-three-item">
-                                    <span class="top-three-item-nickname">User #1</span> (<span class="top-three-item-score">123455</span>)
-                                </li>
-                                <li data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" class="top-three-item">
-                                    <span class="top-three-item-nickname">User #2</span> (<span class="top-three-item-score">123454</span>)
-                                </li>
-                                <li data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" class="top-three-item">
-                                    <span class="top-three-item-nickname">User #3</span> (<span class="top-three-item-score">123453</span>)
-                                </li>
-                            </ol>
+                            <?php include './get-top-three.php' ?>
                         </div>
                     </section>
                 </div>
@@ -112,26 +110,61 @@
             </div>
             <div id="change-password-row" class="row hidden">
                 <div class="col">
-                    <section data-aos="fade-up" data-aos-duration="1000" class="item">
-                        <h2 data-aos="fade-up" data-aos-duration="1000">
+                    <section class="item">
+                        <h2>
                             <button type="button" id="change-password-back" class="back-button">
                                 <i class="bi bi-chevron-left"></i>
                             </button>
                             Cambia password
                         </h2>
-
+                        <div class="options-container">
+                            <p>
+                                Questa procedura consente di modificare la password che usi per accedere al tuo account Space eXplorer.
+                            </p>
+                            <br />
+                            <form>
+                                <p>
+                                    <label for="old-password">Vecchia password</label>
+                                    <input type="password" id="old-password" name="old-password" />
+                                </p>
+                                <br />
+                                <p>
+                                    <label for="new-password">Nuova password</label>
+                                    <input type="password" id="new-password" name="new-password" />
+                                </p>
+                                <p>
+                                    <label for="re-password">Ripeti password</label>
+                                    <input type="password" id="re-password" name="re-password" />
+                                </p>
+                                <br />
+                                <p>
+                                    <label></label>
+                                    <input type="button" id="submit-change-password" value="Cambia password" disabled />
+                                </p>
+                            </form>
+                            <p id="form-check-status"></p>
+                        </div>
                     </section>
                 </div>
             </div>
             <div id="delete-account-row" class="row hidden">
                 <div class="col">
-                    <section data-aos="fade-up" data-aos-duration="1000" class="item">
-                        <h2 data-aos="fade-up" data-aos-duration="1000">
+                    <section class="item">
+                        <h2>
                             <button type="button" id="delete-account-back" class="back-button">
                                 <i class="bi bi-chevron-left"></i>
                             </button>
                             Elimina account
                         </h2>
+                        <div class="options-container">
+                            <p>
+                                Questa procedura consente di eliminare il tuo account Space eXplorer e tutte le informazioni ad esso collegate.
+                            </p>
+                            <br />
+                            <form>
+                                <input type="button" id="submit-delete-account" value="Elimina account" />
+                            </form>
+                        </div>
                     </section>
                 </div>
             </div>
@@ -142,7 +175,6 @@
     <?php include 'footer.php'; ?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/responsive-text.js" type="text/javascript"></script>
     <script src="js/mobile-menu.js" type="text/javascript"></script>
     <script src="js/top.js" type="text/javascript"></script>
     <script src="js/dashboard.js" type="text/javascript"></script>

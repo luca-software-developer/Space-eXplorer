@@ -21,6 +21,7 @@
     display: flex;
     height: calc(50% - 2rem);
     margin-block: 1rem;
+    scroll-margin-top: 130px;
 }
 
 .col {
@@ -106,7 +107,7 @@
     margin-top: 2rem;
 }
 
-@keyframes game-access-animation {
+@keyframes button-animation {
     from {
         box-shadow: 0 0 5px 0 white;
     }
@@ -126,7 +127,7 @@
     background-color: #E0CA3C;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
-    animation: game-access-animation 2s ease-in-out infinite alternate-reverse;
+    animation: button-animation 2s ease-in-out infinite alternate-reverse;
 }
 
 .account-options-container,
@@ -155,7 +156,7 @@
 
 #delete-account {
     border: 1px solid rgba(255, 50, 50, 0.7);
-    color: rgba(255, 60, 60);
+    color: rgb(255, 60, 60);
 }
 
 #delete-account:hover {
@@ -216,6 +217,76 @@
 .back-button:hover {
     opacity: 1;
     text-shadow: 0 0 5px white;
+}
+
+.options-container {
+    padding: 1rem;
+}
+
+form {
+    display: table;
+    font-size: .9rem;
+}
+
+form p {
+    display: table-row;
+}
+
+form label,
+form input {
+    display: table-cell;
+}
+
+form input {
+    box-sizing: border-box;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: bold;
+    padding: .5rem;
+    margin: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    transition-duration: .3s;
+}
+
+form input:hover {
+    color: black;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+form input[type="button"] {
+    width: 100%;
+    height: 2rem;
+    border: 0;
+    padding-inline: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #010b19;
+    background-color: #E0CA3C;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    animation: button-animation 2s ease-in-out infinite alternate-reverse;
+}
+
+form input[type="button"]:disabled {
+    font-weight: bold;
+    color: #010b19;
+    background-color: lightgrey;
+    cursor: not-allowed;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#form-check-status {
+    font-size: .8rem;
+    opacity: .7;
+}
+
+#submit-delete-account {
+    margin-left: 0;
+    color: white;
+    background-color: rgb(255, 50, 50);
 }
 
 @media screen and (max-width: 992px) {

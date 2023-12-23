@@ -24,7 +24,7 @@
     </div>
     <div id="gameover-overlay">
         <h1>GAME OVER</h1>
-        <a href="index.php">
+        <a href="../index.php">
             <button type="button" id="return" title="Return">
                 Return
             </button>

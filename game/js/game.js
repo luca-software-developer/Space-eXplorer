@@ -202,6 +202,19 @@ const drawPlayer = () => {
     log(`Player`, `Player Drawing Routine completed.`);
 }
 
+/* Score Saving Routine */
+const saveScore = () => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '../save-score.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState == 4) {
+            log(`Score Saving`, `Score Saving Routine completed.`);
+        }
+    };
+    xhr.send('score=' + score);
+}
+
 /* Player Collision Routine, spawns Explosion GameObject */
 const checkForPlayerCollision = () => {
     let isInCollision = false;
@@ -217,6 +230,7 @@ const checkForPlayerCollision = () => {
             isPlayerAlive = false;
             new Audio(GAMEOVER_SFX_PATH).play();
             gameOverOverlay.style.display = `flex`;
+            saveScore();
             return isInCollision;
         }
     }
@@ -232,6 +246,7 @@ const checkForPlayerCollision = () => {
             isPlayerAlive = false;
             new Audio(GAMEOVER_SFX_PATH).play();
             gameOverOverlay.style.display = `flex`;
+            saveScore();
             return isInCollision;
         }
     }
@@ -247,6 +262,7 @@ const checkForPlayerCollision = () => {
             isPlayerAlive = false;
             new Audio(GAMEOVER_SFX_PATH).play();
             gameOverOverlay.style.display = `flex`;
+            saveScore();
             return isInCollision;
         }
     }
