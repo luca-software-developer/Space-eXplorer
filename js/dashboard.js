@@ -19,7 +19,7 @@ changePassword.onclick = () => {
     } else {
         changePasswordBack.click();
     }
-}
+};
 
 deleteAccount.onclick = () => {
     changePasswordBack.click();
@@ -29,7 +29,7 @@ deleteAccount.onclick = () => {
     } else {
         deleteAccountBack.click();
     }
-}
+};
 
 changePasswordBack.onclick = () => {
     oldPassword.value = '';
@@ -37,12 +37,12 @@ changePasswordBack.onclick = () => {
     rePassword.value = '';
     changePasswordRow.classList.add('hidden');
     window.scrollTo(0, 0);
-}
+};
 
 deleteAccountBack.onclick = () => {
     deleteAccountRow.classList.add('hidden');
     window.scrollTo(0, 0);
-}
+};
 
 setInterval(
     () => {
@@ -109,7 +109,7 @@ submitChangePassword.onclick = () => {
         }
     };
     xhr.send('old-password=' + oldPasswordText + '&new-password=' + newPasswordText + '&re-password=' + rePasswordText);
-}
+};
 
 submitDeleteAccount.onclick = () => {
     if (confirm('Sei sicuro di voler eliminare il tuo account?')) {
@@ -128,4 +128,4 @@ submitDeleteAccount.onclick = () => {
     } else {
         alert('Operazione annullata!');
     }
-}
+};

@@ -48,7 +48,7 @@ const emailCheck = () => {
         }
     };
     xhr.send('signup-email=' + email);
-}
+};
 
 signUpEmail.onkeyup = emailCheck;
 signUpEmail.onkeydown = emailCheck;
@@ -92,7 +92,7 @@ const passwordCheck = () => {
             signUpSubmit.setAttribute('disabled', '');
         }
     }
-}
+};
 
 signUpPassword.onkeyup = passwordCheck;
 signUpPassword.onkeydown = passwordCheck;

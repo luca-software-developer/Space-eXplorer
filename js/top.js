@@ -8,4 +8,4 @@ document.onscroll = () => {
     } else {
         topLink.style.display = 'table';
     }
-}
+};

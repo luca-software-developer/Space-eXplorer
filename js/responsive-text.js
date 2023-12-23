@@ -20,7 +20,7 @@ const adjustHeadingsFontSize = () => {
             adjustElementWidth(element, relativeWidth);
         }
     }
-}
+};
 
 document.addEventListener("DOMContentLoaded", () => {
     adjustHeadingsFontSize();

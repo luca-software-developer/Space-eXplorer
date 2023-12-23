@@ -22,6 +22,6 @@ document.querySelectorAll('#navbar > ul li').forEach(item => {
                 }
             });
             showMenu = !showMenu;
-        }
+        };
     }
 });
