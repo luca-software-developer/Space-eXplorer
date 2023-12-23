@@ -11,7 +11,7 @@ if (!isset($_SESSION['email'])) {
     <meta charset="UTF-8" />
     <meta name="description" content="🎮 #1 Online Space Gaming Platform 🎮" />
     <meta name="keywords" content="Space, Gaming, Game" />
-    <meta name="author" content="Software Dev Team" />
+    <meta name="author" content="Gruppo 32" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Dashboard | Space eXplorer</title>
@@ -85,7 +85,7 @@ if (!isset($_SESSION['email'])) {
                         </div>
                         <br />
                         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">Top 3</h3>
-                        <div class="top-three-container">
+                        <div id="ranking" class="top-three-container">
                             <?php include './get-top-three.php' ?>
                         </div>
                     </section>

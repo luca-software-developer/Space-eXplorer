@@ -11,7 +11,7 @@ if (isset($_SESSION['nickname'])) {
     <meta charset="UTF-8" />
     <meta name="description" content="🎮 #1 Online Space Gaming Platform 🎮" />
     <meta name="keywords" content="Space, Gaming, Game" />
-    <meta name="author" content="Software Dev Team" />
+    <meta name="author" content="Gruppo 32" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Log-In | Space eXplorer</title>

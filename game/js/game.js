@@ -4,7 +4,7 @@
  * Space eXplorer Game
  * 
  * @version 1.0.0.0
- * @author Software Dev Team
+ * @author Gruppo 32
  */
 
 /* Logging */
