@@ -16,7 +16,7 @@
             </a>
         </li>
         <li data-type="menu-item" class="menu-hidden">
-            <a href="#">
+            <a href="community.php">
                 <i class="bi bi-people-fill"></i>
                 &nbsp;
                 Community

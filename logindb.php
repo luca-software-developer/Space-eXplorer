@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $port = '5432';
-$dbname = 'gruppoXX';
+$dbname = 'gruppo32';
 $username = 'www';
 $password = 'tw2024';
 
