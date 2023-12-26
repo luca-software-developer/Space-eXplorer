@@ -1,7 +1,6 @@
 <footer>
     <div class="main-footer">
-        <img id="footer-logo" src="img/footer.png" alt="Space eXplorer" title="Space eXplorer" width="100"
-            height="100" />
+        <img id="footer-logo" src="img/footer.png" alt="Space eXplorer" title="Space eXplorer" width="100" height="100" />
         <div class="social-section">
             <h4>Social</h4>
             <div class="social-bar">
@@ -20,6 +19,13 @@
                 <li><a href="mailto:l.dellorusso6@studenti.unisa.it">l.dellorusso6@studenti.unisa.it</a></li>
             </ul>
         </div>
+    </div>
+    <div class="validation-section">
+        <p>
+            <a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer">
+                <img class="valid-css" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS Valido!" />
+            </a>
+        </p>
     </div>
     <div class="info-footer">
         Università degli Studi di Salerno — Ingegneria Informatica — Gruppo04 <span class="copyright">&copy; Space

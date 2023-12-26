@@ -5,7 +5,7 @@ footer {
 
 .main-footer {
     display: flex;
-    padding-block: 6rem;
+    padding-block: 3rem;
 }
 
 .info-footer {
@@ -72,4 +72,16 @@ footer #footer-logo {
 
 span.copyright {
     float: right;
+}
+
+.validation-section {
+    margin-right: 3rem;
+    margin-bottom: 3rem;
+    text-align: right;
+}
+
+.valid-css {
+    border: 0;
+    width: 88px;
+    height: 31px;
 }
