@@ -41,7 +41,7 @@
         <img src="img/enemybullet.png" id="enemybullet" alt="enemybullet" title="enemybullet" width="50" height="29" />
     </div>
 
-    <script src="js/game.js" type="text/javascript"></script>
+    <script src="js/game.js"></script>
 </body>
 
 </html>

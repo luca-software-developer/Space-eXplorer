@@ -98,10 +98,10 @@ if (isset($_SESSION['nickname'])) {
     <?php include 'footer.php'; ?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/responsive-text.js" type="text/javascript"></script>
-    <script src="js/mobile-menu.js" type="text/javascript"></script>
-    <script src="js/top.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script src="js/responsive-text.js"></script>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/top.js"></script>
+    <script>
         AOS.init();
     </script>
 </body>

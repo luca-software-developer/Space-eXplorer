@@ -67,6 +67,7 @@ if (!isset($_SESSION['email'])) {
                             </form>
                         </div>
                     </div>
+                </div>
             </section>
         </main>
     </div>
@@ -75,10 +76,10 @@ if (!isset($_SESSION['email'])) {
     <?php include 'footer.php'; ?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/mobile-menu.js" type="text/javascript"></script>
-    <script src="js/top.js" type="text/javascript"></script>
-    <script src="js/community.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/top.js"></script>
+    <script src="js/community.js"></script>
+    <script>
         AOS.init();
     </script>
 </body>

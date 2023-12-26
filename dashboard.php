@@ -59,9 +59,7 @@ if (!isset($_SESSION['email'])) {
                                     </div>
                                 </div>
                                 <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200" class="game-access">
-                                    <a href="game/">
-                                        <button class="game-access-button" type="button">Accedi al gioco</button>
-                                    </a>
+                                    <a class="game-access-button" href="game/">Accedi al gioco</a>
                                 </div>
                             </div>
                             <div class="container-item">
@@ -95,9 +93,7 @@ if (!isset($_SESSION['email'])) {
                         <h2 data-aos="fade-up" data-aos-duration="1000">Account</h2>
                         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50">Azioni rapide</h3>
                         <div class="account-options-container">
-                            <a href="logout.php">
-                                <button data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="button" id="log-out" class="account-option">Disconnetti</button>
-                            </a>
+                            <button data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="button" id="log-out" class="account-option" onclick="location.replace('logout.php');">Disconnetti</button>
                         </div>
                         <br />
                         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Impostazioni account</h3>
@@ -175,10 +171,10 @@ if (!isset($_SESSION['email'])) {
     <?php include 'footer.php'; ?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/mobile-menu.js" type="text/javascript"></script>
-    <script src="js/top.js" type="text/javascript"></script>
-    <script src="js/dashboard.js" type="text/javascript"></script>
-    <script type="text/javascript">
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/top.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
         AOS.init();
     </script>
 </body>

@@ -118,7 +118,7 @@
 }
 
 .game-access-button {
-    height: 2rem;
+    padding: .5rem;
     border: 0;
     padding-inline: 1rem;
     border-radius: 5px;
@@ -126,6 +126,7 @@
     color: #010b19;
     background-color: #E0CA3C;
     cursor: pointer;
+    font-size: .8rem;
     font-family: 'Montserrat', sans-serif;
     animation: button-animation 2s ease-in-out infinite alternate-reverse;
 }
