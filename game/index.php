@@ -21,14 +21,16 @@
         <button type="button" id="start-game" title="Start Game">
             Start Game
         </button>
+        <button type="button" id="dashboard" title="Dashboard" onclick="location.replace('../dashboard.php');">
+            Dashboard
+        </button>
     </div>
     <div id="gameover-overlay">
         <h1>GAME OVER</h1>
-        <a href="../index.php">
-            <button type="button" id="return" title="Return">
-                Return
-            </button>
-        </a>
+        <br />
+        <button type="button" id="return" title="Return" onclick="location.replace('../game/');">
+            Return
+        </button>
     </div>
 
     <canvas id="canvas"></canvas>
