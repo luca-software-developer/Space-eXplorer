@@ -9,32 +9,43 @@
             <i id="menu" class="bi bi-list"></i>
         </li>
         <li data-type="menu-item" class="menu-hidden">
-            <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/#ranking'; ?>">
+            <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/#ranking'; ?>" title="Classifica">
                 <i class="bi bi-trophy-fill"></i>
                 &nbsp;
                 Classifica
             </a>
         </li>
         <li data-type="menu-item" class="menu-hidden">
-            <a href="community.php">
+            <a href="community.php" title="Community">
                 <i class="bi bi-people-fill"></i>
                 &nbsp;
                 Community
             </a>
         </li>
-        <li data-type="menu-item" class="menu-hidden">
+        <li data-type="menu-item" class="menu-hidden user-menu-item">
             <?php
             if (isset($_SESSION['nickname'])) {
             ?>
-                <a href="dashboard.php">
+                <a href="dashboard.php" title="Dashboard">
                     <i class="bi bi-person-circle"></i>
-                    &nbsp;
-                    <?php echo $_SESSION['nickname']; ?>
+                    <div class="user-info-container">
+                        <p class="user-name"><?php echo $_SESSION['nickname']; ?></p>
+                        <p class="user-status">● Online</p>
+                    </div>
                 </a>
+                <?php
+                if (isset($_SESSION['nickname'])) {
+                ?>
+                    <a class="user-logout" href="logout.php" title="Log-Out">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </a>
+                <?php
+                }
+                ?>
             <?php
             } else {
             ?>
-                <a href="login.php?action=signin">
+                <a href="login.php?action=signin" title="Sign-In">
                     <i class="bi bi-person-circle"></i>
                     &nbsp;
                     Account

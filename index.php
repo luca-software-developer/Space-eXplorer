@@ -1,8 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION['nickname'])) {
-    header('Location: dashboard.php');
-}
 ?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
@@ -36,45 +33,55 @@ if (isset($_SESSION['nickname'])) {
             🎮 #1 Online Space Gaming Platform 🎮
         </h2>
         <hr data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" />
-        <form class="sign-up" method="post" action="login.php">
-            <input type="email" id="email" name="email" placeholder="Inserisci qui la tua e-mail" required data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" />
-            <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" />
-        </form>
-        <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a href="login.php?action=signin">Accedi</a>
-        </p>
+        <?php
+        if (!isset($_SESSION['nickname'])) {
+        ?>
+            <form class="sign-up" method="post" action="login.php">
+                <input type="email" id="email" name="email" value="<?php echo $_POST['email'] ?? ''; ?>" placeholder="Inserisci qui la tua e-mail" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" required />
+                <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" />
+            </form>
+            <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a href="login.php?action=signin">Accedi</a>
+            </p>
+        <?php
+        } else {
+        ?>
+            <button type="button" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" onclick="location.replace('dashboard.php');">Accedi alla Dashboard</button>
+        <?php
+        }
+        ?>
     </header>
 
     <div class="story">
-        <div class="story-item" data-aos="fade-up" data-aos-duration="500">
+        <figure class="story-item" data-aos="fade-up" data-aos-duration="500">
             <div class="story-item-image">
                 <img src="img/story1.png" alt="Planet" title="Planet" width="356" height="200" />
             </div>
-            <div class="story-item-text">
+            <figcaption class="story-item-text">
                 <h3>1.</h3>
                 <p>Space eXplorer è molto più di un videogame! Space eXplorer è la piattaforma di gaming spaziale che
                     unisce appassionati di videogiochi da tutto il mondo.</p>
-            </div>
-        </div>
-        <div class="story-item" data-aos="fade-up" data-aos-duration="500">
+            </figcaption>
+        </figure>
+        <figure class="story-item" data-aos="fade-up" data-aos-duration="500">
             <div class="story-item-image">
                 <img id="asteroid" src="img/story2.png" alt="Asteroid" title="Asteroid" width="203" height="200" />
             </div>
-            <div class="story-item-text">
+            <figcaption class="story-item-text">
                 <h3>2.</h3>
                 <p>Creando un account Space eXplorer avrai accesso a tutti i servizi della piattaforma, tra cui le
                     statistiche e l'accesso alla community!</p>
-            </div>
-        </div>
-        <div class="story-item" data-aos="fade-up" data-aos-duration="500">
+            </figcaption>
+        </figure>
+        <figure class="story-item" data-aos="fade-up" data-aos-duration="500">
             <div class="story-item-image">
                 <img src="img/story3.png" alt="Spaceship" title="Spaceship" width="171" height="200" />
             </div>
-            <div class="story-item-text">
+            <figcaption class="story-item-text">
                 <h3>3.</h3>
                 <p>Per iscriversi bastano pochi minuti e la tua e-mail. L'account include una dashboard personale con le
                     tue statistiche e i tuoi record. Inoltre, avrai accesso al gioco Space eXplorer!</p>
-            </div>
-        </div>
+            </figcaption>
+        </figure>
     </div>
 
     <div class="stats">
@@ -101,6 +108,7 @@ if (isset($_SESSION['nickname'])) {
     <script src="js/responsive-text.js"></script>
     <script src="js/mobile-menu.js"></script>
     <script src="js/top.js"></script>
+    <script src="js/index.js"></script>
     <script>
         AOS.init();
     </script>

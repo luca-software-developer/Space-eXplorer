@@ -43,7 +43,7 @@ if (isset($_SESSION['nickname'])) {
                     <form id="signup-form" class="login-form" action="signup.php" method="post">
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" for="signup-email">E-mail</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signup-email" name="signup-email" value="<?php echo $_POST['email'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signup-email" name="signup-email" value="<?php echo $_POST['signup-email'] ?? ''; ?>" required />
                         </p>
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" id="email-hint">
                             <span>Disponibilità dell'e-mail</span>
@@ -51,11 +51,11 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" for="signup-nickname">Nickname</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" type="text" id="signup-nickname" name="signup-nickname" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" type="text" id="signup-nickname" name="signup-nickname" value="<?php echo $_POST['signup-nickname'] ?? ''; ?>" required />
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" for="signup-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" required />
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350" id="security-hint">
                             <span>Sicurezza della password</span>
                             <span id="security-badge"></span>
@@ -80,7 +80,7 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" for="signin-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="password" id="signin-password" name="signin-password" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="password" id="signin-password" name="signin-password" value="<?php echo $_POST['password'] ?? ''; ?>" required />
                         </p>
                         <p>
                             <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" type="submit" id="signin-submit" name="signin-submit" value="Sign In!" />

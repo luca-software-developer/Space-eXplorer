@@ -52,10 +52,12 @@ if (!isset($_SESSION['email'])) {
                                         <i class="bi bi-clock-history"></i>
                                     </div>
                                     <div class="info-content">
-                                        Online dalle ore
-                                        <?php echo date("H:i", $_SESSION['access_timestamp']); ?>
-                                        del
-                                        <?php echo date("d/m/Y", $_SESSION['access_timestamp']); ?>
+                                        <span>
+                                            Online dalle ore
+                                            <time><?php echo date("H:i", $_SESSION['access_timestamp']); ?></time>
+                                            del
+                                            <date><?php echo date("d/m/Y", $_SESSION['access_timestamp']); ?></date>
+                                        </span>
                                     </div>
                                 </div>
                                 <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200" class="game-access">
@@ -63,9 +65,9 @@ if (!isset($_SESSION['email'])) {
                                 </div>
                             </div>
                             <div class="container-item">
-                                <div data-aos="fade-down" data-aos-duration="1000" class="illustration-container">
+                                <figure data-aos="fade-down" data-aos-duration="1000" class="illustration-container">
                                     <img src="img/story1.png" alt="story1" title="Dashboard" width="356" height="200" />
-                                </div>
+                                </figure>
                             </div>
                         </div>
                     </section>

@@ -59,7 +59,8 @@ hr {
     box-shadow: 0 0 5px 0 white;
 }
 
-input[type="submit"] {
+input[type="submit"],
+button {
     width: 40%;
     margin-bottom: 1rem;
     height: 3rem;
@@ -74,6 +75,20 @@ input[type="submit"] {
     animation: submit-animation 2s ease-in-out infinite alternate-reverse;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
+}
+
+input[type="submit"]:disabled {
+    font-weight: bold;
+    color: #010b19;
+    background-color: lightgrey;
+    cursor: not-allowed;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    margin-top: 1rem;
+    width: initial;
+    padding-inline: 2rem;
 }
 
 #accedi {

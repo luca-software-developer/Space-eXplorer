@@ -51,6 +51,34 @@
     font-size: 1.7rem;
 }
 
+.user-menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-info-container {
+    margin-left: .7rem;
+}
+
+.user-name {
+    margin: 0;
+    font-weight: bold;
+}
+
+.user-status {
+    margin: 0;
+    margin-top: .1rem;
+    font-size: .7rem;
+    font-weight: bold;
+    color: rgb(0, 255, 0);
+}
+
+.user-logout {
+    padding-inline: 0;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 992px) {
     #navbar>ul {
         flex-direction: column;
