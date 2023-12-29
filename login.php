@@ -43,7 +43,7 @@ if (isset($_SESSION['nickname'])) {
                     <form id="signup-form" class="login-form" action="signup.php" method="post">
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" for="signup-email">E-mail</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signup-email" name="signup-email" value="<?php echo $_POST['signup-email'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signup-email" name="signup-email" value="<?php echo $_POST['email'] ?? ''; ?>" required />
                         </p>
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" id="email-hint">
                             <span>Disponibilità dell'e-mail</span>

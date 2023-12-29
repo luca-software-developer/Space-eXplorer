@@ -1,11 +1,13 @@
 <?php
 require_once "./logindb.php";
+$db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
 session_start();
 
 //  Controllo ridondante (sicurezza)
 if (!isset($_SESSION['email'])) {
     echo "Sessione non valida!";
+    pg_close($db);
     exit();
 }
 
@@ -17,6 +19,7 @@ if (isset($_POST['old-password']) && isset($_POST['new-password']) && isset($_PO
     //  Controllo ridondante (sicurezza)
     if ($new_password != $re_password) {
         echo "Le password non corrispondono!";
+        pg_close($db);
         exit();
     }
 
@@ -25,31 +28,41 @@ if (isset($_POST['old-password']) && isset($_POST['new-password']) && isset($_PO
     $result = pg_prepare($db, "Change-Password", $sql);
     if (!$result) {
         echo pg_last_error($db);
+        pg_close($db);
         exit();
     }
 
     $result = pg_execute($db, "Change-Password", array($email));
     if (!$result) {
         echo pg_last_error($db);
+        pg_close($db);
         exit();
     }
 
     if ($row = pg_fetch_assoc($result)) {
         if (!password_verify($old_password, $row['password'])) {
             echo "Password errata!";
+            pg_close($db);
+            exit();
+        }
+        if ($new_password == $old_password) {
+            echo "La nuova password non può essere uguale alla vecchia password!";
+            pg_close($db);
             exit();
         }
         $sql = 'UPDATE "user" SET "password" = $1 WHERE email = $2';
         $result = pg_prepare($db, "Update-Password", $sql);
         if (!$result) {
             echo pg_last_error($db);
+            pg_close($db);
             exit();
         }
-        
+
         $hash = password_hash($new_password, PASSWORD_DEFAULT);
         $result = pg_execute($db, "Update-Password", array($hash, $email));
         if (!$result) {
             echo pg_last_error($db);
+            pg_close($db);
             exit();
         }
 
@@ -59,3 +72,5 @@ if (isset($_POST['old-password']) && isset($_POST['new-password']) && isset($_PO
         echo "Utente inesistente!";
     }
 }
+
+pg_close($db);

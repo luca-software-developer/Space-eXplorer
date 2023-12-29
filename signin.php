@@ -1,5 +1,6 @@
 <?php
 require_once "./logindb.php";
+$db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
 if (isset($_POST['signin-email']) && isset($_POST['signin-password'])) {
     $signin_email = $_POST['signin-email'];

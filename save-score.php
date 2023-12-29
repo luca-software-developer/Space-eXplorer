@@ -1,10 +1,12 @@
 <?php
 require_once "./logindb.php";
+$db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
 session_start();
 
 if (!isset($_SESSION['email'])) {
     echo "Sessione non valida!";
+    pg_close($db);
     exit();
 }
 
@@ -12,6 +14,7 @@ $email = $_SESSION['email'];
 
 if (!isset($_POST['score'])) {
     echo "Richiesta non valida!";
+    pg_close($db);
     exit();
 }
 

@@ -62,7 +62,7 @@ if (!isset($_SESSION['email'])) {
                         <div class="container-item">
                             <form id="send-message-container">
                                 <label for="message" id="message-label">Scrivi un post</label>
-                                <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" type="text" id="message" name="message" />
+                                <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" type="text" id="message" name="message" autocomplete="off" />
                                 <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="button" id="send" name="send" value="Pubblica" />
                             </form>
                         </div>

@@ -1,5 +1,6 @@
 <?php
 require_once "./logindb.php";
+$db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
 $sql = 'SELECT nickname, MAX(score) AS hiscore
         FROM (SELECT * FROM "game" INNER JOIN "user" ON "game".email = "user".email)
@@ -9,12 +10,14 @@ $sql = 'SELECT nickname, MAX(score) AS hiscore
 $result = pg_prepare($db, "Get-Global-Ranking", $sql);
 if (!$result) {
     echo pg_last_error($db);
+    pg_close($db);
     exit();
 }
 
 $result = pg_execute($db, "Get-Global-Ranking", array());
 if (!$result) {
     echo pg_last_error($db);
+    pg_close($db);
     exit();
 }
 
@@ -34,3 +37,5 @@ echo '</ul>';
 if ($count == 0) {
     echo '<p data-aos="fade-up" data-aos-duration="500" data-aos-delay="' . $delay . '">Nessun record!</p>';
 }
+
+pg_close($db);
