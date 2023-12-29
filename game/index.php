@@ -27,7 +27,6 @@
     </div>
     <div id="gameover-overlay">
         <h1>GAME OVER</h1>
-        <br />
         <button type="button" id="return" title="Return" onclick="location.replace('../game/');">
             Return
         </button>

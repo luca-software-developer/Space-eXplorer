@@ -56,9 +56,7 @@ if (!isset($_SESSION['email'])) {
                                 <?php echo date("d/m/Y", $_SESSION['access_timestamp']); ?>
                             </div>
                         </div>
-                        <br />
                         <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200" id="chat-container"></div>
-                        <br />
                         <div class="container-item">
                             <form id="send-message-container">
                                 <label for="message" id="message-label">Scrivi un post</label>

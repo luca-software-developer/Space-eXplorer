@@ -117,6 +117,7 @@ canvas {
 }
 
 #start-overlay #start-game:hover,
+#start-overlay #dashboard:hover,
 #gameover-overlay #return:hover {
     color: yellow;
 }

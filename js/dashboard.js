@@ -52,7 +52,6 @@ setInterval(
         const rePasswordText = rePassword.value.trim();
         if (oldPasswordText != '' && newPasswordText != '' && rePasswordText != '') {
             if (newPasswordText == rePasswordText) {
-                formCheckStatus.innerHTML = '<br />';
                 submitChangePassword.removeAttribute('disabled');
             } else {
                 formCheckStatus.innerHTML = 'Le password non coincidono!';
@@ -68,7 +67,6 @@ setInterval(
         if (newPasswordText != '') {
             if (passwordRegExp.test(newPasswordText)) {
                 newPassword.style.boxShadow = '0 0 20px 0 green';
-                formCheckStatus.innerHTML = '<br />';
                 if (newPasswordText == rePasswordText) {
                     submitChangePassword.removeAttribute('disabled');
                     rePassword.style.boxShadow = newPassword.style.boxShadow;

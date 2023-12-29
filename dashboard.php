@@ -83,7 +83,6 @@ if (!isset($_SESSION['email'])) {
                                 <?php include './get-record.php' ?>
                             </p>
                         </div>
-                        <br />
                         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150">Top 3</h3>
                         <div id="ranking" class="top-three-container">
                             <?php include './get-top-three.php' ?>
@@ -97,7 +96,6 @@ if (!isset($_SESSION['email'])) {
                         <div class="account-options-container">
                             <button data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="button" id="log-out" class="account-option" onclick="location.replace('logout.php');">Disconnetti</button>
                         </div>
-                        <br />
                         <h3 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">Impostazioni account</h3>
                         <div class="account-options-container">
                             <button data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" type="button" id="change-password" class="account-option">Cambia password</button>
@@ -119,13 +117,11 @@ if (!isset($_SESSION['email'])) {
                             <p>
                                 Questa procedura consente di modificare la password che usi per accedere al tuo account Space eXplorer.
                             </p>
-                            <br />
                             <form>
                                 <p>
                                     <label for="old-password">Vecchia password</label>
                                     <input type="password" id="old-password" name="old-password" />
                                 </p>
-                                <br />
                                 <p>
                                     <label for="new-password">Nuova password</label>
                                     <input type="password" id="new-password" name="new-password" />
@@ -134,7 +130,6 @@ if (!isset($_SESSION['email'])) {
                                     <label for="re-password">Ripeti password</label>
                                     <input type="password" id="re-password" name="re-password" />
                                 </p>
-                                <br />
                                 <p>
                                     <label></label>
                                     <input type="button" id="submit-change-password" value="Cambia password" disabled />
@@ -158,7 +153,6 @@ if (!isset($_SESSION['email'])) {
                             <p>
                                 Questa procedura consente di eliminare il tuo account Space eXplorer e tutte le informazioni ad esso collegate.
                             </p>
-                            <br />
                             <form>
                                 <input type="button" id="submit-delete-account" value="Elimina account" />
                             </form>

@@ -148,6 +148,7 @@ form input[type="button"]:disabled {
     border-radius: 10px;
     background-color: rgba(100, 100, 100, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
+    margin-block: 1.5rem;
 }
 
 #chat-container::-webkit-scrollbar {
