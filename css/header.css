@@ -44,16 +44,6 @@ input[type="email"] {
     font-family: 'Montserrat', sans-serif;
 }
 
-@keyframes submit-animation {
-    from {
-        box-shadow: 0 0 5px 0 white;
-    }
-
-    to {
-        box-shadow: 0 0 10px 0 white;
-    }
-}
-
 hr {
     width: 100px;
     box-shadow: 0 0 5px 0 white;
@@ -72,7 +62,7 @@ button {
     font-weight: bold;
     color: #010b19;
     background-color: #E0CA3C;
-    animation: submit-animation 2s ease-in-out infinite alternate-reverse;
+    box-shadow: 0 0 5px 0 white;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
 }
