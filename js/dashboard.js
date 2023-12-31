@@ -16,6 +16,7 @@ changePassword.onclick = () => {
     if (changePasswordRow.classList.contains('hidden')) {
         changePasswordRow.classList.remove('hidden');
         changePasswordRow.scrollIntoView();
+        changePassword.blur();
     } else {
         changePasswordBack.click();
     }
@@ -26,6 +27,7 @@ deleteAccount.onclick = () => {
     if (deleteAccountRow.classList.contains('hidden')) {
         deleteAccountRow.classList.remove('hidden');
         deleteAccountRow.scrollIntoView();
+        submitDeleteAccount.focus();
     } else {
         deleteAccountBack.click();
     }
@@ -52,6 +54,7 @@ setInterval(
         const rePasswordText = rePassword.value.trim();
         if (oldPasswordText != '' && newPasswordText != '' && rePasswordText != '') {
             if (newPasswordText == rePasswordText) {
+                formCheckStatus.innerHTML = '';
                 submitChangePassword.removeAttribute('disabled');
             } else {
                 formCheckStatus.innerHTML = 'Le password non coincidono!';
@@ -63,11 +66,12 @@ setInterval(
         }
 
         //  Password strength check
-        const passwordRegExp = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
+        const passwordRegExp = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
         if (newPasswordText != '') {
             if (passwordRegExp.test(newPasswordText)) {
                 newPassword.style.boxShadow = '0 0 20px 0 green';
                 if (newPasswordText == rePasswordText) {
+                    formCheckStatus.innerHTML = '';
                     submitChangePassword.removeAttribute('disabled');
                     rePassword.style.boxShadow = newPassword.style.boxShadow;
                 } else {

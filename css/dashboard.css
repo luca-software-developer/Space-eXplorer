@@ -285,6 +285,7 @@ form input[type="button"]:disabled {
 }
 
 #form-check-status {
+    height: 1rem;
     font-size: .8rem;
     opacity: .7;
 }
