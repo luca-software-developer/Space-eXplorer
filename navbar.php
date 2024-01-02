@@ -3,23 +3,20 @@
         <li>
             <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/'; ?>">
                 <img src="img/logo.png" alt="Space eXplorer" title="Space eXplorer" width="50" height="50" />
-                &nbsp;
-                Space eXplorer
+                <span class="menu-text">Space eXplorer</span>
             </a>
             <i id="menu" class="bi bi-list"></i>
         </li>
         <li data-type="menu-item" class="menu-hidden">
             <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/#ranking'; ?>" title="Classifica">
                 <i class="bi bi-trophy-fill"></i>
-                &nbsp;
-                Classifica
+                <span class="menu-text">Classifica</span>
             </a>
         </li>
         <li data-type="menu-item" class="menu-hidden">
             <a href="community.php" title="Community">
                 <i class="bi bi-people-fill"></i>
-                &nbsp;
-                Community
+                <span class="menu-text">Community</span>
             </a>
         </li>
         <li data-type="menu-item" class="menu-hidden user-menu-item">
@@ -47,8 +44,7 @@
             ?>
                 <a href="login.php?action=signin" title="Sign-In">
                     <i class="bi bi-person-circle"></i>
-                    &nbsp;
-                    Account
+                    <span class="menu-text">Account</span>
                 </a>
             <?php
             }

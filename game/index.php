@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['email'])) {
+    header('Location: ../login.php?action=signin');
+}
+?>
 <!DOCTYPE html>
 <html lang="it" dir="ltr">
 
