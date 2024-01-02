@@ -41,7 +41,7 @@ const adjustFontSize = () => {
 };
 
 //  Eseguiamo la adjustFontSize con un timeout di 100ms per essere sicuri
-//  che l'animazione di AOS sia completata.
+//  che l'elemento sia visualizzato (AOS).
 setTimeout(adjustFontSize, 100);
 
 //  Ogni volta che si verifica un evento di resize della window,
