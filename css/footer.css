@@ -3,9 +3,13 @@ footer {
     background-color: #010b19;
 }
 
-.main-footer {
+.footer-row {
     display: flex;
     padding-block: 3rem;
+}
+
+.validation-row {
+    justify-content: end;
 }
 
 .info-footer {
@@ -32,14 +36,25 @@ footer #footer-logo {
     margin-right: 3rem;
 }
 
+.validation-section {
+    padding-block: 0;
+    margin-right: 3rem;
+}
+
 @media screen and (max-width: 992px) {
-    .main-footer {
+    .footer-row {
         flex-direction: column;
         align-items: center;
     }
 
+    .validation-row {
+        justify-content: end;
+        margin: 0;
+    }
+
     .social-section,
-    .contacts-section {
+    .contacts-section,
+    .validation-section {
         margin-left: initial;
         margin-right: initial;
         width: 80%;
@@ -72,12 +87,6 @@ footer #footer-logo {
 
 span.copyright {
     float: right;
-}
-
-.validation-section {
-    margin-right: 3rem;
-    margin-bottom: 3rem;
-    text-align: right;
 }
 
 .valid-css {
