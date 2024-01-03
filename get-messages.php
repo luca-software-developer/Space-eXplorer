@@ -14,8 +14,7 @@ $email = $_SESSION['email'];
 
 $sql = 'SELECT * 
         FROM (SELECT * FROM "post" INNER JOIN "user" ON "post".email = "user".email) 
-        ORDER BY "id" DESC 
-        LIMIT 100';
+        ORDER BY "id" DESC';
 $result = pg_prepare($db, "Get-Messages", $sql);
 if (!$result) {
     echo pg_last_error($db);
