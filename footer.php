@@ -30,9 +30,8 @@
         </section>
     </div>
     <div class="info-footer">
-        Università degli Studi di Salerno — Ingegneria Informatica — Gruppo04 <span class="copyright">&copy; Space
-            eXplorer
-            <?php echo date('Y'); ?>
-        </span>
+        Università degli Studi di Salerno — Ingegneria Informatica — Gruppo04
+        — &copy; Space eXplorer
+        <?php echo date('Y'); ?>
     </div>
 </footer>

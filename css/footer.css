@@ -13,6 +13,8 @@ footer {
 }
 
 .info-footer {
+    display: flex;
+    justify-content: center;
     background-color: #01050d;
     padding: 1rem;
     font-size: .9rem;
@@ -83,10 +85,6 @@ footer #footer-logo {
 .social-bar a:hover,
 .contacts-list a:hover {
     color: yellow;
-}
-
-span.copyright {
-    float: right;
 }
 
 .valid-css {
