@@ -40,9 +40,9 @@ const adjustFontSize = () => {
     }
 };
 
-//  Eseguiamo la adjustFontSize con un timeout di 100ms per essere sicuri
-//  che l'elemento sia visualizzato (AOS).
-setTimeout(adjustFontSize, 100);
+//  Eseguiamo la adjustFontSize con un intervallo di 100ms per essere sicuri
+//  che il titolo sia sempre visualizzato correttamente.
+setInterval(adjustFontSize, 100);
 
 //  Ogni volta che si verifica un evento di resize della window,
 //  deve essere eseguita la adjustFontSize.
