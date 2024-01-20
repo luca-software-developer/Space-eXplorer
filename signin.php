@@ -31,10 +31,10 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password']) && isset($
                 }
             }
         } else {
-            header('Location: login.php?action=signin&error=incorrect-password');
+            header('Location: login.php?action=signin&redirect=' . $_POST['signin-redirect'] . '&error=incorrect-password');
         }
     } else {
-        header('Location: login.php?action=signup&error=inexistent-user');
+        header('Location: login.php?action=signup&redirect=' . $_POST['signin-redirect'] . '&error=inexistent-user');
     }
 }
 

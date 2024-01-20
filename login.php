@@ -5,7 +5,7 @@ if (isset($_GET['redirect'])) {
     $redirect = $_GET['redirect'];
 }
 if (isset($_SESSION['nickname'])) {
-    header('Location: ' . $_GET['redirect']);
+    header('Location: ' . $redirect);
 }
 ?>
 <!DOCTYPE html>
@@ -60,8 +60,7 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" for="signup-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" 
-                                title="La password deve contenere almeno una lettera maiuscola,&#13;una lettera minuscola, un numero e un simbolo ed avere&#13;una lunghezza minima di 6 caratteri." required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" title="La password deve contenere almeno una lettera maiuscola,&#13;una lettera minuscola, un numero e un simbolo ed avere&#13;una lunghezza minima di 6 caratteri." required />
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350" id="security-hint">
                             <span>Sicurezza della password</span>
                             <span id="security-badge"></span>
