@@ -6,8 +6,14 @@
     background: url('../img/community.png');
     background-size: cover;
     background-position: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -22,10 +28,12 @@
     background: rgba(1, 11, 25, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    -webkit-box-shadow: 0 0 10px 5px #010b19;
     box-shadow: 0 0 10px 5px #010b19;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
     padding: 2rem;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
 
@@ -46,7 +54,11 @@
 }
 
 .info-line {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: .9rem;
     margin-bottom: .3rem;
@@ -54,14 +66,22 @@
 }
 
 .info-icon {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     font-size: .9rem;
     margin-right: .5rem;
 }
 
 .info-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     font-size: .9rem;
     margin-bottom: .2rem;
@@ -69,7 +89,12 @@
 
 .container {
     min-height: calc(360px - 4rem);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
@@ -81,17 +106,32 @@
     display: none;
 }
 
-@keyframes button-animation {
+@-webkit-keyframes button-animation {
     from {
+        -webkit-box-shadow: 0 0 5px 0 white;
         box-shadow: 0 0 5px 0 white;
     }
 
     to {
+        -webkit-box-shadow: 0 0 10px 0 white;
+        box-shadow: 0 0 10px 0 white;
+    }
+}
+
+@keyframes button-animation {
+    from {
+        -webkit-box-shadow: 0 0 5px 0 white;
+        box-shadow: 0 0 5px 0 white;
+    }
+
+    to {
+        -webkit-box-shadow: 0 0 10px 0 white;
         box-shadow: 0 0 10px 0 white;
     }
 }
 
 form input {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 100%;
     background-color: rgba(255, 255, 255, 0.3);
@@ -101,6 +141,8 @@ form input {
     font-weight: bold;
     padding: .5rem;
     font-family: 'Montserrat', sans-serif;
+    -webkit-transition-duration: .3s;
+    -o-transition-duration: .3s;
     transition-duration: .3s;
 }
 
@@ -143,7 +185,12 @@ form input[type="button"]:disabled {
 #chat-container {
     height: 360px;
     overflow: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
     border-radius: 10px;
     background-color: rgba(100, 100, 100, 0.1);
@@ -156,12 +203,19 @@ form input[type="button"]:disabled {
 }
 
 #send-message-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
 #chat {
     padding: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
 }
 
@@ -170,6 +224,7 @@ form input[type="button"]:disabled {
 }
 
 .message {
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 40%;
     background-color: rgba(255, 255, 255, 0.7);
@@ -180,6 +235,7 @@ form input[type="button"]:disabled {
     padding: .5rem;
     margin-block: .5rem;
     font-size: .9rem;
+    -webkit-box-shadow: 0 0 10px 0 white;
     box-shadow: 0 0 10px 0 white;
     font-family: 'Montserrat', sans-serif;
 }
@@ -198,7 +254,11 @@ form input[type="button"]:disabled {
 
 .empty-chat {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     opacity: .7;
     margin-bottom: 1rem;

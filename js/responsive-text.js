@@ -48,9 +48,9 @@ const adjustFontSize = () => {
     }
 };
 
-//  Eseguiamo la adjustFontSize con un intervallo di 100ms per essere sicuri
-//  che il titolo sia sempre visualizzato correttamente.
-setInterval(adjustFontSize, 100);
+//  Quando l'intera pagina è stata caricata deve essere eseguita
+//  la adjustFontSize.
+window.addEventListener('load', adjustFontSize);
 
 //  Ogni volta che si verifica un evento di resize della window,
 //  deve essere eseguita la adjustFontSize.

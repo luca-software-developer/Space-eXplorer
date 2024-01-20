@@ -4,8 +4,14 @@
     background-image: url('../img/login.jpg');
     background-size: cover;
     background-position: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -26,6 +32,7 @@
     background: rgba(1, 11, 25, 0.8);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    -webkit-box-shadow: 0 0 10px 5px #010b19;
     box-shadow: 0 0 10px 5px #010b19;
     border-radius: 10px;
     padding: 2rem;
@@ -43,6 +50,8 @@
 
 .login-form>p {
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -59,6 +68,7 @@ input {
     padding-block: .3rem;
     font-size: 16px;
     border-radius: 10px;
+    -webkit-box-shadow: 0 0 5px 0 white;
     box-shadow: 0 0 5px 0 white;
     text-align: center;
     margin-left: auto;
@@ -103,12 +113,22 @@ input[disabled] {
 
 @media screen and (max-width: 480px) {
     .login-form {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
     }
 
     .login-form>p {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
 

@@ -78,6 +78,8 @@ const passwordCheck = () => {
     }
 };
 
-emailCheck();
-passwordCheck();
-const checkHandle = setInterval(() => { emailCheck(); passwordCheck(); }, 100);
+const validateSignUp = () => { emailCheck(); passwordCheck(); };
+
+validateSignUp();
+signUpEmail.addEventListener('input', validateSignUp);
+signUpPassword.addEventListener('input', validateSignUp);

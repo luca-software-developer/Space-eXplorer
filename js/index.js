@@ -1,7 +1,7 @@
 const email = document.getElementById('email');
 const submit = document.getElementById('submit');
 
-setInterval(() => {
+const validateEmail = () => {
     const value = email.value.trim();
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'check-user-exists.php', true);
@@ -16,4 +16,7 @@ setInterval(() => {
         }
     };
     xhr.send('signup-email=' + value);
-}, 100);
+};
+
+validateEmail();
+email.addEventListener('input', validateEmail);

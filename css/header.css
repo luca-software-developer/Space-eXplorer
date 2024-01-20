@@ -4,15 +4,23 @@ header {
     background-image: url('../img/cover.jpg');
     background-size: cover;
     background-position: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
 h1 {
     margin: 0;
-    font-size: 4rem;
     text-shadow: 0 0 20px black;
     font-family: 'Press Start 2P';
     white-space: nowrap;
@@ -24,7 +32,11 @@ h2 {
 }
 
 form.sign-up {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     width: 80vw;
     max-width: 30rem;
@@ -39,15 +51,18 @@ input[type="email"] {
     padding: .8rem;
     font-size: 16px;
     border-radius: 10px;
+    -webkit-box-shadow: 0 0 5px 0 white;
     box-shadow: 0 0 5px 0 white;
     text-align: center;
     margin-inline: .5rem;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
 
 hr {
     width: 100px;
+    -webkit-box-shadow: 0 0 5px 0 white;
     box-shadow: 0 0 5px 0 white;
 }
 
@@ -64,6 +79,7 @@ button {
     font-weight: bold;
     color: #010b19;
     background-color: #E0CA3C;
+    -webkit-box-shadow: 0 0 5px 0 white;
     box-shadow: 0 0 5px 0 white;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
@@ -93,6 +109,9 @@ button {
 
 @media screen and (max-width: 768px) {
     form.sign-up {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
 

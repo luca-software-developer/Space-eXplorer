@@ -1,10 +1,16 @@
 .story .story-item:nth-child(even) {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
     flex-direction: row-reverse;
     text-align: start;
     background-color: #010b19;
 }
 
 .story .story-item:nth-child(odd) {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     text-align: end;
     background-color: #010b19cc;
@@ -13,8 +19,14 @@
 .story-item {
     margin: 0;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -24,8 +36,14 @@
 }
 
 .story-item .story-item-image {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
 }
 
@@ -40,12 +58,18 @@
 
 @media screen and (max-width: 992px) {
     .story .story-item:nth-child(even) {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
         flex-direction: column-reverse;
         text-align: start;
         background-color: #010b19;
     }
 
     .story .story-item:nth-child(odd) {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
         text-align: end;
         background-color: #010b19cc;
@@ -56,16 +80,31 @@
     }
 }
 
-@keyframes asteroid-animation {
+@-webkit-keyframes asteroid-animation {
     from {
+        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
 
     to {
+        -webkit-transform: rotate(-360deg);
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes asteroid-animation {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(-360deg);
         transform: rotate(-360deg);
     }
 }
 
 img#asteroid {
+    -webkit-animation: asteroid-animation 45s linear infinite;
     animation: asteroid-animation 45s linear infinite;
 }

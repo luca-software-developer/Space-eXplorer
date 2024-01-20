@@ -117,7 +117,7 @@ if (!isset($_SESSION['email'])) {
                             <p>
                                 Questa procedura consente di modificare la password che usi per accedere al tuo account Space eXplorer.
                             </p>
-                            <form>
+                            <form action="change-password.php" method="post">
                                 <p>
                                     <label for="old-password">Vecchia password</label>
                                     <input type="password" id="old-password" name="old-password" />
@@ -153,7 +153,7 @@ if (!isset($_SESSION['email'])) {
                             <p>
                                 Questa procedura consente di eliminare il tuo account Space eXplorer e tutte le informazioni ad esso collegate.
                             </p>
-                            <form>
+                            <form action="delete-account.php" method="post">
                                 <input type="button" id="submit-delete-account" value="Elimina account" />
                             </form>
                         </div>

@@ -37,6 +37,7 @@ changePasswordBack.onclick = () => {
     oldPassword.value = '';
     newPassword.value = '';
     rePassword.value = '';
+    validateChangePassword();
     changePasswordRow.classList.add('hidden');
     window.scrollTo(0, 0);
 };
@@ -46,54 +47,56 @@ deleteAccountBack.onclick = () => {
     window.scrollTo(0, 0);
 };
 
-setInterval(
-    () => {
-        //  Form check
-        const oldPasswordText = oldPassword.value.trim();
-        const newPasswordText = newPassword.value.trim();
-        const rePasswordText = rePassword.value.trim();
-        if (oldPasswordText != '' && newPasswordText != '' && rePasswordText != '') {
+const validateChangePassword = () => {
+    //  Form check
+    const oldPasswordText = oldPassword.value.trim();
+    const newPasswordText = newPassword.value.trim();
+    const rePasswordText = rePassword.value.trim();
+    if (oldPasswordText != '' && newPasswordText != '' && rePasswordText != '') {
+        if (newPasswordText == rePasswordText) {
+            formCheckStatus.innerHTML = '';
+            submitChangePassword.removeAttribute('disabled');
+        } else {
+            formCheckStatus.innerHTML = 'Le password non coincidono!';
+            submitChangePassword.setAttribute('disabled', '');
+        }
+    } else {
+        formCheckStatus.innerHTML = 'Compila tutti i campi!';
+        submitChangePassword.setAttribute('disabled', '');
+    }
+
+    //  Password strength check
+    const passwordRegExp = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
+    if (newPasswordText != '') {
+        if (passwordRegExp.test(newPasswordText)) {
+            newPassword.style.boxShadow = '0 0 20px 0 green';
             if (newPasswordText == rePasswordText) {
                 formCheckStatus.innerHTML = '';
                 submitChangePassword.removeAttribute('disabled');
+                rePassword.style.boxShadow = newPassword.style.boxShadow;
             } else {
                 formCheckStatus.innerHTML = 'Le password non coincidono!';
+                rePassword.style.boxShadow = '0 0 20px 0 red';
                 submitChangePassword.setAttribute('disabled', '');
             }
         } else {
-            formCheckStatus.innerHTML = 'Compila tutti i campi!';
-            submitChangePassword.setAttribute('disabled', '');
-        }
-
-        //  Password strength check
-        const passwordRegExp = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
-        if (newPasswordText != '') {
-            if (passwordRegExp.test(newPasswordText)) {
-                newPassword.style.boxShadow = '0 0 20px 0 green';
-                if (newPasswordText == rePasswordText) {
-                    formCheckStatus.innerHTML = '';
-                    submitChangePassword.removeAttribute('disabled');
-                    rePassword.style.boxShadow = newPassword.style.boxShadow;
-                } else {
-                    formCheckStatus.innerHTML = 'Le password non coincidono!';
-                    rePassword.style.boxShadow = '0 0 20px 0 red';
-                    submitChangePassword.setAttribute('disabled', '');
-                }
-            } else {
-                formCheckStatus.innerHTML = 'La nuova password è poco sicura!';
-                newPassword.style.boxShadow = '0 0 20px 0 red';
-                submitChangePassword.setAttribute('disabled', '');
-                rePassword.style.boxShadow = newPassword.style.boxShadow;
-            }
-        } else {
-            formCheckStatus.innerHTML = 'Compila tutti i campi!';
-            newPassword.style.boxShadow = 'none';
+            formCheckStatus.innerHTML = 'La nuova password è poco sicura!';
+            newPassword.style.boxShadow = '0 0 20px 0 red';
             submitChangePassword.setAttribute('disabled', '');
             rePassword.style.boxShadow = newPassword.style.boxShadow;
         }
-    },
-    100
-);
+    } else {
+        formCheckStatus.innerHTML = 'Compila tutti i campi!';
+        newPassword.style.boxShadow = 'none';
+        submitChangePassword.setAttribute('disabled', '');
+        rePassword.style.boxShadow = newPassword.style.boxShadow;
+    }
+};
+
+validateChangePassword();
+oldPassword.addEventListener('input', validateChangePassword);
+newPassword.addEventListener('input', validateChangePassword);
+rePassword.addEventListener('input', validateChangePassword);
 
 submitChangePassword.onclick = () => {
     const oldPasswordText = oldPassword.value.trim();
