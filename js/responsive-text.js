@@ -1,3 +1,11 @@
+
+/**
+ * Responsive Text
+ * 
+ * @version 1.0.0.0
+ * @author Gruppo 32
+ */
+
 //  Regola la width dell'elemento.
 const adjustElementWidth = (element, relativeWidth = 1, maximumWidth = null) => {
     //  Inizialmente impostiamo un valore noto per la font-size.

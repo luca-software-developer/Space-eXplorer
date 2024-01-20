@@ -2,7 +2,7 @@
 require_once "./logindb.php";
 $db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
-if (isset($_POST["signup-email"]) && isset($_POST["signup-nickname"]) && isset($_POST["signup-password"])) {
+if (isset($_POST["signup-email"]) && isset($_POST["signup-nickname"]) && isset($_POST["signup-password"]) && isset($_POST['signup-redirect'])) {
     $signup_email = $_POST["signup-email"];
     $signup_nickname = $_POST["signup-nickname"];
     $signup_password = $_POST["signup-password"];
@@ -23,11 +23,11 @@ if (isset($_POST["signup-email"]) && isset($_POST["signup-nickname"]) && isset($
             $_SESSION['email'] = $signup_email;
             $_SESSION['nickname'] = $signup_nickname;
             $_SESSION['access_timestamp'] = time();
-            header("location: dashboard.php");
+            header('Location: ' . $_POST['signup-redirect']);
         }
     }
 } else {
-    header("location: index.php");
+    header("Location: index.php");
 }
 
 pg_close($db);

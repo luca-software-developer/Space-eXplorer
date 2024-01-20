@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['email'])) {
-    header('Location: login.php?action=signin');
+    header('Location: login.php?action=signin&redirect=community.php');
 }
 ?>
 <!DOCTYPE html>

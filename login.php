@@ -1,7 +1,11 @@
 <?php
 session_start();
+$redirect = 'dashboard.php';
+if (isset($_GET['redirect'])) {
+    $redirect = $_GET['redirect'];
+}
 if (isset($_SESSION['nickname'])) {
-    header('Location: dashboard.php');
+    header('Location: ' . $_GET['redirect']);
 }
 ?>
 <!DOCTYPE html>
@@ -41,6 +45,7 @@ if (isset($_SESSION['nickname'])) {
                 <div id="signup-form-container">
                     <h1>Sign-Up</h1>
                     <form id="signup-form" class="login-form" action="signup.php" method="post">
+                        <input type="hidden" name="signup-redirect" value="<?php echo $redirect; ?>" />
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" for="signup-email">E-mail</label>
                             <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signup-email" name="signup-email" value="<?php echo $_POST['email'] ?? ''; ?>" required />
@@ -55,7 +60,8 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" for="signup-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" 
+                                title="La password deve contenere almeno una lettera maiuscola,&#13;una lettera minuscola, un numero e un simbolo ed avere&#13;una lunghezza minima di 6 caratteri." required />
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350" id="security-hint">
                             <span>Sicurezza della password</span>
                             <span id="security-badge"></span>
@@ -65,7 +71,7 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                     </form>
                     <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="450">
-                        Hai già un account? <a href="?action=signin">Accedi</a>
+                        Hai già un account? <a href="?action=signin&redirect=<?php echo $redirect; ?>">Accedi</a>
                     </p>
                 </div>
             <?php
@@ -74,6 +80,7 @@ if (isset($_SESSION['nickname'])) {
                 <div id="signin-form-container">
                     <h1>Sign-In</h1>
                     <form id="signin-form" class="login-form" action="signin.php" method="post">
+                        <input type="hidden" name="signin-redirect" value="<?php echo $redirect; ?>" />
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" for="signin-email">E-mail</label>
                             <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signin-email" name="signin-email" value="<?php echo $_POST['email'] ?? ''; ?>" required />
@@ -87,7 +94,7 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                     </form>
                     <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">
-                        Non hai un account? <a href="?action=signup">Iscriviti</a>
+                        Non hai un account? <a href="?action=signup&redirect=<?php echo $redirect; ?>">Iscriviti</a>
                     </p>
                 </div>
             <?php

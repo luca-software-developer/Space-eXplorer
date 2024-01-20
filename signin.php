@@ -2,7 +2,7 @@
 require_once "./logindb.php";
 $db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
-if (isset($_POST['signin-email']) && isset($_POST['signin-password'])) {
+if (isset($_POST['signin-email']) && isset($_POST['signin-password']) && isset($_POST['signin-redirect'])) {
     $signin_email = $_POST['signin-email'];
     $signin_password = $_POST['signin-password'];
     $password_hash = get_password_hash($db, $signin_email);
@@ -24,17 +24,17 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password'])) {
                         $_SESSION['nickname'] = $signin_nickname;
                         $_SESSION['access_timestamp'] = time();
                         pg_close($db);
-                        header('location: dashboard.php');
+                        header('Location: ' . $_POST['signin-redirect']);
                     } else {
                         echo pg_last_error($db);
                     }
                 }
             }
         } else {
-            header('location: login.php?action=signin&error=incorrect-password');
+            header('Location: login.php?action=signin&error=incorrect-password');
         }
     } else {
-        header('location: login.php?action=signup&error=inexistent-user');
+        header('Location: login.php?action=signup&error=inexistent-user');
     }
 }
 
