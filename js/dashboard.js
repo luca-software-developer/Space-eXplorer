@@ -93,10 +93,19 @@ const validateChangePassword = () => {
     }
 };
 
+const handleChangePasswordEnter = (event) => {
+    if (event.key == 'Enter') {
+        submitChangePassword.click();
+    }
+};
+
 validateChangePassword();
 oldPassword.addEventListener('input', validateChangePassword);
 newPassword.addEventListener('input', validateChangePassword);
 rePassword.addEventListener('input', validateChangePassword);
+oldPassword.addEventListener('keyup', handleChangePasswordEnter);
+newPassword.addEventListener('keyup', handleChangePasswordEnter);
+rePassword.addEventListener('keyup', handleChangePasswordEnter);
 
 submitChangePassword.onclick = () => {
     const oldPasswordText = oldPassword.value.trim();
