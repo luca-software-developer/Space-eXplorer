@@ -40,6 +40,7 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password']) && isset($
 
 pg_close($db);
 
+//  Restituisce l'hash della password corrispondente all'e-mail specificata.
 function get_password_hash($db, $signin_email)
 {
     $sql = 'SELECT "password" FROM "user" WHERE email = $1 ;';
