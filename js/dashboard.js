@@ -48,10 +48,11 @@ deleteAccountBack.onclick = () => {
 };
 
 const validateChangePassword = () => {
-    //  Form check
     const oldPasswordText = oldPassword.value.trim();
     const newPasswordText = newPassword.value.trim();
     const rePasswordText = rePassword.value.trim();
+
+    //  Form check
     if (oldPasswordText !== '' && newPasswordText !== '' && rePasswordText !== '') {
         if (newPasswordText === rePasswordText) {
             formCheckStatus.innerHTML = '';
@@ -74,6 +75,10 @@ const validateChangePassword = () => {
                 formCheckStatus.innerHTML = '';
                 submitChangePassword.removeAttribute('disabled');
                 rePassword.style.boxShadow = newPassword.style.boxShadow;
+                if (oldPasswordText === '') {
+                    formCheckStatus.innerHTML = 'Compila tutti i campi!';
+                    submitChangePassword.setAttribute('disabled', '');
+                }
             } else {
                 formCheckStatus.innerHTML = 'Le password non coincidono!';
                 rePassword.style.boxShadow = '0 0 20px 0 red';
