@@ -67,9 +67,8 @@ const validateChangePassword = () => {
     }
 
     //  Password strength check
-    const passwordRegExp = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
     if (newPasswordText !== '') {
-        if (passwordRegExp.test(newPasswordText)) {
+        if (MEDIUM_PASSWORD_REGEXP.test(newPasswordText)) {
             newPassword.style.boxShadow = '0 0 20px 0 green';
             if (newPasswordText === rePasswordText) {
                 formCheckStatus.innerHTML = '';

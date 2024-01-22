@@ -52,17 +52,15 @@ const emailCheck = () => {
 
 const passwordCheck = () => {
     const password = signUpPassword.value.trim();
-    const strongPasswordRegExp = new RegExp('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{8,})');
-    const mediumPasswordRegExp = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
     if (password.length === 0) {
         securityBadge.innerText = 'Non inserita';
         securityBadge.style.backgroundColor = 'grey';
         validPassword = false;
-    } else if (strongPasswordRegExp.test(password)) {
+    } else if (STRONG_PASSWORD_REGEXP.test(password)) {
         securityBadge.innerText = 'Forte';
         securityBadge.style.backgroundColor = 'green';
         validPassword = true;
-    } else if (mediumPasswordRegExp.test(password)) {
+    } else if (MEDIUM_PASSWORD_REGEXP.test(password)) {
         securityBadge.innerText = 'Normale';
         securityBadge.style.backgroundColor = 'orange';
         validPassword = true;

@@ -33,7 +33,7 @@ setInterval(() => {
     } else {
         send.removeAttribute('disabled');
     }
-}, 100);
+}, CHAT_UPDATE_INTERVAL);
 
 sendMessageContainer.onsubmit = (event) => {
     send.click();
