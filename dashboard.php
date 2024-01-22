@@ -35,10 +35,10 @@ if (!isset($_SESSION['email'])) {
                     <section data-aos="fade-down" data-aos-duration="1000" class="item">
                         <div class="container">
                             <div class="container-item">
-                                <h2 data-aos="fade-down" data-aos-duration="1000">Dashboard</h2>
-                                <h1 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="50">
+                                <h1 data-aos="fade-down" data-aos-duration="1000">Dashboard</h1>
+                                <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="50">
                                     <?php echo $_SESSION['nickname']; ?>
-                                </h1>
+                                </h2>
                                 <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="info-line">
                                     <div class="info-icon">
                                         <i class="bi bi-envelope-at-fill"></i>
@@ -52,12 +52,10 @@ if (!isset($_SESSION['email'])) {
                                         <i class="bi bi-clock-history"></i>
                                     </div>
                                     <div class="info-content">
-                                        <span>
-                                            Online dalle ore
-                                            <time><?php echo date("H:i", $_SESSION['access_timestamp']); ?></time>
-                                            del
-                                            <date><?php echo date("d/m/Y", $_SESSION['access_timestamp']); ?></date>
-                                        </span>
+                                        Online dalle ore
+                                        <?php echo date("H:i", $_SESSION['access_timestamp']); ?>
+                                        del
+                                        <?php echo date("d/m/Y", $_SESSION['access_timestamp']); ?>
                                     </div>
                                 </div>
                                 <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200" class="game-access">

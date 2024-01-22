@@ -7,8 +7,8 @@ const validateEmail = () => {
     xhr.open('POST', 'check-user-exists.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4) {
-            if (xhr.responseText == 'Disponibile') {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            if (xhr.responseText === 'Disponibile') {
                 submit.removeAttribute('disabled');
             } else {
                 submit.setAttribute('disabled', '');

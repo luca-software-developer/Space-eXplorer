@@ -15,7 +15,7 @@ const adjustElementWidth = (element, relativeWidth = 1, maximumWidth = null) => 
     //  Calcoliamo e impostiamo la font-size desiderata.
     element.style.fontSize = (relativeWidth * innerWidth / width) + 'rem';
     //  Gestiamo anche un'eventuale maximumWidth.
-    if (maximumWidth != null && element.getBoundingClientRect().width > maximumWidth) {
+    if (maximumWidth !== null && element.getBoundingClientRect().width > maximumWidth) {
         //  Inizialmente impostiamo un valore noto per la font-size.
         element.style.fontSize = '1rem';
         //  Otteniamo la width attuale dell'elemento.

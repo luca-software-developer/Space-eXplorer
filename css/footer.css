@@ -34,6 +34,13 @@ footer #footer-logo {
     border-radius: 100%;
 }
 
+.footer-section-heading {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-block: 1rem;
+    font-family: inherit;
+}
+
 .social-section {
     margin: 1rem;
     margin-left: auto;

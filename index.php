@@ -27,7 +27,7 @@ session_start();
 
 <body>
     <?php include 'navbar.php'; ?>
-    <header>
+    <header id="cover">
         <h1 data-aos="fade-up" data-aos-duration="1000" data-rt-relative=".8" data-rt-maximum="600">Space eXplorer</h1>
         <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" data-rt-relative=".7" data-rt-maximum="500">
             🎮 #1 Online Space Gaming Platform 🎮
@@ -51,7 +51,7 @@ session_start();
         ?>
     </header>
 
-    <div class="story">
+    <section class="story">
         <figure class="story-item" data-aos="fade-up" data-aos-duration="500">
             <div class="story-item-image">
                 <img src="img/story1.png" alt="Planet" title="Planet" width="356" height="200" />
@@ -82,24 +82,32 @@ session_start();
                     tue statistiche e i tuoi record. Inoltre, avrai accesso al gioco Space eXplorer!</p>
             </figcaption>
         </figure>
-    </div>
+    </section>
 
-    <div class="stats">
+    <section class="stats">
         <div class="stat" data-aos="fade-up" data-aos-duration="500">
-            <h4>Utenti iscritti</h4>
+            <h3>Utenti iscritti</h3>
             <p>
                 <?php include './get-users-count.php' ?>
             </p>
         </div>
         <div class="stat" data-aos="fade-up" data-aos-duration="500" data-aos-delay="50">
-            <h4>Partite giocate</h4>
+            <h3>Partite giocate</h3>
             <p>
                 <?php include './get-games-count.php' ?>
             </p>
         </div>
-    </div>
+    </section>
 
-    <?php include 'ranking.php'; ?>
+    <div id="ranking" class="ranking-container">
+        <section class="ranking">
+            <header class="ranking-header" data-aos="fade-up" data-aos-duration="500">
+                <h3>Classifica globale</h3>
+                <h4>TOP 10</h4>
+            </header>
+            <?php include './get-global-ranking.php' ?>
+        </section>
+    </div>
 
     <?php include 'top.php'; ?>
     <?php include 'footer.php'; ?>
@@ -108,7 +116,13 @@ session_start();
     <script src="js/responsive-text.js"></script>
     <script src="js/mobile-menu.js"></script>
     <script src="js/top.js"></script>
-    <script src="js/index.js"></script>
+    <?php
+    if (!isset($_SESSION['nickname'])) {
+    ?>
+        <script src="js/index-validation.js"></script>
+    <?php
+    }
+    ?>
     <script>
         AOS.init();
     </script>

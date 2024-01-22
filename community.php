@@ -33,10 +33,10 @@ if (!isset($_SESSION['email'])) {
             <section data-aos="fade-down" data-aos-duration="1000" class="item">
                 <div class="container">
                     <div class="container-item">
-                        <h2 data-aos="fade-down" data-aos-duration="1000">Community</h2>
-                        <h1 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="50">
+                        <h1 data-aos="fade-down" data-aos-duration="1000">Community</h1>
+                        <h2 data-aos="fade-down" data-aos-duration="1000" data-aos-delay="50">
                             <?php echo $_SESSION['nickname']; ?>
-                        </h1>
+                        </h2>
                         <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" class="info-line">
                             <div class="info-icon">
                                 <i class="bi bi-envelope-at-fill"></i>

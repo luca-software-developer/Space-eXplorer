@@ -8,7 +8,7 @@ send.onclick = () => {
     xhr.open('POST', 'send-message.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             message.value = '';
         }
     };
@@ -21,14 +21,14 @@ setInterval(() => {
     const xhr = new XMLHttpRequest();
     xhr.open('GET', 'get-messages.php', true);
     xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             chatContainer.innerHTML = xhr.responseText;
         }
     };
     xhr.send();
 
     //  Enable/Disable send button
-    if (message.value.trim() == '') {
+    if (message.value.trim() === '') {
         send.setAttribute('disabled', '');
     } else {
         send.removeAttribute('disabled');

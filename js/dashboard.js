@@ -52,8 +52,8 @@ const validateChangePassword = () => {
     const oldPasswordText = oldPassword.value.trim();
     const newPasswordText = newPassword.value.trim();
     const rePasswordText = rePassword.value.trim();
-    if (oldPasswordText != '' && newPasswordText != '' && rePasswordText != '') {
-        if (newPasswordText == rePasswordText) {
+    if (oldPasswordText !== '' && newPasswordText !== '' && rePasswordText !== '') {
+        if (newPasswordText === rePasswordText) {
             formCheckStatus.innerHTML = '';
             submitChangePassword.removeAttribute('disabled');
         } else {
@@ -67,10 +67,10 @@ const validateChangePassword = () => {
 
     //  Password strength check
     const passwordRegExp = new RegExp('((?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{6,}))|((?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9])(?=.{8,}))');
-    if (newPasswordText != '') {
+    if (newPasswordText !== '') {
         if (passwordRegExp.test(newPasswordText)) {
             newPassword.style.boxShadow = '0 0 20px 0 green';
-            if (newPasswordText == rePasswordText) {
+            if (newPasswordText === rePasswordText) {
                 formCheckStatus.innerHTML = '';
                 submitChangePassword.removeAttribute('disabled');
                 rePassword.style.boxShadow = newPassword.style.boxShadow;
@@ -94,7 +94,7 @@ const validateChangePassword = () => {
 };
 
 const handleChangePasswordEnter = (event) => {
-    if (event.key == 'Enter') {
+    if (event.key === 'Enter') {
         submitChangePassword.click();
     }
 };
@@ -115,9 +115,9 @@ submitChangePassword.onclick = () => {
     xhr.open('POST', 'change-password.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             alert(xhr.responseText);
-            if (xhr.responseText == 'Operazione completata!') {
+            if (xhr.responseText === 'Operazione completata!') {
                 changePasswordBack.click();
             }
         }
@@ -130,9 +130,9 @@ submitDeleteAccount.onclick = () => {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'delete-account.php', true);
         xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4) {
+            if (xhr.readyState === 4 && xhr.status === 200) {
                 alert(xhr.responseText);
-                if (xhr.responseText == 'Operazione completata!') {
+                if (xhr.responseText === 'Operazione completata!') {
                     changePasswordBack.click();
                     location.replace('logout.php');
                 }

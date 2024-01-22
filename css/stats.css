@@ -52,7 +52,8 @@
     }
 }
 
-.stat h4 {
+.stat h3 {
+    font-size: inherit;
     text-align: center;
     width: 80%;
     padding: 1rem;

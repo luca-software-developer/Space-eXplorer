@@ -31,9 +31,9 @@ if (isset($_SESSION['nickname'])) {
 
 <body>
     <?php include 'navbar.php'; ?>
-    <div id="login">
+    <main id="login">
         <div data-aos="fade-up" data-aos-duration="1000" id="login-form-container">
-            <h2>Space eXplorer</h2>
+            <h1>Space eXplorer</h1>
             <?php
             if (isset($_GET['action'])) {
                 $action = $_GET['action'];
@@ -43,7 +43,7 @@ if (isset($_SESSION['nickname'])) {
             if ($action == 'signup') {
             ?>
                 <div id="signup-form-container">
-                    <h1>Sign-Up</h1>
+                    <h2>Sign-Up</h2>
                     <form id="signup-form" class="login-form" action="signup.php" method="post">
                         <input type="hidden" name="signup-redirect" value="<?php echo $redirect; ?>" />
                         <p>
@@ -60,7 +60,7 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" for="signup-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" title="La password deve contenere almeno una lettera maiuscola,&#13;una lettera minuscola, un numero e un simbolo ed avere&#13;una lunghezza minima di 6 caratteri." required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" title="La password deve contenere almeno una lettera maiuscola, una lettera minuscola, un numero e un simbolo ed avere una lunghezza minima di 6 caratteri." required />
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350" id="security-hint">
                             <span>Sicurezza della password</span>
                             <span id="security-badge"></span>
@@ -77,16 +77,16 @@ if (isset($_SESSION['nickname'])) {
             } else {
             ?>
                 <div id="signin-form-container">
-                    <h1>Sign-In</h1>
+                    <h2>Sign-In</h2>
                     <form id="signin-form" class="login-form" action="signin.php" method="post">
                         <input type="hidden" name="signin-redirect" value="<?php echo $redirect; ?>" />
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" for="signin-email">E-mail</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signin-email" name="signin-email" value="<?php echo $_POST['email'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signin-email" name="signin-email" value="<?php echo $_POST['signin-email'] ?? ''; ?>" required />
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" for="signin-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="password" id="signin-password" name="signin-password" value="<?php echo $_POST['password'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="password" id="signin-password" name="signin-password" value="<?php echo $_POST['signin-password'] ?? ''; ?>" required />
                         </p>
                         <p>
                             <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" type="submit" id="signin-submit" name="signin-submit" value="Sign In!" />
@@ -100,7 +100,7 @@ if (isset($_SESSION['nickname'])) {
             }
             ?>
         </div>
-    </div>
+    </main>
 
     <?php include 'top.php'; ?>
     <?php include 'footer.php'; ?>

@@ -169,7 +169,7 @@ const drawBackground = () => {
     ctx.fillStyle = BACKGROUND_COLOR;
     ctx.fillRect(0, 0, canvasWidth, canvasHeight);
     ctx.fillStyle = STAR_COLOR;
-    if (imageData == null) {
+    if (imageData === null) {
         for (let x = 0; x <= canvasWidth; x += 2) {
             if (Math.random() > .5) {
                 const y = Math.random() * canvasHeight;
@@ -208,7 +208,7 @@ const saveScore = () => {
     xhr.open('POST', '../save-score.php', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.onreadystatechange = () => {
-        if (xhr.readyState == 4) {
+        if (xhr.readyState === 4 && xhr.status === 200) {
             log(`Score Saving`, `Score Saving Routine completed.`);
         }
     };
@@ -318,7 +318,7 @@ const updateExplosions = () => {
     for (let index = 0; index < explosionsX.length; index++) {
         drawExplosion(explosionsX[index], explosionsY[index], explosionsFrames[index]);
         explosionsFrames[index]++;
-        if (explosionsFrames[index] == EXPLOSION_FRAMES) {
+        if (explosionsFrames[index] === EXPLOSION_FRAMES) {
             explosionsX.splice(index, 1);
             explosionsY.splice(index, 1);
             explosionsFrames.splice(index, 1);
@@ -496,7 +496,7 @@ const updateScore = () => {
     } else {
         ctx.fillText(score, canvasWidth - SCORE_POSITION_X, SCORE_POSITION_Y);
     }
-    if (score % 1000 == 0) {
+    if (score % 1000 === 0) {
         new Audio(SCORE_SFX_PATH).play();
         remainingScoreBlinks = SCORE_BLINKS;
     }

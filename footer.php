@@ -2,7 +2,7 @@
     <div class="footer-row">
         <img id="footer-logo" src="img/footer.png" alt="Space eXplorer" title="Space eXplorer" width="100" height="100" />
         <section class="social-section">
-            <h4>Social</h4>
+            <h2 class="footer-section-heading">Social</h2>
             <div class="social-bar">
                 <a target="_blank" href="https://www.instagram.com/spaceexplorer.official/"><i class="bi bi-instagram"></i></a>
                 <a target="_blank" href="https://twitter.com/SpaceXpOfficial"><i class="bi bi-twitter-x"></i></a>
@@ -11,7 +11,7 @@
             </div>
         </section>
         <section class="contacts-section">
-            <h4>Contatti</h4>
+            <h2 class="footer-section-heading">Contatti</h2>
             <ul class="contacts-list">
                 <li><a href="mailto:p.caramia@studenti.unisa.it">p.caramia@studenti.unisa.it</a></li>
                 <li><a href="mailto:c.criscuolo15@studenti.unisa.it">c.criscuolo15@studenti.unisa.it</a></li>
@@ -21,13 +21,13 @@
         </section>
     </div>
     <div class="footer-row validation-row">
-        <section class="validation-section">
+        <div class="validation-section">
             <p>
                 <a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer">
                     <img class="valid-css" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS Valido!" />
                 </a>
             </p>
-        </section>
+        </div>
     </div>
     <div class="info-footer">
         Università degli Studi di Salerno — Ingegneria Informatica — Gruppo04
