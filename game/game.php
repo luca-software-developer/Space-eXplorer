@@ -16,7 +16,7 @@ if (!isset($_SESSION['email'])) {
 
     <title>Space eXplorer</title>
 
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 
