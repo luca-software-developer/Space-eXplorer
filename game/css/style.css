@@ -9,6 +9,8 @@
     outline: none;
     margin: 0;
     -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     color: white;
     font-family: 'Press Start 2P', serif;
@@ -43,9 +45,18 @@ canvas {
     background: rgba(1, 11, 25, 0.7);
     -webkit-backdrop-filter: blur(3px);
     backdrop-filter: blur(3px);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
@@ -73,24 +84,56 @@ canvas {
     font-size: 1.5rem;
 }
 
-@keyframes start-game-animation {
+@-webkit-keyframes start-game-animation {
     0% {
+        -webkit-transform: rotate(0deg);
         transform: rotate(0deg);
     }
 
     60% {
+        -webkit-transform: rotate(-3deg);
         transform: rotate(-3deg);
     }
 
     75% {
+        -webkit-transform: rotate(3deg);
         transform: rotate(3deg);
     }
 
     90% {
+        -webkit-transform: rotate(-3deg);
         transform: rotate(-3deg);
     }
 
     100% {
+        -webkit-transform: rotate(3deg);
+        transform: rotate(3deg);
+    }
+}
+
+@keyframes start-game-animation {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    60% {
+        -webkit-transform: rotate(-3deg);
+        transform: rotate(-3deg);
+    }
+
+    75% {
+        -webkit-transform: rotate(3deg);
+        transform: rotate(3deg);
+    }
+
+    90% {
+        -webkit-transform: rotate(-3deg);
+        transform: rotate(-3deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(3deg);
         transform: rotate(3deg);
     }
 }

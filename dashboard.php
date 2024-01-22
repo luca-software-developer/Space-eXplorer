@@ -59,7 +59,7 @@ if (!isset($_SESSION['email'])) {
                                     </div>
                                 </div>
                                 <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="200" class="game-access">
-                                    <a class="game-access-button" href="game/">Accedi al gioco</a>
+                                    <a class="game-access-button" href="game/game.php">Accedi al gioco</a>
                                 </div>
                             </div>
                             <div class="container-item">

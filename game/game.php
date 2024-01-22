@@ -33,7 +33,7 @@ if (!isset($_SESSION['email'])) {
     </div>
     <div id="gameover-overlay">
         <h1>GAME OVER</h1>
-        <button type="button" id="return" title="Return" onclick="location.replace('../game/');">
+        <button type="button" id="return" title="Return" onclick="location.reload();">
             Return
         </button>
     </div>
