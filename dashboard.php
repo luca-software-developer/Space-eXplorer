@@ -9,6 +9,7 @@ if (!isset($_SESSION['email'])) {
 
 <head>
     <meta charset="UTF-8" />
+    <meta name="robots" content="noindex" />
     <meta name="description" content="🎮 #1 Online Space Gaming Platform 🎮" />
     <meta name="keywords" content="Space, Gaming, Game" />
     <meta name="author" content="Gruppo 32" />
