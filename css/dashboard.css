@@ -52,10 +52,6 @@
     box-sizing: border-box;
 }
 
-.item h3 {
-    margin-top: 1.5rem;
-}
-
 .item h1 {
     margin: 0;
     opacity: .7;
@@ -66,6 +62,10 @@
     margin-bottom: 2rem;
     text-shadow: 0 0 5px white;
     opacity: .9;
+}
+
+.item h3 {
+    margin-top: 1.5rem;
 }
 
 .item .bi {
@@ -273,6 +273,7 @@
 
 .options-container {
     padding: 1rem;
+    padding-top: 0;
 }
 
 form {
