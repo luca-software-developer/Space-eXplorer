@@ -1,4 +1,7 @@
 <?php
+
+/* Parametri di configurazione per l'accesso al database */
+
 $host = "localhost";
 $port = '5432';
 $dbname = 'gruppo32';

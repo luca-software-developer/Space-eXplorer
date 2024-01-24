@@ -2,6 +2,8 @@
 require_once "./logindb.php";
 $db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
+//  Ottiene il numero di partite dal database utilizzando
+//  la funzione di aggregazione COUNT.
 $sql = 'SELECT COUNT(*) FROM "game"';
 $result = pg_prepare($db, "Get-Games-Count", $sql);
 if (!$result) {
@@ -17,6 +19,7 @@ if (!$result) {
     exit();
 }
 
+//  Fornisce in output il numero di partite su 6 cifre.
 $row = pg_fetch_assoc($result);
 $count = $row['count'];
 if ($count) {

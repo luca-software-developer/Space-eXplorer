@@ -1,3 +1,11 @@
+
+/**
+ * Dashboard
+ * 
+ * @version 1.0.0.0
+ * @author Gruppo 32
+ */
+
 const changePassword = document.getElementById('change-password');
 const deleteAccount = document.getElementById('delete-account');
 const changePasswordRow = document.getElementById('change-password-row');
@@ -11,6 +19,9 @@ const submitChangePassword = document.getElementById('submit-change-password');
 const formCheckStatus = document.getElementById('form-check-status');
 const submitDeleteAccount = document.getElementById('submit-delete-account');
 
+//  Gestori degli eventi per i pulsanti di apertura e chiusura
+//  dei pannelli a scomparsa per il cambio password e l'eliminazione
+//  dell'account.
 changePassword.onclick = () => {
     deleteAccountBack.click();
     if (changePasswordRow.classList.contains('hidden')) {
@@ -47,12 +58,13 @@ deleteAccountBack.onclick = () => {
     window.scrollTo(0, 0);
 };
 
+//  Effettua la validazione del form per il cambio password.
 const validateChangePassword = () => {
     const oldPasswordText = oldPassword.value.trim();
     const newPasswordText = newPassword.value.trim();
     const rePasswordText = rePassword.value.trim();
 
-    //  Form check
+    //  Verifica se i campi sono stati riempiti.
     if (oldPasswordText !== '' && newPasswordText !== '' && rePasswordText !== '') {
         if (newPasswordText === rePasswordText) {
             formCheckStatus.innerHTML = '';
@@ -66,7 +78,7 @@ const validateChangePassword = () => {
         submitChangePassword.setAttribute('disabled', '');
     }
 
-    //  Password strength check
+    //  Controllo di sicurezza sulla password.
     if (newPasswordText !== '') {
         if (MEDIUM_PASSWORD_REGEXP.test(newPasswordText)) {
             newPassword.style.boxShadow = '0 0 20px 0 green';
@@ -97,6 +109,7 @@ const validateChangePassword = () => {
     }
 };
 
+//  Shortcut da tastiera per il submit del form di cambio password.
 const handleChangePasswordEnter = (event) => {
     if (event.key === 'Enter') {
         submitChangePassword.click();
@@ -111,6 +124,8 @@ oldPassword.addEventListener('keyup', handleChangePasswordEnter);
 newPassword.addEventListener('keyup', handleChangePasswordEnter);
 rePassword.addEventListener('keyup', handleChangePasswordEnter);
 
+//  Gestore dell'evento per il submit del form di cambio password.
+//  L'operazione viene gestita tramite AJAX.
 submitChangePassword.onclick = () => {
     const oldPasswordText = oldPassword.value.trim();
     const newPasswordText = newPassword.value.trim();
@@ -129,7 +144,10 @@ submitChangePassword.onclick = () => {
     xhr.send('old-password=' + oldPasswordText + '&new-password=' + newPasswordText + '&re-password=' + rePasswordText);
 };
 
+//  Gestore dell'evento per il submit del form di eliminazione dell'account.
+//  L'operazione viene gestita tramite AJAX.
 submitDeleteAccount.onclick = () => {
+    //  Chiede all'utente conferma per l'eliminazione dell'account (sicurezza).
     if (confirm('Sei sicuro di voler eliminare il tuo account?')) {
         const xhr = new XMLHttpRequest();
         xhr.open('POST', 'delete-account.php', true);
@@ -138,6 +156,9 @@ submitDeleteAccount.onclick = () => {
                 alert(xhr.responseText);
                 if (xhr.responseText === 'Operazione completata!') {
                     changePasswordBack.click();
+
+                    //  Effettua il log-out così da eliminare la sessione
+                    //  e reindirizzare opportunamente l'utente.
                     location.replace('logout.php');
                 }
             }

@@ -4,6 +4,7 @@ $db = pg_connect($connection_string) or die('Impossibile connettersi al database
 
 session_start();
 
+//  Controllo di sicurezza.
 if (!isset($_SESSION['email'])) {
     echo '<div class="empty-chat">Sessione non valida</div>';
     pg_close($db);
@@ -12,6 +13,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
+//  Ottiene dal database la lista dei messaggi.
 $sql = 'SELECT * 
         FROM (SELECT * FROM "post" INNER JOIN "user" ON "post".email = "user".email) 
         ORDER BY "id" DESC';
@@ -29,6 +31,7 @@ if (!$result) {
     exit();
 }
 
+//  Produce il mark-up per la visualizzazione dei messaggi.
 $count = 0;
 echo '<div id="chat">';
 while ($row = pg_fetch_assoc($result)) {

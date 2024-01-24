@@ -1,5 +1,10 @@
 
-/* File di configurazione */
+/**
+ * Configurazione del progetto
+ * 
+ * @version 1.0.0.0
+ * @author Gruppo 32
+ */
 
 /* Community */
 const CHAT_UPDATE_INTERVAL = 100; /* ms */

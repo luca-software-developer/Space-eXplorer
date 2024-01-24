@@ -4,6 +4,7 @@ $db = pg_connect($connection_string) or die('Impossibile connettersi al database
 
 session_start();
 
+//  Controllo di sicurezza.
 if (!isset($_SESSION['email'])) {
     echo "Sessione non valida!";
     pg_close($db);
@@ -12,6 +13,7 @@ if (!isset($_SESSION['email'])) {
 
 $email = $_SESSION['email'];
 
+//  Effettua l'eliminazione dell'account.
 $sql = 'DELETE FROM "user" WHERE email = $1';
 $result = pg_prepare($db, "Delete-Account", $sql);
 if (!$result) {

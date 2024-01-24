@@ -1,3 +1,11 @@
+
+/**
+ * Log-In Validation
+ * 
+ * @version 1.0.0.0
+ * @author Gruppo 32
+ */
+
 const signUpEmail = document.getElementById('signup-email');
 const signUpPassword = document.getElementById('signup-password');
 const emailBadge = document.getElementById('email-badge');
@@ -13,6 +21,7 @@ const signUpSubmit = document.getElementById('signup-submit');
 let validEmail = false;
 let validPassword = false;
 
+//  Effettua la validazione dell'e-mail tramite AJAX.
 const emailCheck = () => {
     const email = signUpEmail.value.trim();
     if (email.length === 0) {
@@ -50,6 +59,7 @@ const emailCheck = () => {
     }
 };
 
+//  Effettua la validazione della password (sicurezza).
 const passwordCheck = () => {
     const password = signUpPassword.value.trim();
     if (password.length === 0) {

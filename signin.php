@@ -3,12 +3,15 @@ require_once "./logindb.php";
 $db = pg_connect($connection_string) or die('Impossibile connettersi al database!');
 
 if (isset($_POST['signin-email']) && isset($_POST['signin-password']) && isset($_POST['signin-redirect'])) {
-    $signin_email = $_POST['signin-email'];
-    $signin_password = $_POST['signin-password'];
+    $signin_email = trim($_POST['signin-email']);
+    $signin_password = trim($_POST['signin-password']);
     $password_hash = get_password_hash($db, $signin_email);
+    //  Se l'utente specificato esiste...
     if ($password_hash) {
+        //  Se la password è corretta...
         if (password_verify($signin_password, $password_hash)) {
-            $sql = 'SELECT "nickname" FROM "user" WHERE email = $1 ;';
+            //  Otteniamo l'unica informazione mancante ovvero il nickname.
+            $sql = 'SELECT "nickname" FROM "user" WHERE email = $1';
             $result = pg_prepare($db, "Sign-In", $sql);
             if (!$result) {
                 echo pg_last_error($db);
@@ -19,11 +22,13 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password']) && isset($
                 } else {
                     if ($row = pg_fetch_assoc($result)) {
                         $signin_nickname = $row['nickname'];
+                        //  Avvia la sessione e memorizza le relative informazioni.
                         session_start();
                         $_SESSION['email'] = $signin_email;
                         $_SESSION['nickname'] = $signin_nickname;
                         $_SESSION['access_timestamp'] = time();
                         pg_close($db);
+                        //  Reindirizza l'utente alla pagina richiesta.
                         header('Location: ' . $_POST['signin-redirect']);
                     } else {
                         echo pg_last_error($db);
@@ -43,7 +48,7 @@ pg_close($db);
 //  Restituisce l'hash della password corrispondente all'e-mail specificata.
 function get_password_hash($db, $signin_email)
 {
-    $sql = 'SELECT "password" FROM "user" WHERE email = $1 ;';
+    $sql = 'SELECT "password" FROM "user" WHERE email = $1';
     $result = pg_prepare($db, "Get-Password-Hash", $sql);
     if (!$result) {
         echo pg_last_error($db);

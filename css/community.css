@@ -182,6 +182,9 @@ form input[type="button"]:disabled {
     margin-left: 1rem;
 }
 
+/* Impostando il valore column-reverse per la proprietà flex-direction
+   per il #chat-container e la #chat, la chat crescerà dal basso invece che
+   dall'alto, mostrando (di default) i messaggi più recenti. */
 #chat-container {
     height: 360px;
     overflow: auto;

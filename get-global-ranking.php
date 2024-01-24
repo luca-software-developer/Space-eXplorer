@@ -2,12 +2,14 @@
 require_once "./logindb.php";
 require_once "./get-ranking.php";
 
+//  Ottiene le prime 10 entry in classifica.
 $ranking = get_ranking($connection_string, 10);
 if (!$ranking) {
     echo pg_last_error($db);
     exit();
 }
 
+//  Produce il mark-up per la visualizzazione della classifica.
 $delay = 50;
 $count = 0;
 echo '<ul class="ranking-content">';

@@ -2,12 +2,14 @@
 require_once "./logindb.php";
 require_once "./get-ranking.php";
 
+//  Ottiene le prime 3 entry in classifica.
 $ranking = get_ranking($connection_string, 3);
 if (!$ranking) {
     echo pg_last_error($db);
     exit();
 }
 
+//  Produce il mark-up per la visualizzazione della Top 3.
 $delay = 200;
 $count = 0;
 echo '<ol class="top-three">';
