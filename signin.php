@@ -6,6 +6,12 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password']) && isset($
     $signin_email = trim($_POST['signin-email']);
     $signin_password = trim($_POST['signin-password']);
     $password_hash = get_password_hash($db, $signin_email);
+
+    //  Salva i valori temporanei dei campi nella sessione.
+    session_start();
+    $_SESSION['signin-email'] = $signin_email;
+    $_SESSION['signin-password'] = $signin_password;
+
     //  Se l'utente specificato esiste...
     if ($password_hash) {
         //  Se la password è corretta...
@@ -22,8 +28,12 @@ if (isset($_POST['signin-email']) && isset($_POST['signin-password']) && isset($
                 } else {
                     if ($row = pg_fetch_assoc($result)) {
                         $signin_nickname = $row['nickname'];
-                        //  Avvia la sessione e memorizza le relative informazioni.
-                        session_start();
+
+                        //  Elimina le informazioni temporanee dalla sessione.
+                        unset($_SESSION['signin-email']);
+                        unset($_SESSION['signin-password']);
+
+                        //  Memorizza le informazioni dell'utente nella sessione.
                         $_SESSION['email'] = $signin_email;
                         $_SESSION['nickname'] = $signin_nickname;
                         $_SESSION['access_timestamp'] = time();

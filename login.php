@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+//  Gestione del redirect (user intent).
 $redirect = 'dashboard.php';
 if (isset($_GET['redirect'])) {
     $redirect = $_GET['redirect'];
@@ -48,7 +50,7 @@ if (isset($_SESSION['nickname'])) {
                         <input type="hidden" name="signup-redirect" value="<?php echo $redirect; ?>" />
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" for="signup-email">E-mail</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signup-email" name="signup-email" value="<?php echo $_POST['email'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signup-email" name="signup-email" value="<?php echo $_SESSION['signup-email'] ?? $_POST['signup-email'] ?? ''; ?>" required />
                         </p>
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" id="email-hint">
                             <span>Disponibilità dell'e-mail</span>
@@ -56,11 +58,11 @@ if (isset($_SESSION['nickname'])) {
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" for="signup-nickname">Nickname</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" type="text" id="signup-nickname" name="signup-nickname" value="<?php echo $_POST['signup-nickname'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" type="text" id="signup-nickname" name="signup-nickname" value="<?php echo $_SESSION['signup-nickname'] ?? ''; ?>" required />
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" for="signup-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_POST['signup-password'] ?? ''; ?>" title="La password deve contenere almeno una lettera maiuscola, una lettera minuscola, un numero e un simbolo ed avere una lunghezza minima di 6 caratteri." required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="300" type="password" id="signup-password" name="signup-password" value="<?php echo $_SESSION['signup-password'] ?? ''; ?>" title="La password deve contenere almeno una lettera maiuscola, una lettera minuscola, un numero e un simbolo ed avere una lunghezza minima di 6 caratteri." required />
                         <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="350" id="security-hint">
                             <span>Sicurezza della password</span>
                             <span id="security-badge"></span>
@@ -82,11 +84,11 @@ if (isset($_SESSION['nickname'])) {
                         <input type="hidden" name="signin-redirect" value="<?php echo $redirect; ?>" />
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" for="signin-email">E-mail</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signin-email" name="signin-email" value="<?php echo $_POST['signin-email'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="50" type="email" id="signin-email" name="signin-email" value="<?php echo $_SESSION['signin-email'] ?? ''; ?>" required />
                         </p>
                         <p>
                             <label data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100" for="signin-password">Password</label>
-                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="password" id="signin-password" name="signin-password" value="<?php echo $_POST['signin-password'] ?? ''; ?>" required />
+                            <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" type="password" id="signin-password" name="signin-password" value="<?php echo $_SESSION['signin-password'] ?? ''; ?>" required />
                         </p>
                         <p>
                             <input data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" type="submit" id="signin-submit" name="signin-submit" value="Sign In!" />

@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+//  Per l'accesso a questa pagina è richiesto il Log-In.
 if (!isset($_SESSION['email'])) {
     header('Location: ../login.php?action=signin');
 }

@@ -37,7 +37,7 @@ session_start();
         if (!isset($_SESSION['nickname'])) {
         ?>
             <form class="sign-up" method="post" action="login.php">
-                <input type="email" id="email" name="email" value="<?php echo $_POST['email'] ?? ''; ?>" placeholder="Inserisci qui la tua e-mail" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" required />
+                <input type="email" id="email" name="signup-email" value="<?php echo $_SESSION['signup-email'] ?? ''; ?>" placeholder="Inserisci qui la tua e-mail" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="150" required />
                 <input type="submit" id="submit" name="submit" value="Registrati" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" />
             </form>
             <p id="accedi" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250">Hai già un account? <a href="login.php?action=signin">Accedi</a>

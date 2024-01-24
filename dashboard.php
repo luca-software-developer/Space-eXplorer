@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+//  Se l'utente non è loggato, non ha accesso a questa pagina.
 if (!isset($_SESSION['email'])) {
     header('Location: login.php?action=signin');
 }

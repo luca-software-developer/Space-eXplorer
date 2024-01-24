@@ -7,6 +7,12 @@ if (isset($_POST["signup-email"]) && isset($_POST["signup-nickname"]) && isset($
     $signup_nickname = trim($_POST["signup-nickname"]);
     $signup_password = trim($_POST["signup-password"]);
 
+    //  Salva i valori temporanei dei campi nella sessione.
+    session_start();
+    $_SESSION['signup-email'] = $signup_email;
+    $_SESSION['signup-nickname'] = $signup_nickname;
+    $_SESSION['signup-password'] = $signup_password;
+
     //  Controllo ridondante (sicurezza).
     if (email_exists($db, $signup_email)) {
         //  Se il flusso di esecuzione entra in questo if significa
@@ -29,8 +35,12 @@ if (isset($_POST["signup-email"]) && isset($_POST["signup-nickname"]) && isset($
             if (!$result) {
                 echo pg_last_error($db);
             } else {
-                //  Avvia la sessione e registra le informazioni necessarie.
-                session_start();
+                //  Elimina le informazioni temporanee dalla sessione.
+                unset($_SESSION['signup-email']);
+                unset($_SESSION['signup-nickname']);
+                unset($_SESSION['signup-password']);
+                
+                //  Memorizza le informazioni dell'utente nella sessione.
                 $_SESSION['email'] = $signup_email;
                 $_SESSION['nickname'] = $signup_nickname;
                 $_SESSION['access_timestamp'] = time();
