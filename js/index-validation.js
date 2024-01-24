@@ -9,7 +9,7 @@
 const email = document.getElementById('email');
 const submit = document.getElementById('submit');
 
-//  Effettua la valizazione dell'email inserita nella home-page con AJAX.
+//  Effettua la validazione dell'email inserita nella home-page con AJAX.
 const validateEmail = () => {
     const value = email.value.trim();
     const xhr = new XMLHttpRequest();
