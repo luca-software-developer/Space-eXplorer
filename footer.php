@@ -30,7 +30,7 @@
         </div>
     </div>
     <div class="info-footer">
-        Università degli Studi di Salerno — Ingegneria Informatica — Gruppo04
+        Università degli Studi di Salerno — Ingegneria Informatica — Gruppo32
         — &copy; Space eXplorer
         <?php echo date('Y'); ?>
     </div>
