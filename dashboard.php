@@ -108,17 +108,19 @@ if (!isset($_SESSION['email'])) {
             <div id="change-password-row" class="row hidden">
                 <div class="col">
                     <section class="item">
-                        <h2>
-                            <button type="button" id="change-password-back" class="back-button">
+                        <div class="item-bar">
+                            <button type="button" id="change-password-back" class="back-button" title="Torna indietro">
                                 <i class="bi bi-chevron-left"></i>
                             </button>
-                            Cambia password
-                        </h2>
+                            <h2>
+                                Cambia password
+                            </h2>
+                        </div>
                         <div class="options-container">
                             <p>
                                 Questa procedura consente di modificare la password che usi per accedere al tuo account Space eXplorer.
                             </p>
-                            <form action="change-password.php" method="post">
+                            <form>
                                 <p>
                                     <label for="old-password">Vecchia password</label>
                                     <input type="password" id="old-password" name="old-password" />
@@ -132,7 +134,7 @@ if (!isset($_SESSION['email'])) {
                                     <input type="password" id="re-password" name="re-password" />
                                 </p>
                                 <p>
-                                    <label></label>
+                                    <label id="submit-change-password-label" for="submit-change-password">Cambia password</label>
                                     <input type="button" id="submit-change-password" value="Cambia password" disabled />
                                 </p>
                             </form>
@@ -144,19 +146,19 @@ if (!isset($_SESSION['email'])) {
             <div id="delete-account-row" class="row hidden">
                 <div class="col">
                     <section class="item">
-                        <h2>
-                            <button type="button" id="delete-account-back" class="back-button">
+                        <div class="item-bar">
+                            <button type="button" id="delete-account-back" class="back-button" title="Torna indietro">
                                 <i class="bi bi-chevron-left"></i>
                             </button>
-                            Elimina account
-                        </h2>
+                            <h2>
+                                Elimina account
+                            </h2>
+                        </div>
                         <div class="options-container">
                             <p>
                                 Questa procedura consente di eliminare il tuo account Space eXplorer e tutte le informazioni ad esso collegate.
                             </p>
-                            <form action="delete-account.php" method="post">
-                                <input type="button" id="submit-delete-account" value="Elimina account" />
-                            </form>
+                            <button type="button" id="submit-delete-account" title="Elimina account">Elimina account</button>
                         </div>
                     </section>
                 </div>
