@@ -141,7 +141,7 @@ submitChangePassword.onclick = () => {
             }
         }
     };
-    xhr.send('old-password=' + oldPasswordText + '&new-password=' + newPasswordText + '&re-password=' + rePasswordText);
+    xhr.send('old-password=' + encodeURIComponent(oldPasswordText) + '&new-password=' + encodeURIComponent(newPasswordText) + '&re-password=' + encodeURIComponent(rePasswordText));
 };
 
 //  Gestore dell'evento per il submit del form di eliminazione dell'account.

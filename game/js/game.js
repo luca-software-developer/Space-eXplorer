@@ -212,7 +212,7 @@ const saveScore = () => {
             log(`Score Saving`, `Score Saving Routine completed.`);
         }
     };
-    xhr.send('score=' + (score + 1));
+    xhr.send('score=' + encodeURIComponent(score + 1));
 };
 
 /* Player Collision Routine, spawns Explosion GameObject */

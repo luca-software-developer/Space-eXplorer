@@ -24,7 +24,7 @@ const validateEmail = () => {
             }
         }
     };
-    xhr.send('signup-email=' + value);
+    xhr.send('signup-email=' + encodeURIComponent(value));
 };
 
 validateEmail();

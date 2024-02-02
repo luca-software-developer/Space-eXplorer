@@ -55,7 +55,7 @@ const emailCheck = () => {
                 }
             }
         };
-        xhr.send('signup-email=' + email);
+        xhr.send('signup-email=' + encodeURIComponent(email));
     }
 };
 

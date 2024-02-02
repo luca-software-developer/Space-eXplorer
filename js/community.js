@@ -21,7 +21,7 @@ send.onclick = () => {
             message.value = '';
         }
     };
-    xhr.send('message=' + message.value);
+    xhr.send('message=' + encodeURIComponent(message.value));
     chatContainer.scrollTo(0, chatContainer.scrollHeight);
 };
 
