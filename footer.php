@@ -24,7 +24,7 @@
         <div class="validation-section">
             <p>
                 <a target="_blank" href="http://jigsaw.w3.org/css-validator/check/referer">
-                    <img class="valid-css" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS Valido!" />
+                    <img class="valid-css" src="./img/vcss.gif" width="88" height="31" title="CSS Valido!" alt="CSS Valido!" />
                 </a>
             </p>
         </div>
