@@ -4,10 +4,10 @@
         <section class="social-section">
             <h2 class="footer-section-heading">Social</h2>
             <div class="social-bar">
-                <a target="_blank" href="https://www.instagram.com/spaceexplorer.official/"><i class="bi bi-instagram"></i></a>
-                <a target="_blank" href="https://twitter.com/SpaceXpOfficial"><i class="bi bi-twitter-x"></i></a>
-                <a target="_blank" href="https://www.facebook.com/people/Space-Explorer/61554632938695/"><i class="bi bi-facebook"></i></a>
-                <a target="_blank" href="https://www.youtube.com/@SpaceeXplorer-official"><i class="bi bi-youtube"></i></a>
+                <a target="_blank" href="https://www.instagram.com/spaceexplorer.official/" title="Instagram"><i class="bi bi-instagram"></i></a>
+                <a target="_blank" href="https://twitter.com/SpaceXpOfficial" title="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+                <a target="_blank" href="https://www.facebook.com/people/Space-Explorer/61554632938695/" title="Facebook"><i class="bi bi-facebook"></i></a>
+                <a target="_blank" href="https://www.youtube.com/@SpaceeXplorer-official" title="YouTube"><i class="bi bi-youtube"></i></a>
             </div>
         </section>
         <section class="contacts-section">

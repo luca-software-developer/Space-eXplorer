@@ -29,8 +29,8 @@ a {
     text-align: center;
     margin: 1rem;
     background: rgba(1, 11, 25, 0.8);
-    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     -webkit-box-shadow: 0 0 10px 5px #010b19;
     box-shadow: 0 0 10px 5px #010b19;
     border-radius: 10px;
